@@ -1,13 +1,16 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
+var express      = require('express');
+var path         = require('path');
+var favicon      = require('static-favicon');
+var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var env = require('./config/environement');
+var bodyParser   = require('body-parser');
+var mongoose     = require('mongoose');
+var passport     = require('passport');
+var flash        = require('connect-flash');
+var session      = require('express-session');
+var env          = require('./config/environement');
 
-var users = require('./config/users');
+var users = require('./config/routes/users');
 mongoose.connect(env.development.db);
 var app = express();
 
@@ -16,6 +19,15 @@ app.use('/users', users);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+
+// required for passport
+app.use(session({ 
+        secret: 'qsfqsff52837HD8992937VCVKLOPZ927DBXCZLPQS89096DVXWHLSZ',
+        saveUninitialized: true,
+        resave: true
+    })
+); // session secret
+
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -23,6 +35,13 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+require('./config/passport')(passport);
+
+var sessions = require('./config/routes/sessions')(passport);
+app.use('/sessions', sessions);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
