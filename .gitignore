@@ -1,2 +1,6 @@
 node_modules
 public/lib
+public/images/*
+public/javascripts/*
+public/stylesheets/*
+app/src/generated

@@ -19,12 +19,32 @@ module.exports = function(grunt) {
                     'app/src/js/services/*.js',
                     'app/src/js/directives/*.js'
                 ],
-                tasks: ['ngmin', 'concat', 'uglify'],
+                tasks: ['ngmin', 'concatJs', 'uglifyJs'],
                 options: {
                     spawn: false,
                 },
             },
 
+            image: {
+                files: [
+                    'app/src/images/*.jpg',
+                    'app/src/images/*.png',
+                    'app/src/images/*.gif'
+                ],
+                tasks: ['imagemin'],
+            },
+
+            css: {
+                files: ['app/src/scss/*.scss'],
+                tasks: ['concatCss', 'uglifyCss'],
+                options: {
+                    spawn: false,
+                },
+            },
+
+            options: {
+                livereload: true,
+            },
         },
         // Configure a mochaTest task
         mochaTest: {
@@ -56,7 +76,7 @@ module.exports = function(grunt) {
                 dest: 'app/src/generated/js/services.js'     
             }
         },
-        concat: {
+        concatJs: {
             dist: {
                 src: [
                     'app/src/generated/js/*.js'
@@ -65,13 +85,32 @@ module.exports = function(grunt) {
             }
         },
 
-        uglify: {
+        uglifyJs: {
             options: {
                 separator: ';'
             },
             dist: {
                 src: ['app/src/generated/js/*.js'],
                 dest: 'public/javascripts/main.js'
+            }
+        },
+
+        concatCss: {
+            dist: {
+                src: [
+                    'app/src/scss/*.scss'
+                ],
+                dest: 'public/stylesheets/main.css'// la destination finale
+            }
+        },
+
+        uglifyCss: {
+            options: {
+                separator: ';'
+            },
+            dist: {
+                src: ['app/src/scss/*.scss'],
+                dest: 'public/stylesheets/main.css'
             }
         },
 
@@ -85,14 +124,42 @@ module.exports = function(grunt) {
                     expand: true
                 }
             }
+        },
+
+        imagemin: {                          // Task
+            static: {                          // Target
+                options: {                       // Target options
+                    optimizationLevel: 3,
+                    svgoPlugins: [{ removeViewBox: false }]
+                },
+                dynamic: {                         // Another target
+                    files: [{
+                        expand: true,                  // Enable dynamic expansion
+                        cwd: 'app/src/',                   // Src matches are relative to this path
+                        src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                        dest: 'public/images/'                  // Destination path prefix
+                    }]
+                }
+            },
+        },
+
+        compass: {                  // Task
+            dist: {                   // Target
+                options: {              // Target options
+                    sassDir: 'app/src/scss/',
+                    cssDir:  'app/src/css/'
+                }
+            }
         }
     });
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-ngmin');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-bower');
-    grunt.registerTask('default', 'mochaTest', 'ngmin', 'concat', 'uglify');
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.registerTask('default', 'bower', 'compass', 'imagemin', 'mochaTest', 'ngmin', 'concatJs', 'uglifyJs', 'concatCss', 'concatJs');
     grunt.registerTask('vendor', ['bower']);
 };
