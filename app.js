@@ -9,15 +9,23 @@ var passport     = require('passport');
 var flash        = require('connect-flash');
 var session      = require('express-session');
 var env          = require('./config/environement');
+var swig         = require('swig');
 
 var users = require('./config/routes/users');
 mongoose.connect(env.development.db);
 var app = express();
 
-app.use('/users', users);
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+
+// Swig will cache templates for you, but you can disable
+// that and use Express's caching instead, if you like:
+app.set('view cache', false);
+// To disable Swig's cache, do the following:
+swig.setDefaults({ cache: false });
 
 
 // required for passport
@@ -40,39 +48,19 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 require('./config/passport')(passport);
 
+var users = require('./config/routes/users')(passport);
 var sessions = require('./config/routes/sessions')(passport);
 app.use('/sessions', sessions);
+app.use('/users', users);
 
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
 
 /// error handlers
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
 
 
 module.exports = app;
