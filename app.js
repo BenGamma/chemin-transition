@@ -11,7 +11,6 @@ var session      = require('express-session');
 var env          = require('./config/environement');
 var swig         = require('swig');
 
-var users = require('./config/routes/users');
 mongoose.connect(env.development.db);
 var app = express();
 
@@ -48,19 +47,8 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 require('./config/passport')(passport);
 
-var users = require('./config/routes/users')(passport);
-var sessions = require('./config/routes/sessions')(passport);
-app.use('/sessions', sessions);
-app.use('/users', users);
-
-
-/// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-}
-
+var api = require('./config/routes/api')(passport);
+app.use('/api', api)
 
 
 module.exports = app;

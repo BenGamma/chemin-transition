@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var config  = require('../config/environement');
  
 describe('Routing', function() {
-  var url = 'http://someurl.com';
+  var url = 'http://localhost:3000/';
   // within before() you can run all the operations that are needed to setup your tests. In this case
   // I want to create a connection with the database, and when I'm done, I call done().
   before(function(done) {
