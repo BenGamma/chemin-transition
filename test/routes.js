@@ -23,10 +23,10 @@ describe('Routing', function() {
   describe('Account', function() {
     it('should return error trying to save duplicate username', function(done) {
       var profile = {
-        username: 'vgheri',
+        firstName: 'test',
+        lastName: 'test',
         password: 'test',
-        firstName: 'Valerio',
-        lastName: 'Gheri'
+        email: 'test@gmail.com'
       };
     // once we have specified the info we want to send to the server via POST verb,
     // we need to actually perform the action on the resource, in this case we want to 
