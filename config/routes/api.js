@@ -5,11 +5,7 @@ var users    = require('./api/users');
 var sessions = require('./api/sessions');
 var authorization = require('../authorization');
 
-module.exports = function(passport){
-    router.route('*')
-        .all(authorization.requiresLogin)
-    ;
-    router.use('/users', users(passport));
-    router.use('/sessions', sessions(passport));
-    return router;
-};
+router.use('/users', users);
+router.use('/sessions', sessions);
+
+module.exports = router

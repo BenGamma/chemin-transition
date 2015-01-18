@@ -1,13 +1,14 @@
-var users = require('../../../controllers/users')
+var users = require('../../../controllers/users');
+var authorization = require('../../authorization');
 var express = require('express');
 var router = express.Router();
 
-module.exports = function(passport){
-    router.route('/')
-        .post(passport.authenticate('local-signup'))
-    ;
+router.route('/')
+    .post(users.create)
+    .delete(authorization.requiresLogin, users.delete)
+;
 
-    router.route('/test')
-        .get(users.test)
-    return router;
-};
+router.route('/test')
+    .post(users.test)
+
+module.exports = router;

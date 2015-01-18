@@ -3,7 +3,7 @@ module.exports = {
       db: 'mongodb://localhost/chemin-transition'
     }
   , test: {
-      db: 'mongodb://localhost/chemin-transition'
+      db: 'mongodb://localhost/chemin-transition-test'
     }
   , production: {
       db: 'mongodb://localhost/chemin-transition'

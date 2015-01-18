@@ -1,13 +1,13 @@
-var gulp = require('gulp');
-var angularMin = require('gulp-angular-injector');
+var gulp          = require('gulp');
+var angularMin    = require('gulp-angular-injector');
 var concatenation = require('gulp-concat');
-var uglify = require('gulp-minify-inline');
-var compass = require('gulp-simple-compass');
-var bower = require('gulp-bower2');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
-var livereload = require('gulp-livereload');
-var mocha = require('gulp-mocha');
+var uglify        = require('gulp-minify-inline');
+var compass       = require('gulp-simple-compass');
+var bower         = require('gulp-bower2');
+var imagemin      = require('gulp-imagemin');
+var pngquant      = require('imagemin-pngquant');
+var livereload    = require('gulp-livereload');
+var mocha         = require('gulp-mocha');
 
 //angular minification
 gulp.task('angular', function(){
@@ -66,8 +66,10 @@ gulp.task('cssCompress', function() {
 });
 
 gulp.task('bower', function() {
-  return bower()
-    .pipe(gulp.dest('public/lib/'))
+    return bower()
+        .pipe(gulp.dest('public/lib/'))
+    ;
+
 });
 
 gulp.task('image', function () {
@@ -77,23 +79,26 @@ gulp.task('image', function () {
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         }))
-        .pipe(gulp.dest('public/images'));
+        .pipe(gulp.dest('public/images'))
+    ;
 });
 
 gulp.task('test', function () {
     return gulp.src('test/*.js', {read: false})
-        .pipe(mocha({reporter: 'nyan'}));
+        .pipe(mocha({reporter: 'nyan'}))
+    ;
 });
 
-gulp.task('default', [
-    'angular', 
-    'concat', 
-    'jsCompress', 
-    'compass', 
-    'concatCss',
-    'cssCompress',
-    'bower',
-    'image'
+gulp.task('default', 
+    [
+        'angular', 
+        'concat', 
+        'jsCompress', 
+        'compass', 
+        'concatCss',
+        'cssCompress',
+        'bower',
+        'image'
     ], function() {
 
     })

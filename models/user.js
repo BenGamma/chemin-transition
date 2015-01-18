@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
+var randtoken = require('rand-token');
 
 var userSchema = mongoose.Schema({
 
@@ -25,8 +26,8 @@ userSchema.methods.validPassword = function(password) {
 };
 
 // generate token
-userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.local.password);
+userSchema.methods.generateToken = function() {
+    return this.local.token = randtoken.generate(16);
 };
 
 userSchema.pre('save', function (next) {
