@@ -1,3 +1,4 @@
+require('coffee-script/register');
 var express      = require('express');
 var path         = require('path');
 var favicon      = require('static-favicon');
@@ -10,6 +11,7 @@ var flash        = require('connect-flash');
 var session      = require('express-session');
 var env          = require('./config/environement');
 var swig         = require('swig');
+
 
 mongoose.connect(env.development.db);
 var app = express();
