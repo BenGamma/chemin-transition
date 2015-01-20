@@ -2,7 +2,6 @@ passport = require 'passport'
 User     = require '../models/user'
 
 exports.create = (req, res, next) ->
-    console.log(new User())
     passport.authenticate('local-signup', (message) ->
         res.json message
     )(req, res, next)

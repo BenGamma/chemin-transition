@@ -1,7 +1,7 @@
 LocalStrategy  = require('passport-local').Strategy
 
 #load up the user model
-User = require '../models/person'
+User = require '../models/user'
 
 module.exports = (passport) ->
 
@@ -19,6 +19,7 @@ module.exports = (passport) ->
     ,(req, email, password, done) ->
         process.nextTick ->
             User.findOne 'local.email' :  email , (err, user) ->
+                console.log('sss')
                 #if there are any errors, return the error
                 return done(err) if err
 
