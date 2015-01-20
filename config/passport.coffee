@@ -1,6 +1,7 @@
-LocalStrategy  = require('passport-local').Strategy;
+LocalStrategy  = require('passport-local').Strategy
+
 #load up the user model
-User = require('../models/user');
+User = require '../models/person'
 
 module.exports = (passport) ->
 
@@ -10,21 +11,17 @@ module.exports = (passport) ->
             done(null, null, user)
         );
 
-    passport.use 'local-signup', new LocalStrategy({
-        #by default, local strategy uses username and password, we will override with email
+    passport.use 'local-signup', new LocalStrategy
+        #override field
         usernameField : 'email',
         passwordField : 'password',
         passReqToCallback : true, # allows us to pass back the entire request to the callback
-    },
-    (req, email, password, done) ->
-        #asynchronous
-        #User.findOne wont fire unless data is sent back
+    ,(req, email, password, done) ->
         process.nextTick ->
-            #find a user whose email is the same as the forms email
-            #we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email' :  email }, (err, user) ->
+            User.findOne 'local.email' :  email , (err, user) ->
                 #if there are any errors, return the error
                 return done(err) if err
+
                 #check to see if theres already a user with that email
                 if user 
                     return done 'message' : 'user already exist'
@@ -41,5 +38,3 @@ module.exports = (passport) ->
                     newUser.save (err)->
                         throw err if err
                         done('user': newUser, 'message': 'created')
-            );
-    );
