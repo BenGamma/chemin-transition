@@ -19,8 +19,7 @@ describe('Routing', function() {
     // within before() you can run all the operations that are needed to setup your tests. In this case
     // I want to create a connection with the database, and when I'm done, I call done().
     before(function(done) {
-        // In our tests we use the test db
-        mongoose.connect(config.development.db);                            
+        // In our tests we use the test db                           
         done();
     });
 
@@ -82,6 +81,6 @@ describe('Routing', function() {
             });
         });
     });
-
 });
+
 
