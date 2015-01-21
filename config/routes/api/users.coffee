@@ -8,6 +8,6 @@ router.route '/'
     .delete(authorization.requiresLogin, users.delete)
 
 router.route '/test'
-    .post users.test 
+    .get users.test 
 
 module.exports = router;

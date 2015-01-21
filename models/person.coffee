@@ -1,5 +1,6 @@
 userBaseSchema = require './userBase'
-User = require './user'
+User           = require './user'
+
 PersonSchema = new userBaseSchema()
 
 Person = User.discriminator 'Person', PersonSchema

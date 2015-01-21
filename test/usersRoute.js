@@ -37,6 +37,60 @@ describe('Routing', function() {
         });
     });
 
+    describe('login', function(){
+        it('should login user', function(done){
+            request(url)
+                .post('api/sessions/login')
+                .send(profile)
+                .expect(function(res){
+                    res.body.should.have.property('code', 200);              
+                })
+                .end(done);
+        });
+    });
+
+    describe('login', function(){
+        it('should failed login no params', function(done){
+            request(url)
+                .post('api/sessions/login')
+                .send({})
+                .expect(function(res){
+                    res.body.should.have.property('code', 400);              
+                })
+                .end(done);
+        });
+    });
+
+    describe('login', function(){
+        it('should failed login wrong password', function(done){
+            request(url)
+                .post('api/sessions/login')
+                .send({
+                    'email' : 'test@gmail.com',
+                    'password' : 'password'
+                })
+                .expect(function(res){
+                    res.body.should.have.property('code', 400);              
+                })
+                .end(done);
+        });
+    });
+
+    describe('login', function(){
+        it('should failed login wrong email', function(done){
+            request(url)
+                .post('api/sessions/login')
+                .send({
+                    'email' : 'admin@gmail.com',
+                    'password' : 'test'
+                })
+                .expect(function(res){
+                    res.body.should.have.property('code', 400);              
+                })
+                .end(done);
+        });
+    });
+
     describe('DuplicateAccount', function(){
         it('should return an error message', function(done){
             request(url)

@@ -37,3 +37,21 @@ module.exports = (passport) ->
                     newUser.save (err)->
                         throw err if err
                         done('user': newUser, 'message': 'created')
+
+    passport.use 'local-login', new LocalStrategy
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true,
+    ,(req, email, password, done) ->
+        User.findOne { 'local.email' :  email }, (err, user) ->
+            #if there are any errors, return the error before anything else
+            return done(400, false, 'no credentials') if err
+
+            #if no user is found, return the message
+            return done(400, false, 'wrong credentials') unless user
+
+            #if the user is found but the password is wrong
+            return done(400, false, 'wrong credentials') unless user.validPassword(password)
+
+            #all is well, return successful user
+            return done(200, user, 'success');
