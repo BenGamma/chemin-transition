@@ -5,8 +5,8 @@ pngquant       = require('imagemin-pngquant');
 mainBowerFiles = require('main-bower-files');
 $              = require('gulp-load-plugins')()
 angularPath    = 'app/src/coffee/angular'
-tasks          = ['coffee', 'concat', 'js-compress', 'bower', 'image']
-angularFile    = ['app/src/coffee/angular/app.coffee','app/src/coffee/angular/ontrollers/*.coffee','app/src/coffee/angular/directives/*.coffee','app/src/coffee/angular/services/*.coffee']
+tasks          = ['coffee', 'concat', 'js-compress', 'bower', 'image', 'compass', 'css-concat', 'css-compress']
+angularFile    = ['app/src/coffee/angular/app.coffee','app/src/coffee/angular/controllers/*.coffee','app/src/coffee/angular/directives/*.coffee','app/src/coffee/angular/services/*.coffee']
 browsers       = ["ie >= 9", "ie_mob >= 10", "ff >= 30", "chrome >= 34", "safari >= 7", "opera >= 23", "ios >= 7", "android >= 4.4", "bb >= 10"]
 
 watch = ->
