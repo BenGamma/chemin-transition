@@ -1,6 +1,5 @@
 node_modules
-public/lib
-public/images/*
-public/javascripts/*
-public/stylesheets/*
-app/src/generated
+bower_components
+app/src/lib
+app/src/.compile
+app/images

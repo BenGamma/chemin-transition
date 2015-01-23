@@ -1,5 +1,1 @@
-var app;
-
-app = angular.module('test', ['']);
-
-app.controller('testController', function($scope) {});
+var app;app=angular.module("app",["ssss"]),app.controller("loginController",["$scope",function(){}]);
