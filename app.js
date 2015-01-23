@@ -10,7 +10,7 @@ var passport     = require('passport');
 var flash        = require('connect-flash');
 var session      = require('express-session');
 var env          = require('./config/environement');
-var swig         = require('swig');
+var ejs          = require('ejs');
 
 
 mongoose.connect(env.development.db);
@@ -18,15 +18,12 @@ var app = express();
 
 // view engine setup
 
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 // Swig will cache templates for you, but you can disable
 // that and use Express's caching instead, if you like:
 app.set('view cache', false);
-// To disable Swig's cache, do the following:
-swig.setDefaults({ cache: false });
 
 
 // required for passport
@@ -51,6 +48,9 @@ require('./config/passport')(passport);
 
 var api = require('./config/routes/api');
 app.use('/api', api)
+
+var route = require('./config/routes/routes');
+app.use('/', route)
 
 
 module.exports = app;

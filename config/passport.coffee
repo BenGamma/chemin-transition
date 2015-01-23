@@ -11,6 +11,7 @@ module.exports = (passport) ->
             done(null, null, user)
         );
 
+    #local signup
     passport.use 'local-signup', new LocalStrategy
         #override field
         usernameField : 'email',
@@ -37,7 +38,7 @@ module.exports = (passport) ->
                     newUser.save (err)->
                         throw err if err
                         done('user': newUser, 'message': 'created')
-
+    #local login
     passport.use 'local-login', new LocalStrategy
         usernameField : 'email',
         passwordField : 'password',
