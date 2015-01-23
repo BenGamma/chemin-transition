@@ -25,7 +25,7 @@ $ npm install --global bower
 $ git clone https://github.com/BenGamma/chemin-transition.git
 ```
 
-#### 2. go to your root folder and run:
+##### 2. go to your root folder and run:
 
 ```sh
 $ npm install
@@ -33,7 +33,7 @@ $ npm install
 
 this command will install all the dependencies from package.json into node_modules folder 
 
-#### 3. install bower dependencies
+##### 3. install bower dependencies
 
 ```sh
 $ bower install
@@ -41,10 +41,10 @@ $ bower install
 
 this command will install all the dependencies from bower.json into bower_components folder
 
-#### 4. init gulp
+##### 4. init gulp
 Simply run gulp in your terminal to init the front app
 
-#### Node Server
+##### Node Server
 
 To lunch the server for the back-end run:
 ```sh
