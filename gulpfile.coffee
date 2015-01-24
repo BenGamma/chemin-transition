@@ -16,7 +16,7 @@ watch = ->
     gulp.watch 'app/src/images/*.png', ['image']
     gulp.watch 'app/src/images/*.jpg', ['image']
     gulp.watch 'app/src/images/*.gif', ['image']
-
+    gulp.watch 'app/src/partials/*.html', ['index-dev']
     gulp.watch 'bower.json', ['bower', 'index-dev']
 
 gulp.task 'coffee', ->
@@ -30,18 +30,18 @@ gulp.task 'coffee', ->
 gulp.task 'concat', ['coffee'], ->
     gulp.src 'app/src/.compile/js/*.js'
     .pipe $.concat 'main.js' 
-    .pipe gulp.dest 'app'
+    .pipe gulp.dest 'public/javascripts'
 
 gulp.task 'ngAnnotate', ['concat'], ->
-    gulp.src 'app/main.js'
+    gulp.src 'public/javascripts/main.js'
     .pipe $.ngAnnotate() 
-    .pipe gulp.dest 'app'
+    .pipe gulp.dest 'public/javascripts'
 
 #js compression
 gulp.task 'js-compress', ['ngAnnotate'], ->
-    gulp.src 'app/main.js'
+    gulp.src 'public/javascripts/main.js'
     .pipe $.uglify()
-    .pipe gulp.dest 'app'
+    .pipe gulp.dest 'public/javascripts'
     .pipe $.connect.reload()
 
 #compass
@@ -58,13 +58,13 @@ gulp.task 'compass', ->
 gulp.task 'css-concat', ['compass'], ->
     gulp.src 'app/src/.compile/css/*.css'
     .pipe $.concat 'main.css' 
-    .pipe gulp.dest 'app'
+    .pipe gulp.dest 'public/stylesheets'
 
 #css compression
 gulp.task 'css-compress', ['css-concat'], ->
-    gulp.src 'app/main.css'
+    gulp.src 'public/stylesheets/main.css'
     .pipe $.minifyCss keepBreaks:true
-    .pipe gulp.dest 'app'
+    .pipe gulp.dest 'public/stylesheets'
     .pipe $.connect.reload()
 
 
@@ -74,6 +74,7 @@ gulp.task 'bower', ->
                 paths:
                     bowerDirectory: 'bower_components',
                     bowerJson: 'bower.json'
+    .pipe gulp.dest 'public/lib'
     .pipe gulp.dest 'app/src/lib'
 
 #image compress

@@ -3,3 +3,4 @@ bower_components
 app/src/lib
 app/src/.compile
 app/images
+public/lib

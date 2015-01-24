@@ -1,1 +1,1 @@
-var app;app=angular.module("app",["ssss"]),app.controller("loginController",["$scope",function(){}]);
+var app;app=angular.module("app",["ui.router"]),app.config(function(t,a){return a.otherwise(function(t){var a;return a=t.get("$state"),a.go("state1")}),t.state("state1",{url:"/state1",templateUrl:"partials/login.html"})}),app.controller("loginController",function(){});

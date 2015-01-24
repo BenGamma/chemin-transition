@@ -40,6 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/partials', express.static(__dirname + '/views/partials'));
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
