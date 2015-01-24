@@ -4,13 +4,16 @@
 #### 1. Install node:
 * http://nodejs.org/download/
 
-#### 2. Install gulp globally:
+#### 2. Install mongodb:
+* http://www.mongodb.org/downloads
+
+#### 3. Install gulp globally:
 
 ```sh
 $ npm install --global gulp
 ```
 
-#### 3. Install bower globally
+#### 4. Install bower globally
 
 ```sh
 $ npm install --global bower
