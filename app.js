@@ -1,29 +1,30 @@
 require('coffee-script/register');
-var express      = require('express');
-var path         = require('path');
-var favicon      = require('static-favicon');
-var logger       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var mongoose     = require('mongoose');
-var passport     = require('passport');
-var flash        = require('connect-flash');
-var session      = require('express-session');
-var env          = require('./config/environement');
-var ejs          = require('ejs');
+var express      = require('express')
+,path            = require('path')
+,favicon         = require('static-favicon')
+,logger          = require('morgan')
+,cookieParser    = require('cookie-parser')
+,bodyParser      = require('body-parser')
+,mongoose        = require('mongoose')
+,passport        = require('passport')
+,flash           = require('connect-flash')
+,session         = require('express-session')
+,env             = require('./config/environement')
+,swig            = require('swig');
 
 
 mongoose.connect(env.development.db);
 var app = express();
 
 // view engine setup
-
-app.set('view engine', 'ejs');
+app.engine('html', swig.renderFile)
+app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
-// Swig will cache templates for you, but you can disable
-// that and use Express's caching instead, if you like:
+
 app.set('view cache', false);
+// To disable Swig's cache, do the following:
+swig.setDefaults({ cache: false });
 
 
 // required for passport
