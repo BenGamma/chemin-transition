@@ -29,8 +29,7 @@ describe('Routing', function() {
                 .post('api/users/')
                 .send(profile)
                 .expect(function(res){
-                    res.body.should.have.property('user').and.should.be.type('object');
-                    res.body.should.have.property('message', 'created');              
+                    res.body.should.have.property('_id').and.should.be.type('object');             
                 })
                 .end(done);
             ;

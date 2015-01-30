@@ -3,17 +3,23 @@
 <head>
     <meta charset="utf-8">
     <title>Mon titre</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
     <!-- inject:css -->
     <link rel="stylesheet" href=".compile/css/header.css">
     <!-- endinject -->
 </head>
 <body ng-app="app">
     <div ui-view></div>
+    <script src="lib/leaflet.js"></script>
     <script src="lib/angular.js"></script>
     <script src="lib/angular-ui-router.js"></script>
+    <script src="lib/angular-leaflet-directive.js"></script>
     <!-- inject:js -->
     <script src=".compile/js/app.js"></script>
+    <script src=".compile/js/authentication.js"></script>
     <script src=".compile/js/loginController.js"></script>
+    <script src=".compile/js/mapController.js"></script>
+    <script src=".compile/js/mapDirective.js"></script>
     <!-- endinject -->
 </body>
 </html>

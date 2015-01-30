@@ -1,12 +1,13 @@
-app = angular.module('app', ['ui.router'])
+app = angular.module('app', ['ui.router', 'leaflet-directive'])
 
 app.config ($stateProvider, $urlRouterProvider) ->
 
     $urlRouterProvider.otherwise ($injector, $location) ->
         $state = $injector.get("$state");
-        $state.go("state1");
+        $state.go("map");
 
     $stateProvider
-    .state 'state1',
-        url: "/state1",
-        templateUrl: "partials/login.html"
+    .state 'map',
+        url: "/",
+        templateUrl: "partials/map.html",
+        controller: "mapController"
