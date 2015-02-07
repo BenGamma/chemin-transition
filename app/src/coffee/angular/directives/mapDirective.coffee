@@ -13,31 +13,36 @@ app.directive 'map', (leafletData) ->
                 minZoom: 10
         ).addTo(map)
 
-        markers = [
-            {
-                latlng: {
-                    lat: 48.836305918541605,
-                    lng: 2.2945117950439453
-                }
-            },{
-                latlng: {
-                    lat: 48.836305918541605,
-                    lng: 2.2945117950439453
-                }
-            },{
-                latlng: {
-                    lat: 48.833933079205224,
-                    lng: 2.311077117919922
-                }
-            }
-        ];
         
-        angular.forEach markers, (marker) ->
-            L.marker(marker.latlng).addTo map
-            return
+        
+        getRandomLatLng = (map) ->
+            bounds = map.getBounds()
+            southWest = bounds.getSouthWest()
+            northEast = bounds.getNorthEast()
+            lngSpan = northEast.lng - southWest.lng
+            latSpan = northEast.lat - southWest.lat
+            return new L.LatLng(
+                southWest.lat + latSpan * Math.random()
+                southWest.lng + lngSpan * Math.random()
+            );
+        
+        
+        markers = new L.MarkerClusterGroup()
+        markers.initialize
+        
+        
+        markers.addLayer new L.Marker getRandomLatLng map
+        markers.addLayer new L.Marker getRandomLatLng map
+        markers.addLayer new L.Marker getRandomLatLng map
+        map.addLayer markers
+        
+        
+        #angular.forEach markers, (marker) ->
+        #    L.marker(marker.latlng).addTo map
+        #    return
         
         map.on 'click', (e) ->
             marker = L.marker(e.latlng)
-            markers.push {latlng: e.latlng}
+            markersList.push {latlng: e.latlng}
             marker.addTo map
             return
