@@ -46,6 +46,12 @@ gulp.task 'js-compress', ['ngAnnotate'], ->
 
 #compass
 gulp.task 'compass', ->
+    #foundation scss
+    gulp.src 'bower_components/foundation/scss/*.scss'
+        .pipe $.sass
+            onError: console.error.bind(console, 'SASS error:')
+        .pipe gulp.dest 'bower_components/foundation/css'
+
     gulp.src 'app/src/scss/*.scss'
         .pipe $.sass
             onError: console.error.bind(console, 'SASS error:')
@@ -53,7 +59,7 @@ gulp.task 'compass', ->
             browsers: browsers 
         .pipe gulp.dest 'app/src/.compile/css'
         .pipe $.size()
-
+        
 #css concat
 gulp.task 'css-concat', ['compass'], ->
     gulp.src 'app/src/.compile/css/*.css'

@@ -1,1 +1,1 @@
-app.controller 'mapController', ($scope, leafletData) ->   
+app.controller 'mapController', ($scope, leafletData) ->
