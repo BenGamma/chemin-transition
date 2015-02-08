@@ -2,7 +2,6 @@ require 'coffee-script/register'
 
 gulp           = require('gulp')
 pngquant       = require('imagemin-pngquant');
-mainBowerFiles = require('main-bower-files');
 $              = require('gulp-load-plugins')()
 angularPath    = 'app/src/coffee/angular'
 tasks          = ['coffee', 'concat', 'js-compress', 'bower', 'image', 'compass', 'css-concat', 'css-compress']
@@ -70,10 +69,7 @@ gulp.task 'css-compress', ['css-concat'], ->
 
 #bower
 gulp.task 'bower', ->
-    gulp.src mainBowerFiles
-                paths:
-                    bowerDirectory: 'bower_components',
-                    bowerJson: 'bower.json'
+    $.bower({'/bower_components'})
     .pipe gulp.dest 'public/lib'
     .pipe gulp.dest 'app/src/lib'
 

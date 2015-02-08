@@ -13,16 +13,19 @@
 
 <body ng-app="app">
     <div ui-view></div>
-    <script src="lib/leaflet.js"></script>
-    <script src="lib/angular.js"></script>
-    <script src="lib/angular-ui-router.js"></script>
-    <script src="lib/angular-leaflet-directive.js"></script>
+    <script src="lib/leaflet/dist/leaflet.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/angular-cookie/angular-cookie.js"></script>
+    <script src="lib/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
     <!-- inject:js -->
     <script src=".compile/js/app.js"></script>
+    <script src=".compile/js/appConfig.js"></script>
     <script src=".compile/js/authentication.js"></script>
     <script src=".compile/js/loginController.js"></script>
     <script src=".compile/js/mapController.js"></script>
     <script src=".compile/js/mapDirective.js"></script>
+    <script src=".compile/js/userData.js"></script>
     <!-- endinject -->
 </body>
 
