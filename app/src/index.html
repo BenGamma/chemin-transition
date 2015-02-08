@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>Mon titre</title>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
-    <link rel="stylesheet" href="lib/foundation.css">
-    <link rel="stylesheet" href="lib/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="lib/foundation/css/foundation.css">
+    <link rel="stylesheet" href="lib/leaflet.markercluster/dist/MarkerCluster.Default.css">
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
     <!-- inject:css -->
     <link rel="stylesheet" href=".compile/css/app.css">
@@ -14,23 +14,29 @@
     <!-- endinject -->
 </head>
 
-<body ng-app="app">
+<body ng-app="app">   
     <div ui-view class="full-height"></div>
-    <script src="lib/leaflet.js"></script>
-    <script src="lib/leaflet.markercluster.js"></script>
-    <script src="lib/angular.js"></script>
-    <script src="lib/angular-ui-router.js"></script>
-    <script src="lib/angular-leaflet-directive.js"></script>
-    <script src="lib/jquery.js"></script>
-    <script src="lib/foundation.js"></script>
+    
+    <script src="lib/leaflet/dist/leaflet.js"></script>
+    
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/angular-cookie/angular-cookie.js"></script>
+    <script src="lib/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+    <script src="lib/foundation/js/foundation.min.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+    <script src="lib/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <!-- inject:js -->
     <script src=".compile/js/app.js"></script>
+    <script src=".compile/js/appConfig.js"></script>
     <script src=".compile/js/authentication.js"></script>
     <script src=".compile/js/loginController.js"></script>
     <script src=".compile/js/mapController.js"></script>
     <script src=".compile/js/mapDirective.js"></script>
-    <!-- endinject -->
+    <script src=".compile/js/userData.js"></script>
+    <!-- endinject --> 
 </body>
 
 </html>

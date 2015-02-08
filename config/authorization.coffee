@@ -10,3 +10,10 @@ exports.requiresLogin = (req, res, next) ->
         next();
     )
 
+exports.checkLogin = (req, res, next) ->
+    passport.tokenLogin(req, req.headers.token, req.headers.email, (code, message, user) ->
+        unless user
+            res.status(code).json
+                message : message
+        res.status(code).json('accepted')
+    )
