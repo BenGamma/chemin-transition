@@ -8,3 +8,5 @@ local.0
 local.ns
 mongod.lock
 journal
+.DS_Store
+app/.DS_Store

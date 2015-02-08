@@ -1,11 +1,12 @@
 app.factory 'userData', ($http, $q, appConfig, ipCookie ) ->
+    
     login: (user) ->
         deferred = $q.defer()
         $http({method: 'POST', url: appConfig.url('sessions/login'), data: user })
             .success (data, status, headers, config) ->
                 deferred.resolve(status)
             .error (data, status, headers, config) ->
-                deferred.reject(status)
+                deferred.reject(data)
         deferred.promise
 
     checkUser: ->

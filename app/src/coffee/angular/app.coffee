@@ -4,20 +4,28 @@ app.config ($stateProvider, $urlRouterProvider) ->
 
     $urlRouterProvider.otherwise ($injector, $location) ->
         $state = $injector.get("$state");
-        $state.go("map");
+        $state.go("index");
 
     $stateProvider
-    .state 'map',
+    .state 'index',
         url: "/",
-        templateUrl: "partials/map.html",
-        controller: "mapController"
+        views:
+            "":
+                templateUrl: "partials/map.html",
+                controller: "mapController"
+            "sidebar":
+                templateUrl: 'partials/sidebar.html',
+                controller: "sideBarController"
+
+        onEnter: (authService)->
+            if authService.needsLogin
+                authService.showLogin()
 
     .state 'users',
         url: "/users",
         resolve:
             check: ($state, authService) ->
-                unless authService.isAuthorize()
-                    $state.go('map')
+                authService.isAuthorize()
 
     .state 'users.profile',
         url: "/profile"

@@ -3,7 +3,7 @@ app.directive 'map', (leafletData) ->
     link: (scope, element, attrs, ctrl, e) ->
         map = L.map('map',
             center: 'center'
-        ).setView([48.8375, 2.3291], 14)
+        ).setView([48.8375, 2.3291], 13)
         
         mapLink = 
             '<a href="http://openstreetmap.org">OpenStreetMap</a>';
