@@ -1,4 +1,4 @@
-app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie'])
+app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie', 'mm.foundation'])
 
 app.config ($stateProvider, $urlRouterProvider) ->
 
@@ -17,7 +17,6 @@ app.config ($stateProvider, $urlRouterProvider) ->
         resolve:
             check: ($state, authService) ->
                 unless authService.isAuthorize()
-                    authService.needsLogin = true
                     $state.go('map')
 
     .state 'users.profile',
