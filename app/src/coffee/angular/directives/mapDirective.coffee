@@ -1,19 +1,9 @@
 app.directive 'map', (leafletData) ->
     restrict: "E"
     link: (scope, element, attrs, ctrl, e) ->
-        map = L.map('map',
-            center: 'center'
-        ).setView([48.8375, 2.3291], 14)
-        
-        mapLink = 
-            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-        L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                attribution: '&copy; ' + mapLink + ' Contributors',
-                minZoom: 10
-        ).addTo(map)
-
-        
+    
+        L.mapbox.accessToken = 'pk.eyJ1IjoidG9ueWx1Y2FzIiwiYSI6IlRqa09UbE0ifQ.DGFIsGazdBZSk0t2PYe6Zw'
+        L.mapbox.map('map', 'tonylucas.l5j344b8').setView([48.8375, 2.3291], 14)
         
         getRandomLatLng = (map) ->
             bounds = map.getBounds()
@@ -28,21 +18,17 @@ app.directive 'map', (leafletData) ->
         
         
         markers = new L.MarkerClusterGroup()
-        markers.initialize
+        #markers.initialize
         
         
-        markers.addLayer new L.Marker getRandomLatLng map
-        markers.addLayer new L.Marker getRandomLatLng map
-        markers.addLayer new L.Marker getRandomLatLng map
-        map.addLayer markers
         
         
         #angular.forEach markers, (marker) ->
         #    L.marker(marker.latlng).addTo map
         #    return
         
-        map.on 'click', (e) ->
-            marker = L.marker(e.latlng)
-            markersList.push {latlng: e.latlng}
-            marker.addTo map
-            return
+        #map.on 'click', (e) ->
+        #    marker = L.marker(e.latlng)
+        #    markersList.push {latlng: e.latlng}
+        #    marker.addTo map
+        #    return
