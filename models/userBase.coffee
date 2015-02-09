@@ -10,8 +10,6 @@ userBaseSchema = ->
 
     @add
         local:
-            firstName    : String
-            lastName     : String,
             email        : type: String, required: true
             password     : type: String, required: true
             token        : String, 
