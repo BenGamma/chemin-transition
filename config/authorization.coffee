@@ -2,7 +2,7 @@ passport = require('passport');
 User     = require('../models/user');
 
 exports.requiresLogin = (req, res, next) ->
-    passport.tokenLogin(req, req.headers.token, req.headers.email, (code, message, user) ->
+    passport.tokenLogin(req, req.headers['x-token'], req.headers['x-email'], (code, message, user) ->
         unless user
             res.status(code);
             return res.json
@@ -11,9 +11,9 @@ exports.requiresLogin = (req, res, next) ->
     )
 
 exports.checkLogin = (req, res, next) ->
-    passport.tokenLogin(req, req.headers.token, req.headers.email, (code, message, user) ->
+    passport.tokenLogin(req, req.headers['x-token'], req.headers['x-email'], (code, message, user) ->
         unless user
-            res.status(code).json
-                message : message
-        res.status(code).json('accepted')
+            res.status(401).json
+                message : 'unauthorized'
+        res.status(204).json('accepted')
     )

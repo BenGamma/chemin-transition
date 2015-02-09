@@ -4,14 +4,14 @@ app.factory 'userData', ($http, $q, appConfig, ipCookie ) ->
         deferred = $q.defer()
         $http({method: 'POST', url: appConfig.url('sessions/login'), data: user })
             .success (data, status, headers, config) ->
-                deferred.resolve(status)
+                deferred.resolve(data)
             .error (data, status, headers, config) ->
                 deferred.reject(data)
         deferred.promise
 
     checkUser: ->
         deferred = $q.defer()
-        $http({method: 'GET', url: appConfig.url('sessions'), headers: {'token': ipCookie('token'), 'mail': ipCookie('mail')} })
+        $http({method: 'GET', url: appConfig.url('sessions'), headers: {'X-token': ipCookie('token'), 'X-email': ipCookie('email')} })
             .success (data, status, headers, config) ->
                 deferred.resolve(status)
             .error (data, status, headers, config) ->
@@ -31,7 +31,7 @@ app.factory 'userData', ($http, $q, appConfig, ipCookie ) ->
 
     update: (user) ->
         deferred = $q.defer()
-        $http({method: 'PUT', url: appConfig.url('users'), params: {id: user._id}, data: user }).
+        $http({method: 'PUT', url: appConfig.url('users'), params: {id: user._id}, data: user, headers: {'token': ipCookie('token'), 'email': ipCookie('email')} }).
             success((data, status, headers, config) ->
                 deferred.resolve(status)
             ).

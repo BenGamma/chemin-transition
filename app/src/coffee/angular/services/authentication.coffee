@@ -2,10 +2,22 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
     user: {},
     token: null,
     needsLogin: false,
+
+    setSession: (user) ->
+        @user = user
+        @token = user.token
+
+        ipCookie('token', @token)
+        ipCookie('email', @user.email)
+
     isAuthorize:  ->
         unless ipCookie('token') || ipCookie('mail')
             @needsLogin = true
-            $state.go('index')
+            return $state.go('index')
+
+        userData.checkUser().then (result) ->
+            unless result == 204
+                return $state.go('index')
 
     showLogin: ->
         @login = $modal.open

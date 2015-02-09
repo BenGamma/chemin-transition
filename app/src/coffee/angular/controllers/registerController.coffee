@@ -2,9 +2,10 @@ app.controller 'registerController', ($scope, $modalInstance, authService, userD
     $scope.cancel = ->
        authService.hideRegister() 
 
-    $scope.login = (loginForm, user)->
-        userData.register(user).then((result) ->
-        (data) ->
-            user.error = data.message
-        )
-
+    $scope.register = (registerForm, user)->
+        unless registerForm.$invalid
+            userData.create(user).then((result) ->
+                console.log(result)
+            (data) ->
+                user.error = data.message
+            )

@@ -2,11 +2,11 @@ passport = require 'passport'
 User     = require '../models/user'
 
 exports.create = (req, res, next) ->
-    passport.authenticate('local-signup', (user, message, code) ->
+    passport.authenticate('local-signup', (user) ->
         if user
-            res.status(code).json(user)
+            res.status(201).json(user)
         else
-            res.status(code).json(message)
+            res.status(400).json('fail')
 
     )(req, res, next)
 

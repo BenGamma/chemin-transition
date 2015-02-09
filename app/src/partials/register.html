@@ -1,11 +1,14 @@
 <h1>Sign up</h1>
 {{user.error}}
 <form name="registerForm">
-    <input type="text" ng-model="user.lastname" required placeholder="LasttName">
-    <input type="text" ng-model="user.firstname" required placeholder="FirstName">
-    <input type="email" ng-model="user.mail" required placeholder="Email">
+    <select ng-model="user.type">
+        <option value="Person">Organization</option>
+        <option value="Organization">Personne</option>
+    </select>
+    <input type="text" ng-model="user.lastName" required placeholder="LasttName">
+    <input type="text" ng-model="user.firstName" required placeholder="FirstName">
+    <input type="email" ng-model="user.email" required placeholder="Email">
     <input type="password" ng-model="user.password" required placeholder="Password">
-    <input type="password" ng-model="user.passwordCheck" required placeholder="Password">
-    <button ng-click="login(registerForm, user)" ng-disabled="registerForm.$invalid" type="submit" class="btn btn-primary">Sign up</button>
+    <button ng-click="register(registerForm, user)" ng-disabled="registerForm.$invalid" type="submit" class="btn btn-primary">Sign up</button>
 </form>
  <a class="close-reveal-modal" ng-click="cancel()">x</a>

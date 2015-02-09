@@ -28,6 +28,13 @@ userBaseSchema = ->
     @methods.generateToken = ->
         @local.token = randtoken.generate(16);
 
+    @methods.serialize = ->
+        "id": @_id,
+        "firstName": @local.firstName,
+        "lastName": @local.lastName,
+        "email": @local.email,
+        "token": @local.token
+
     @pre 'save', (next) ->
         @generateToken() if @isNew
         next();

@@ -3,9 +3,12 @@ app.controller 'loginController', ($scope, $modalInstance, authService, userData
        authService.hideLogin() 
 
     $scope.login = (loginForm, user)->
-        userData.login(user).then((result) ->
-        (data) ->
-            user.error = data.message
-        )
+        unless loginForm.$invalid
+            userData.login(user).then((user) ->
+                authService.setSession(user)
+
+            (data) ->
+                user.error = data
+            )
 
 

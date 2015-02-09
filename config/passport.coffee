@@ -1,7 +1,9 @@
 LocalStrategy  = require('passport-local').Strategy
 
 #load up the user model
-User = require '../models/person'
+User         = require '../models/user'
+Person       = require '../models/person'
+Organization = require '../models/organization'
 
 module.exports = (passport) ->
 
@@ -29,10 +31,13 @@ module.exports = (passport) ->
                 else
                     #if there is no user with that email
                     #create the user
-                    newUser = new User();
+                    if req.body.type == "Person"
+                        newUser = new Person();
+                    else
+                        newUser = new Organization();
 
                     #set the user's local credentials
-                    newUser.local.email    = email;
+                    newUser.local = req.body
                     newUser.local.password = newUser.generateHash(password);
                     #save the user
                     newUser.save (err)->
@@ -44,15 +49,15 @@ module.exports = (passport) ->
         passwordField : 'password',
         passReqToCallback : true,
     ,(req, email, password, done) ->
+
         User.findOne { 'local.email' :  email }, (err, user) ->
             #if there are any errors, return the error before anything else
-            return done(400, false, 'no credentials') if err
+            return done(false) if err
 
             #if no user is found, return the message
-            return done(400, false, 'wrong credentials') unless user
+            return done(false) unless user
 
             #if the user is found but the password is wrong
-            return done(400, false, 'wrong credentials') unless user.validPassword(password)
-
+            return done(false) unless user.validPassword(password)
             #all is well, return successful user
-            return done(200, user, 'success');
+            return done(user);

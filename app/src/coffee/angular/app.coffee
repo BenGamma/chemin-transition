@@ -27,5 +27,6 @@ app.config ($stateProvider, $urlRouterProvider) ->
             check: ($state, authService) ->
                 authService.isAuthorize()
 
+
     .state 'users.profile',
         url: "/profile"
