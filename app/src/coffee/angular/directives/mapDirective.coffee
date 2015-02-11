@@ -10,7 +10,9 @@ app.directive 'map', (leafletData) ->
 
         map = L.map('map')
         .addLayer mapboxTiles
-        .locate {setView: true, maxZoom: 16}
+        #.locate {setView: true, maxZoom: 10}
+        .setView([51.505, -0.09], 13)
+
 
         getRandomLatLng = (map) ->
             bounds = map.getBounds()
@@ -25,10 +27,10 @@ app.directive 'map', (leafletData) ->
         
         onLocationFound = (e) ->
             markers = new L.MarkerClusterGroup()
-            for i in [0..150]
+            for i in [0..300]
                 markers.addLayer new L.Marker getRandomLatLng map
             map.addLayer markers
-        
+
         onLocationError = (e) ->
             alert e.message
         
