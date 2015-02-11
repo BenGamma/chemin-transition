@@ -1,7 +1,12 @@
 userBaseSchema = require './userBase'
 User           = require './user'
 
-OrganizationSchema = new userBaseSchema({ name: String, address: String, city: String, zipCode: String, phone: String })
+OrganizationSchema = new userBaseSchema
+    name: String, 
+    address: String, 
+    city: String, 
+    zipCode: String, 
+    phone: String
 
 OrganizationSchema.methods.serialize = ->
 	"name" : @local.name

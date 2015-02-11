@@ -1,7 +1,7 @@
-categories   = require('../../../controllers/categories')
+categories    = require('../../../controllers/categories')
 authorization = require '../../authorization'
-express = require 'express' 
-router  = express.Router();
+express       = require 'express' 
+router        = express.Router();
 
 router.route '/'
     # .get categories.view
