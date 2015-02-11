@@ -1,8 +1,6 @@
 mongoose  = require 'mongoose'
 Schema    = mongoose.Schema
 util      = require 'util'
-bcrypt    = require 'bcrypt-nodejs'
-randtoken = require 'rand-token'
 
 
 userBaseSchema = ->
@@ -28,8 +26,6 @@ userBaseSchema = ->
 
     @methods.serialize = ->
         "id": @_id,
-        "firstName": @local.firstName,
-        "lastName": @local.lastName,
         "email": @local.email,
         "token": @local.token
 
