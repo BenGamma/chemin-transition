@@ -19,6 +19,7 @@
     "grunt-bower": "^0.16.1",
     "mocha": "^2.1.0",
     "mongoose": "^3.8.21",
+    "mongoose-relationship": "^0.1.1",
     "morgan": "~1.0.0",
     "passport": "^0.2.1",
     "passport-http-oauth": "^0.1.3",
