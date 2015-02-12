@@ -3,7 +3,9 @@ express = require 'express'
 router  = express.Router();
 
 router.route '/'
-    # .get categories.view
+    .get subCategories.view
     .post subCategories.create
-
+    .put subCategories.update
+    .delete subCategories.delete
+    
 module.exports = router;
