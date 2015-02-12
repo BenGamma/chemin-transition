@@ -10,7 +10,6 @@ exports.view = (req, res, next) ->
 
 exports.create = (req, res, next) ->
     category = new Category(req.body)
-
     category.save (err, category) ->
         if err
             res.status(400).json('wrong')

@@ -1,4 +1,5 @@
-app.controller 'sideBarController', ($scope, leafletData, $modal, authService) ->
+app.controller 'navBarController', ($scope, leafletData, $modal, authService) ->
+    $(document).foundation()
     $scope.openLogin =  ->
         authService.showLogin()
 

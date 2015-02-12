@@ -1,3 +1,5 @@
+bcrypt    = require 'bcrypt-nodejs'
+randtoken = require 'rand-token'
 mongoose  = require 'mongoose'
 Schema    = mongoose.Schema
 util      = require 'util'

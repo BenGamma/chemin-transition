@@ -1,7 +1,16 @@
 userBaseSchema = require './userBase'
 User           = require './user'
+mongoose       = require('mongoose')
+Schema         = mongoose.Schema
+ObjectId       = Schema.ObjectId
 
-OrganizationSchema = new userBaseSchema({ name: String, address: String, city: String, zipCode: String, phone: String })
+OrganizationSchema = new userBaseSchema
+    name: String, 
+    address: String, 
+    city: String, 
+    zipCode: String, 
+    phone: String,
+    organizationPersons:[{ type:Schema.ObjectId, ref:"organizationPerson" }]
 
 OrganizationSchema.methods.serialize = ->
 	"name" : @local.name
