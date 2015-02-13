@@ -1,1 +1,295 @@
-var app;app=angular.module("app",["ui.router","leaflet-directive","ipCookie","mm.foundation"]),app.config(["$stateProvider","$urlRouterProvider","$locationProvider",function(e,r,t){return r.otherwise(function(e){var r;return r=e.get("$state"),r.go("index")}),t.html5Mode(!0),e.state("index",{url:"/",views:{"":{templateUrl:"partials/map.html",controller:"mapController"},navbar:{templateUrl:"partials/navbar.html",controller:"navBarController"}},onEnter:["authService",function(e){return e.needsLogin?e.showLogin():void 0}]}).state("users",{url:"/users",resolve:{check:["$state","authService",function(e,r){return r.isAuthorize()}]}}).state("users.profile",{url:"/profile"}).state("structures",{url:"/structures",templateUrl:"partials/structures.html",controller:"structuresController"}).state("skills",{url:"/skills",templateUrl:"partials/skills.html",controller:"skillsController"}).state("assets",{url:"/assets",templateUrl:"partials/assets.html",controller:"assetsController"})}]),app.factory("appConfig",function(){var e;return e="http://localhost:3000/api",{url:function(r){return""+e+"/"+r}}}),app.controller("assetsController",["$scope","leafletData",function(){}]),app.service("authService",["ipCookie","userData","$state","$modal",function(e,r,t,n){return{user:{},token:null,needsLogin:!1,setSession:function(r){return this.user=r,this.token=r.token,e("token",this.token),e("email",this.user.email)},isAuthorize:function(){return e("token")||e("mail")?r.checkUser().then(function(e){return 204!==e?t.go("index"):void 0}):(this.needsLogin=!0,t.go("index"))},showLogin:function(){return this.login=n.open({templateUrl:"partials/login.html",controller:"loginController"}),this.login.result.then(function(e){return $scope.selected=e})},hideLogin:function(){return this.login.dismiss("cancel")},showRegister:function(){return this.register=n.open({templateUrl:"partials/register.html",controller:"registerController"}),this.register.result.then(function(e){return $scope.selected=e})},hideRegister:function(){return this.register.dismiss("cancel")}}}]),app.controller("loginController",["$scope","$modalInstance","authService","userData",function(e,r,t,n){return e.cancel=function(){return t.hideLogin()},e.login=function(e,r){return e.$invalid?void 0:n.login(r).then(function(e){return t.setSession(e)},function(e){return r.error=e})}}]),app.controller("mapController",["$scope","leafletData","$modal","authService",function(e,r,t,n){return e.open=function(){return n.showLogin()}}]),app.directive("map",["leafletData",function(){return{restrict:"E",link:function(){var e,r,t,n,o;return L.mapbox.accessToken="pk.eyJ1IjoidG9ueWx1Y2FzIiwiYSI6IlRqa09UbE0ifQ.DGFIsGazdBZSk0t2PYe6Zw",t=L.tileLayer("https://{s}.tiles.mapbox.com/v4/examples.map-i87786ca/{z}/{x}/{y}.png?access_token="+L.mapbox.accessToken,{attribution:'<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'}),r=L.map("map").addLayer(t).setView([51.505,-.09],13),e=function(e){var r,t,n,o,a;return r=e.getBounds(),a=r.getSouthWest(),o=r.getNorthEast(),n=o.lng-a.lng,t=o.lat-a.lat,new L.LatLng(a.lat+t*Math.random(),a.lng+n*Math.random())},o=function(){var t,n,o;for(n=new L.MarkerClusterGroup,t=o=0;300>=o;t=++o)n.addLayer(new L.Marker(e(r)));return r.addLayer(n)},n=function(e){return alert(e.message)},r.on("locationfound",o),r.on("locationerror",n)}}}]),app.controller("navBarController",["$scope","leafletData","$modal","authService",function(e,r,t,n){return $(document).foundation(),e.openLogin=function(){return n.showLogin()},e.openRegister=function(){return n.showRegister()}}]),app.controller("registerController",["$scope","$modalInstance","authService","userData",function(e,r,t,n){return e.cancel=function(){return t.hideRegister()},e.register=function(e,r){return e.$invalid?void 0:n.create(r).then(function(e){return console.log(e)},function(e){return r.error=e.message})}}]),app.controller("skillsController",["$scope","leafletData",function(){}]),app.controller("structuresController",["$scope","leafletData",function(){}]),app.factory("userData",["$http","$q","appConfig","ipCookie",function(e,r,t,n){return{login:function(n){var o;return o=r.defer(),e({method:"POST",url:t.url("sessions/login"),data:n}).success(function(e){return o.resolve(e)}).error(function(e){return o.reject(e)}),o.promise},checkUser:function(){var o;return o=r.defer(),e({method:"GET",url:t.url("sessions"),headers:{"X-token":n("token"),"X-email":n("email")}}).success(function(e,r){return o.resolve(r)}).error(function(e,r){return o.reject(r)}),o.promise},create:function(n){var o;return o=r.defer(),e({method:"POST",url:t.url("users"),data:n}).success(function(e,r){return o.resolve(r)}).error(function(e,r){return o.reject(r)}),o.promise},update:function(o){var a;return a=r.defer(),e({method:"PUT",url:t.url("users"),params:{id:o._id},data:o,headers:{token:n("token"),email:n("email")}}).success(function(e,r){return a.resolve(r)}).error(function(e,r){return a.reject(r)}),a.promise},"delete":function(){var n;return n=r.defer(),e({method:"DELETE",url:t.url("users"),params:{id:user._id},data:user}).success(function(e,r){return n.resolve(r)}).error(function(e,r){return n.reject(r)}),n.promise}}}]);
+var app;
+
+app = angular.module('app', ['ui.router', 'leaflet-directive', 'ipCookie', 'mm.foundation']);
+
+app.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $urlRouterProvider.otherwise(function($injector, $location) {
+    var $state;
+    $state = $injector.get("$state");
+    return $state.go("index");
+  });
+  $locationProvider.html5Mode(true);
+  return $stateProvider.state('index', {
+    url: "/",
+    views: {
+      "": {
+        templateUrl: "partials/map.html",
+        controller: "mapController"
+      },
+      "navbar": {
+        templateUrl: 'partials/navbar.html',
+        controller: "navBarController"
+      }
+    },
+    onEnter: ["authService", function(authService) {
+      if (authService.needsLogin) {
+        return authService.showLogin();
+      }
+    }]
+  }).state('users', {
+    url: "/users",
+    resolve: {
+      check: ["$state", "authService", function($state, authService) {
+        return authService.isAuthorize();
+      }]
+    }
+  }).state('users.profile', {
+    url: "/profile"
+  }).state('structures', {
+    url: "/structures",
+    templateUrl: "partials/structures.html",
+    controller: "structuresController"
+  }).state('skills', {
+    url: "/skills",
+    templateUrl: "partials/skills.html",
+    controller: "skillsController"
+  }).state('assets', {
+    url: "/assets",
+    templateUrl: "partials/assets.html",
+    controller: "assetsController"
+  });
+}]);
+
+app.factory('appConfig', function() {
+  var path;
+  path = 'http://localhost:3000/api';
+  return {
+    url: function(url) {
+      return "" + path + "/" + url;
+    }
+  };
+});
+
+app.controller('assetsController', ["$scope", "leafletData", function($scope, leafletData) {}]);
+
+app.service('authService', ["ipCookie", "userData", "$state", "$modal", function(ipCookie, userData, $state, $modal) {
+  return {
+    user: {},
+    token: null,
+    needsLogin: false,
+    setSession: function(user) {
+      this.user = user;
+      this.token = user.token;
+      ipCookie('token', this.token);
+      return ipCookie('email', this.user.email);
+    },
+    isAuthorize: function() {
+      if (!(ipCookie('token') || ipCookie('mail'))) {
+        this.needsLogin = true;
+        return $state.go('index');
+      }
+      return userData.checkUser().then(function(result) {
+        if (result !== 204) {
+          return $state.go('index');
+        }
+      });
+    },
+    showLogin: function() {
+      this.login = $modal.open({
+        templateUrl: 'partials/login.html',
+        controller: 'loginController'
+      });
+      return this.login.result.then(function(selectedItem) {
+        return $scope.selected = selectedItem;
+      });
+    },
+    hideLogin: function() {
+      return this.login.dismiss('cancel');
+    },
+    showRegister: function(size) {
+      this.register = $modal.open({
+        templateUrl: 'partials/register.html',
+        controller: 'registerController'
+      });
+      return this.register.result.then(function(selectedItem) {
+        return $scope.selected = selectedItem;
+      });
+    },
+    hideRegister: function() {
+      return this.register.dismiss('cancel');
+    }
+  };
+}]);
+
+app.controller('loginController', ["$scope", "$modalInstance", "authService", "userData", function($scope, $modalInstance, authService, userData) {
+  $scope.cancel = function() {
+    return authService.hideLogin();
+  };
+  return $scope.login = function(loginForm, user) {
+    if (!loginForm.$invalid) {
+      return userData.login(user).then(function(user) {
+        return authService.setSession(user);
+      }, function(data) {
+        return user.error = data;
+      });
+    }
+  };
+}]);
+
+app.controller('mapController', ["$scope", "leafletData", "$modal", "authService", function($scope, leafletData, $modal, authService) {
+  return $scope.open = function(size) {
+    return authService.showLogin();
+  };
+}]);
+
+app.directive('map', ["leafletData", function(leafletData) {
+  return {
+    restrict: "E",
+    link: function(scope, element, attrs, ctrl, e) {
+      var getRandomLatLng, map, mapboxTiles, onLocationError, onLocationFound;
+      L.mapbox.accessToken = 'pk.eyJ1IjoidG9ueWx1Y2FzIiwiYSI6IlRqa09UbE0ifQ.DGFIsGazdBZSk0t2PYe6Zw';
+      mapboxTiles = L.tileLayer('https://{s}.tiles.mapbox.com/v4/examples.map-i87786ca/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+        attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+      });
+      map = L.map('map').addLayer(mapboxTiles).setView([51.505, -0.09], 13);
+      getRandomLatLng = function(map) {
+        var bounds, latSpan, lngSpan, northEast, southWest;
+        bounds = map.getBounds();
+        southWest = bounds.getSouthWest();
+        northEast = bounds.getNorthEast();
+        lngSpan = northEast.lng - southWest.lng;
+        latSpan = northEast.lat - southWest.lat;
+        return new L.LatLng(southWest.lat + latSpan * Math.random(), southWest.lng + lngSpan * Math.random());
+      };
+      onLocationFound = function(e) {
+        var i, markers, _i;
+        markers = new L.MarkerClusterGroup();
+        for (i = _i = 0; _i <= 300; i = ++_i) {
+          markers.addLayer(new L.Marker(getRandomLatLng(map)));
+        }
+        return map.addLayer(markers);
+      };
+      onLocationError = function(e) {
+        return alert(e.message);
+      };
+      map.on('locationfound', onLocationFound);
+      return map.on('locationerror', onLocationError);
+    }
+  };
+}]);
+
+app.controller('navBarController', ["$scope", "leafletData", "$modal", "authService", function($scope, leafletData, $modal, authService) {
+  $(document).foundation();
+  $scope.openLogin = function() {
+    return authService.showLogin();
+  };
+  return $scope.openRegister = function() {
+    return authService.showRegister();
+  };
+}]);
+
+app.controller('registerController', ["$scope", "$modalInstance", "authService", "userData", function($scope, $modalInstance, authService, userData) {
+  $scope.cancel = function() {
+    return authService.hideRegister();
+  };
+  return $scope.register = function(registerForm, user) {
+    if (!registerForm.$invalid) {
+      return userData.create(user).then(function(result) {
+        return console.log(result);
+      }, function(data) {
+        return user.error = data.message;
+      });
+    }
+  };
+}]);
+
+app.controller('sideBarController', ["$scope", "leafletData", "$modal", "authService", function($scope, leafletData, $modal, authService) {
+  $scope.openLogin = function() {
+    return authService.showLogin();
+  };
+  return $scope.openRegister = function() {
+    return authService.showRegister();
+  };
+}]);
+
+app.controller('skillsController', ["$scope", "leafletData", function($scope, leafletData) {}]);
+
+app.controller('structuresController', ["$scope", "leafletData", function($scope, leafletData) {}]);
+
+app.factory('userData', ["$http", "$q", "appConfig", "ipCookie", function($http, $q, appConfig, ipCookie) {
+  return {
+    login: function(user) {
+      var deferred;
+      deferred = $q.defer();
+      $http({
+        method: 'POST',
+        url: appConfig.url('sessions/login'),
+        data: user
+      }).success(function(data, status, headers, config) {
+        return deferred.resolve(data);
+      }).error(function(data, status, headers, config) {
+        return deferred.reject(data);
+      });
+      return deferred.promise;
+    },
+    checkUser: function() {
+      var deferred;
+      deferred = $q.defer();
+      $http({
+        method: 'GET',
+        url: appConfig.url('sessions'),
+        headers: {
+          'X-token': ipCookie('token'),
+          'X-email': ipCookie('email')
+        }
+      }).success(function(data, status, headers, config) {
+        return deferred.resolve(status);
+      }).error(function(data, status, headers, config) {
+        return deferred.reject(status);
+      });
+      return deferred.promise;
+    },
+    create: function(user) {
+      var deferred;
+      deferred = $q.defer();
+      $http({
+        method: 'POST',
+        url: appConfig.url('users'),
+        data: user
+      }).success(function(data, status, headers, config) {
+        return deferred.resolve(status);
+      }).error(function(data, status, headers, config) {
+        return deferred.reject(status);
+      });
+      return deferred.promise;
+    },
+    update: function(user) {
+      var deferred;
+      deferred = $q.defer();
+      $http({
+        method: 'PUT',
+        url: appConfig.url('users'),
+        params: {
+          id: user._id
+        },
+        data: user,
+        headers: {
+          'token': ipCookie('token'),
+          'email': ipCookie('email')
+        }
+      }).success(function(data, status, headers, config) {
+        return deferred.resolve(status);
+      }).error(function(data, status, headers, config) {
+        return deferred.reject(status);
+      });
+      return deferred.promise;
+    },
+    "delete": function(id) {
+      var deferred;
+      deferred = $q.defer();
+      $http({
+        method: 'DELETE',
+        url: appConfig.url('users'),
+        params: {
+          id: user._id
+        },
+        data: user
+      }).success(function(data, status, headers, config) {
+        return deferred.resolve(status);
+      }).error(function(data, status, headers, config) {
+        return deferred.reject(status);
+      });
+      return deferred.promise;
+    }
+  };
+}]);
