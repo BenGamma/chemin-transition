@@ -4,6 +4,7 @@ mongoose             = require 'mongoose'
 async                = require 'async'
 
 exports.addActor = (req, res, next) ->
+
     actor = 
         organization: req.params.organization,
         person: req.params.person,
