@@ -3,9 +3,10 @@ app.controller 'registerController', ($scope, $modalInstance, authService, userD
        authService.hideRegister() 
 
     $scope.register = (registerForm, user)->
+        console.log user
         unless registerForm.$invalid
             userData.create(user).then((result) ->
-                console.log(result)
+                authService.hideRegister()
             (data) ->
-                user.error = data.message
+                user.error = "email Already use"
             )
