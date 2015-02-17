@@ -6,9 +6,6 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
         $state = $injector.get("$state");
         $state.go("index");
 
-
-    $locationProvider.html5Mode true
-
     $stateProvider
     .state 'index',
         url: "/",
@@ -21,6 +18,7 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
                 controller: "navBarController"
 
         onEnter: (authService)->
+            console.log authService
             if authService.needsLogin
                 authService.showLogin()
 

@@ -7,17 +7,24 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
         @user = user
         @token = user.token
 
-        ipCookie('token', @token)
-        ipCookie('email', @user.email)
+        ipCookie('token', @token, {expires: 21})
+        ipCookie('email', @user.email, {expires: 21})
 
     isAuthorize:  ->
+        that = @
+        @needsLogin = true
+
         unless ipCookie('token') || ipCookie('mail')
-            @needsLogin = true
             return $state.go('index')
 
-        userData.checkUser().then (result) ->
-            unless result == 204
-                return $state.go('index')
+        userData.checkUser().then( (result) ->
+            @needsLogin = false
+        (error) ->
+            that.destroySession()
+            if error == 401
+                $state.go('index').then ->
+                    $state.reload()
+        )
 
     showLogin: ->
         @login = $modal.open
@@ -39,6 +46,11 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
 
     hideRegister: ->
         @register.dismiss('cancel');
+
+    destroySession: ->
+        ipCookie.remove('token')
+        ipCookie.remove('email')
+
 
 
 
