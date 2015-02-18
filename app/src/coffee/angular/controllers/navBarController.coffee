@@ -1,7 +1,13 @@
-app.controller 'navBarController', ($scope, leafletData, $modal, authService) ->
+app.controller 'navBarController', ($scope, leafletData, $modal, authService, $state) ->
     $(document).foundation()
     $scope.openLogin =  ->
         authService.showLogin()
 
     $scope.openRegister =  ->
         authService.showRegister()
+
+    $scope.logout =  ->
+        console.log("go")
+        authService.destroySession()
+        $state.go('index').then ->
+            $state.reload()
