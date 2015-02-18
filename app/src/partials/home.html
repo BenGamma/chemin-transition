@@ -1,0 +1,14 @@
+<div class="medium-3 columns right text-center">
+    <h4>Welcome to Transition&nbsp;Ways&nbsp;!</h4>
+    <button class="button small radius" ng-click="showMapView()">Map</button>
+    <button class="button small radius" ng-click="showListView()">List</button>
+</div>
+
+<div class="medium-9 columns no-padding">
+    <map id="map" ng-show="mapView.active"></map>
+    <div ng-show="listView.active">
+        List View !
+    </div>
+</div>
+
+

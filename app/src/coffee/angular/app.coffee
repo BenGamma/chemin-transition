@@ -14,8 +14,8 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
         url: "/",
         views:
             "":
-                templateUrl: "partials/map.html",
-                controller: "mapController"
+                templateUrl: "partials/home.html",
+                controller: "homeController"
             "navbar":
                 templateUrl: 'partials/navbar.html',
                 controller: "navBarController"
