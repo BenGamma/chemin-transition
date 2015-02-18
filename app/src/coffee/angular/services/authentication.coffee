@@ -11,17 +11,16 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
         ipCookie('email', @user.email, {expires: 21})
 
     isAuthorize:  ->
-        that = @
+        self = @
         @needsLogin = true
-
         unless ipCookie('token') || ipCookie('mail')
             return $state.go('index')
 
         userData.checkUser().then( (result) ->
             @needsLogin = false
         (error) ->
-            that.destroySession()
             if error == 401
+                self.destroySession()
                 $state.go('index').then ->
                     $state.reload()
         )

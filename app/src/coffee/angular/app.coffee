@@ -1,5 +1,12 @@
 app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie', 'mm.foundation'])
 
+app.run ($rootScope, $location, $state, authService, ipCookie) ->
+    $rootScope.$on '$stateChangeStart', (ev, to, toParams, from, fromParams) ->
+        $rootScope.isLogged = true
+        unless ipCookie('token') || ipCookie('email')
+            $rootScope.isLogged = false
+
+
 app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
 
     $urlRouterProvider.otherwise ($injector, $location) ->
@@ -18,7 +25,6 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
                 controller: "navBarController"
 
         onEnter: (authService)->
-            console.log authService
             if authService.needsLogin
                 authService.showLogin()
 
