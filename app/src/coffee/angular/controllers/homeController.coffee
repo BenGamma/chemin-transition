@@ -1,14 +1,15 @@
-app.controller 'homeController', ($scope, leafletData, $modal, authService) ->
+app.controller 'homeController', ($scope, leafletData, $modal, authService, Organisations) ->
     $scope.open = (size) ->
         authService.showLogin()
         
+    $scope.organisations = Organisations
 
     $scope.mapView =
-        active: true
+        active: false
         template: 'partials/map.html'
 
     $scope.listView =
-        active: false
+        active: true
         template: 'partials/list.html'
 
     $scope.showMapView = ->
