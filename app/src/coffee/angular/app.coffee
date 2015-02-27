@@ -1,13 +1,17 @@
 app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie', 'mm.foundation'])
 
+app.run ($rootScope, $location, $state, authService, ipCookie) ->
+    $rootScope.$on '$stateChangeStart', (ev, to, toParams, from, fromParams) ->
+        $rootScope.isLogged = true
+        unless ipCookie('token') || ipCookie('email')
+            $rootScope.isLogged = false
+
+
 app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
 
     $urlRouterProvider.otherwise ($injector, $location) ->
         $state = $injector.get("$state");
         $state.go("index");
-
-
-    $locationProvider.html5Mode true
 
     $stateProvider
     .state 'index',

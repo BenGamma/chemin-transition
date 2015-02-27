@@ -1,10 +1,10 @@
-organizations   = require('../../../controllers/organizations')
-authorization   = require '../../authorization'
-express         = require 'express' 
-router          = express.Router()
+organizations        = require('../../../controllers/organizations')
+actorAuthorization   = require '../../organizationAuthorization'
+express              = require 'express' 
+router               = express.Router()
 
 router.route '/actor/:organization/:person'
-    .post organizations.addActor
+    .post(actorAuthorization.checkOrganization, organizations.addActor)
 
 router.route '/actor/:id'
     .delete organizations.removeActor

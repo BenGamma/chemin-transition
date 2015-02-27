@@ -11,15 +11,15 @@
     <section class="top-bar-section">
         <!-- Left Nav Section -->
         <ul class="left">
-            <li><a href="/">News</a>
+            <li><a ui-sref="index">News</a>
             </li>
-            <li><a href="/structures">Structures</a>
+            <li><a hui-sref="structures">Structures</a>
             </li>
-            <li><a href="/skills">Skills</a>
+            <li><a ui-sref="skills">Skills</a>
             </li>
-            <li><a href="/assets">Assets</a>
+            <li><a ui-sref="assets">Assets</a>
             </li>
-            <li><a href="/actors">Actors</a>
+            <li><a ui-sref="actors">Actors</a>
             </li>
 
             <li class="has-form">
@@ -35,11 +35,10 @@
 
         </ul>
 
-        <ul class="right">
-            <li><a ng-click="openRegister()">sign up</a>
-            </li>
-            <li><a ng-click="openLogin()">sign in</a>
-            </li>
+        <ul class="right" ng-switch="isLogged">
+            <li ng-switch-when="true"><a ng-click="logout()">logout</a></li>
+            <li ng-switch-when="false"><a ng-click="openRegister()">sign up</a></li>
+            <li ng-switch-when="false"><a ng-click="openLogin()">sign in</a></li>
         </ul>
     </section>
 </nav>

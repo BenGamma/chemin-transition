@@ -10,14 +10,16 @@ OrganizationSchema = new userBaseSchema
     city: String, 
     zipCode: String, 
     phone: String,
+    lt: String,
+    lg: String,
     organizationPersons:[{ type:Schema.ObjectId, ref:"organizationPerson" }]
 
-OrganizationSchema.methods.serialize = ->
-	"name" : @local.name
-    "address": @local.address
-    "city" : @local.city
-    "zipCode" : @local.zipCode
-    "phone" : @local.phone
+OrganizationSchema.methods.serializeOrg = ->
+	"name" : @name
+    "address": @address
+    "city" : @city
+    "zipCode" : @zipCode
+    "phone" : @phone
 
 Organization = User.discriminator 'Organization', OrganizationSchema
 
