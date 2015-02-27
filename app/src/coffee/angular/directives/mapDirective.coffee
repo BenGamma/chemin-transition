@@ -12,13 +12,20 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
         
         $('#map').parents().height('100%')
             
-        map = L.map('map')
+        map = L.mapbox.map('map')
         map.addLayer mapboxTiles
         
         map.locate {setView: true, maxZoom: 10} if locate
         map.setView([48.8, 2.3], 10) if !locate  
         
         
+        myLayer = L.mapbox.featureLayer().addTo map
+        
+        
+        
+        
+        
+
         #getRandomLatLng = (map) ->  
         #    bounds = map.getBounds()
         #        
@@ -33,18 +40,63 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
         
         
         
+    
+        
         onLocationFound = (e) ->
-            markers = new L.MarkerClusterGroup()
-            angular.forEach Organisations, (org) ->
-                m = new L.Marker org.latlng, name: org.name
-                markers.addLayer m
-                m.on 'mouseover', onMarkerHover
-            map.addLayer markers
+            
+            clusterGroup = new (L.MarkerClusterGroup)
+            
+            L.mapbox.featureLayer(Organisations).eachLayer (layer) ->
+                layer.feature.properties["marker-color"] = '#f86767'
+                clusterGroup.addLayer layer
+                layer.bindPopup layer.feature.properties.name
+                console.log layer.feature.properties
+
+            map.addLayer clusterGroup
+            
+           
+                            
+            #markers = new L.MarkerClusterGroup()
+            
+            #geojson = 
+            #    type: 'FeatureCollection'
+            #    features: []
+            #
+            #angular.forEach Organisations, (org) ->
+            #    geojson.features.push
+            #      type: 'Feature'
+            #      properties:
+            #        title: org.name
+            #        'marker-color': '#f86767'
+            #        'marker-size': 'large'
+            #      geometry:
+            #        type: 'Point'
+            #        coordinates: [
+            #            org.latlng.lng
+            #            org.latlng.lat
+            #        ]
+
+            #myLayer.setGeoJSON geojson
+            #
+            #
+            #myLayer.on 'ready', (e) ->
+            #  clusterGroup = new (L.MarkerClusterGroup)
+            #  e.target.eachLayer (layer) ->
+            #    clusterGroup.addLayer layer
+            #  map.addLayer clusterGroup
+              
+              
+              
+              
+                #m = new L.Marker org.latlng, name: org.name
+                #markers.addLayer m
+                #m.on 'mouseover', onMarkerHover
+            #map.addLayer markers
             
 
-        onMarkerHover = (e) ->
-            m = e.target
-            m.bindPopup("<strong>" + m.options.name + "</strong><br><img src='http://placehold.it/250x180'>").openPopup()
+        #onMarkerHover = (e) ->
+        #    m = e.target
+        #    m.bindPopup("<strong>" + m.options.name + "</strong><br><img src='http://placehold.it/250x180'>").openPopup()
         
         
         onLocationError = (e) ->

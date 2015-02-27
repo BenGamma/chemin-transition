@@ -5,11 +5,11 @@ app.controller 'homeController', ($scope, leafletData, $modal, authService, Orga
     $scope.organisations = Organisations
 
     $scope.mapView =
-        active: false
+        active: true
         template: 'partials/map.html'
 
     $scope.listView =
-        active: true
+        active: false
         template: 'partials/list.html'
 
     $scope.showMapView = ->
