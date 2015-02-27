@@ -1,0 +1,20 @@
+<div class="medium-3 columns right text-center">
+    <h4>Welcome to Transition&nbsp;Ways&nbsp;!</h4>
+    <button class="button small radius" ng-click="showMapView()">Map</button>
+    <button class="button small radius" ng-click="showListView()">List</button>
+</div>
+
+
+<div class="medium-9 columns no-padding" ng-show="mapView.active">
+    <map id="map"></map>
+</div>
+
+<div class="row" ng-show="listView.active">
+    <div class="medium-9 columns no-padding">
+       <h1>Organisations</h1>
+        <div ng-repeat="org in organisations" class="radius panel">
+            <h3>{{org.name}}</h3>
+            {{org.email}}
+        </div>
+    </div>
+</div>

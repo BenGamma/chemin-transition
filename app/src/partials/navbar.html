@@ -35,22 +35,10 @@
 
         </ul>
 
-
-        <ul class="tabs right" role="tablist">
-            <li class="tab-title active" role="presentational"><a href="/#panel1-1" role="tab" tabindex="0" aria-selected="true" controls="panel1-1">Map</a>
-            </li>
-            <li class="tab-title" role="presentational"><a href="/#panel1-2" role="tab" tabindex="0" aria-selected="false" controls="panel1-2">List</a>
-                <a href="#"></a>
-            </li>
+        <ul class="right" ng-switch="isLogged">
+            <li ng-switch-when="true"><a ng-click="logout()">logout</a></li>
+            <li ng-switch-when="false"><a ng-click="openRegister()">sign up</a></li>
+            <li ng-switch-when="false"><a ng-click="openLogin()">sign in</a></li>
         </ul>
     </section>
 </nav>
-<user ng-switch="isLogged">
-    <user ng-switch-when="true">
-        <a ng-click="logout()">logout</a>
-    </user>
-    <user ng-switch-when="false">
-        <a ng-click="openRegister()">sign up</a>
-        <a ng-click="openLogin()">sign in</a>
-    </user>
-</user>

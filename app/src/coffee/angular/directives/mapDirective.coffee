@@ -1,4 +1,4 @@
-app.directive 'map', (leafletData) ->
+app.directive 'map', (leafletData, $timeout, Organisations) ->
     restrict: "E"
     link: (scope, element, attrs, ctrl, e) ->
     
@@ -8,43 +8,49 @@ app.directive 'map', (leafletData) ->
         attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
         }
 
+        locate = false
+        
+        $('#map').parents().height('100%')
+            
         map = L.map('map')
-        .addLayer mapboxTiles
-        #.locate {setView: true, maxZoom: 10}
-        .setView([51.505, -0.09], 13)
-
-
-        getRandomLatLng = (map) ->
-            bounds = map.getBounds()
-            southWest = bounds.getSouthWest()
-            northEast = bounds.getNorthEast()
-            lngSpan = northEast.lng - southWest.lng
-            latSpan = northEast.lat - southWest.lat
-            return new L.LatLng(
-                southWest.lat + latSpan * Math.random()
-                southWest.lng + lngSpan * Math.random()
-            );
+        map.addLayer mapboxTiles
+        
+        map.locate {setView: true, maxZoom: 10} if locate
+        map.setView([48.8, 2.3], 10) if !locate  
+        
+        
+        #getRandomLatLng = (map) ->  
+        #    bounds = map.getBounds()
+        #        
+        #    southWest = bounds.getSouthWest()
+        #    northEast = bounds.getNorthEast()
+        #    lngSpan = northEast.lng - southWest.lng
+        #    latSpan = northEast.lat - southWest.lat
+        #    return new L.LatLng(
+        #        southWest.lat + latSpan * Math.random()
+        #        southWest.lng + lngSpan * Math.random()
+        #    )
+        
+        
         
         onLocationFound = (e) ->
             markers = new L.MarkerClusterGroup()
-            for i in [0..300]
-                markers.addLayer new L.Marker getRandomLatLng map
+            angular.forEach Organisations, (org) ->
+                m = new L.Marker org.latlng, name: org.name
+                markers.addLayer m
+                m.on 'mouseover', onMarkerHover
             map.addLayer markers
+            
 
+        onMarkerHover = (e) ->
+            m = e.target
+            m.bindPopup("<strong>" + m.options.name + "</strong><br><img src='http://placehold.it/250x180'>").openPopup()
+        
+        
         onLocationError = (e) ->
             alert e.message
         
-
         map.on 'locationfound', onLocationFound
         map.on 'locationerror', onLocationError
         
-        
-        #angular.forEach markers, (marker) ->
-        #    L.marker(marker.latlng).addTo map
-        #    return
-        
-        #map.on 'click', (e) ->
-        #    marker = L.marker(e.latlng)
-        #    markersList.push {latlng: e.latlng}
-        #    marker.addTo map
-        #    return
+        onLocationFound() if !locate
