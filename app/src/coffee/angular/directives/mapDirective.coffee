@@ -31,7 +31,19 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
         #        southWest.lng + lngSpan * Math.random()
         #    )
         
-        
+        ###
+        # Filters markers
+        # @params {c} id of tag
+        # @params {markerSymbol} marker symboles
+        ###
+        filter = (markerSymbol) ->
+            # document.getElementsByClassName('active') == ''
+            # c.className = 'active'
+            map.featureLayer.setFilter (f) ->
+                f.properties['skills'] == markerSymbol
+            if c.className is 'active'
+                c.className = ''
+            false
         
         onLocationFound = (e) ->
             markers = new L.MarkerClusterGroup()
@@ -54,3 +66,5 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
         map.on 'locationerror', onLocationError
         
         onLocationFound() if !locate
+
+        filter('poterie')
