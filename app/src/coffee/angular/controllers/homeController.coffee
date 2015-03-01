@@ -1,4 +1,5 @@
-app.controller 'homeController', ($scope, leafletData, $modal, authService, Organisations) ->
+app.controller 'homeController', ($scope, leafletData, authService, Organisations) ->
+    
     $scope.open = (size) ->
         authService.showLogin()
         

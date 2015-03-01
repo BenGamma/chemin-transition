@@ -34,11 +34,20 @@
             </li>
 
         </ul>
-
-        <ul class="right" ng-switch="isLogged">
-            <li ng-switch-when="true"><a ng-click="logout()">logout</a></li>
-            <li ng-switch-when="false"><a ng-click="openRegister()">sign up</a></li>
-            <li ng-switch-when="false"><a ng-click="openLogin()">sign in</a></li>
-        </ul>
+        
+        <user class="right" ng-switch="isLogged">
+            <ul>
+                <user ng-switch-when="true">
+                    <li><a ng-click="logout()">logout</a>
+                    </li>
+                </user>
+                <user ng-switch-when="false">
+                    <li><a ng-click="openRegister()">sign up</a>
+                    </li>
+                    <li><a ng-click="openLogin()">sign in</a>
+                    </li>
+                </user>
+            </ul>
+        </user>
     </section>
 </nav>

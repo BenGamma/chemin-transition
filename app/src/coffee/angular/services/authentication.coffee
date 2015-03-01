@@ -29,6 +29,7 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
         @login = $modal.open
             templateUrl: 'partials/login.html',
             controller: 'loginController'
+            windowClass: 'tiny'
 
         @login.result.then (selectedItem) ->
             $scope.selected = selectedItem;
@@ -40,6 +41,7 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
         @register = $modal.open
             templateUrl: 'partials/register.html',
             controller: 'registerController'
+            windowClass: 'tiny'
         @register.result.then (selectedItem) ->
             $scope.selected = selectedItem
 

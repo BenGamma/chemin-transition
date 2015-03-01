@@ -1,5 +1,6 @@
-app.directive 'map', (leafletData, $timeout, Organisations) ->
+app.directive 'map', (leafletData, $timeout, Organisations, $modal) ->
     restrict: "E"
+    scope: true
     link: (scope, element, attrs, ctrl, e) ->
     
         L.mapbox.accessToken = 'pk.eyJ1IjoidG9ueWx1Y2FzIiwiYSI6IlRqa09UbE0ifQ.DGFIsGazdBZSk0t2PYe6Zw'
@@ -37,10 +38,20 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
         #        southWest.lat + latSpan * Math.random()
         #        southWest.lng + lngSpan * Math.random()
         #    )
-        
-        
-        
-    
+   
+          
+           
+        showModal = (e) ->
+            $modal.open
+                templateUrl: 'partials/modal.html'
+                controller: 'homeController'
+                resolve:
+                    test: ->
+                        return 'coucou'
+                
+                windowClass: 'large'
+            
+
         
         onLocationFound = (e) ->
             
@@ -50,9 +61,14 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
                 layer.feature.properties["marker-color"] = '#f86767'
                 clusterGroup.addLayer layer
                 layer.bindPopup layer.feature.properties.name
-                console.log layer.feature.properties
+                layer.on 'mouseover', (e) -> layer.openPopup()
+                layer.on 'mouseout', (e) -> layer.closePopup()
+                layer.on 'click', (e) ->
+                    showModal(e)
+                
 
             map.addLayer clusterGroup
+            
             
            
                             
