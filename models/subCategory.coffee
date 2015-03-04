@@ -2,10 +2,10 @@ mongoose  = require 'mongoose'
 Schema    = mongoose.Schema
 
 
-subCategoriesSchema = new Schema
+subCategorySchema = new Schema
     name : type: String, required: true
     category : type: Schema.Types.ObjectId, ref: 'category'
     
-SubCategory = mongoose.model('SubCategory', subCategoriesSchema)
+SubCategory = mongoose.model('SubCategory', subCategorySchema)
 
 module.exports = SubCategory

@@ -1,4 +1,4 @@
-subCategories   = require('../../../controllers/subCategories')
+subCategories = require('../../../controllers/subCategories')
 express = require 'express' 
 router  = express.Router();
 
