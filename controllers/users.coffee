@@ -14,12 +14,16 @@ exports.update = (req, res) ->
     res.render 'index', title : 'Blog | MVC'
 
 exports.delete = (req, res) ->
-    User.findOne _id: req.body.id , (err, user) ->
-        if(user)
-            user.remove ->
-                res.json 'message' : 'user deleted'
-        else
-            res.status(400).json('fail')
+    if req.body.id
+
+        User.findOne _id: req.body.id , (err, user) ->
+            if(user)
+                user.remove ->
+                    res.json 'message' : 'user deleted'
+            else
+                res.status(400).json('fail')
+    else
+        res.status(400).json('Id cannot be null')
 
 exports.profile = (req, res) ->
     res.render 'index', title : 'Blog | MVC'
