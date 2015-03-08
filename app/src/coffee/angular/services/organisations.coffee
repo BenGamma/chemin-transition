@@ -7,7 +7,7 @@ app.factory "Organisations", ->
           'phone': 'O629356364'
           'name': 'Medalert'
           'skills': [
-           'decoupe-laser'
+            'decoupe-laser'
           ]
         'geometry':
           'type': 'Point'
@@ -23,7 +23,7 @@ app.factory "Organisations", ->
           'phone': 'O603635438'
           'name': 'Vortexaco'
           'skills': [
-           'poterie'
+            'poterie'
           ]
         'geometry':
           'type': 'Point'
@@ -1309,5 +1309,4 @@ app.factory "Organisations", ->
       #       49.26373662608259
       #     ]
       # }
-
     ]
