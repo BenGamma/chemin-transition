@@ -1,7 +1,19 @@
 User                 = require '../models/user'
+Organization         = require '../models/organization'
 OrganizationPerson   = require '../models/organizationPerson'
 mongoose             = require 'mongoose'
 async                = require 'async'
+
+exports.index = (req, res) ->
+    Organization.find()
+        .where('lalng.ln').ne(null)
+        .where('lalng.lt').ne(null)
+        .exec (err, organizations) ->
+            if err
+                res.status(400).json('errors')
+
+            res.status(200).json(Organization.ArraySerialize(organizations))
+
 
 exports.addActor = (req, res, next) ->
 
@@ -41,3 +53,12 @@ exports.removeActor = (req, res, next) ->
             res.status(404).json(err);
 
         res.status(204)
+
+exports.update = (req, res) ->
+    Organization.update({'token': req.headers['x-token'], 'email': req.headers['x-email']}, req.body, (err, review) ->
+        if (err) 
+            res.status(400).json('bad user')
+        res.status(200).json('created');
+    )
+
+

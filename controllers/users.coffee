@@ -11,7 +11,11 @@ exports.create = (req, res, next) ->
     )(req, res, next)
 
 exports.update = (req, res) ->
-    res.render 'index', title : 'Blog | MVC'
+    User.update({'token': req.headers['x-token'], 'email': req.headers['x-email']}, req.body, (err, review) ->
+        if (err) 
+            res.status(400).json('bad user')
+        res.status(200).json('created');
+    )
 
 exports.delete = (req, res) ->
     User.findOne _id: req.body.id , (err, user) ->
