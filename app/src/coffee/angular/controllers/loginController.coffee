@@ -1,4 +1,4 @@
-app.controller 'loginController', ($scope, $modalInstance, authService, userData, $state) ->
+app.controller 'LoginController', ($scope, $modalInstance, authService, userData, $state) ->
     $scope.cancel = ->
        authService.hideLogin() 
 

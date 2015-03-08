@@ -4,7 +4,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@quantalia.com'
-          'phone': 'O629356364'
+          'phone': '0629356364'
           'name': 'Medalert'
         'geometry':
           'type': 'Point'
@@ -17,7 +17,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@medalert.com'
-          'phone': 'O603635438'
+          'phone': '0603635438'
           'name': 'Vortexaco'
         'geometry':
           'type': 'Point'
@@ -30,7 +30,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@vortexaco.com'
-          'phone': 'O606066425'
+          'phone': '0606066425'
           'name': 'Digirang'
         'geometry':
           'type': 'Point'
@@ -43,7 +43,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@digirang.com'
-          'phone': 'O699604811'
+          'phone': '0699604811'
           'name': 'Fuelworks'
         'geometry':
           'type': 'Point'
@@ -56,7 +56,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@fuelworks.com'
-          'phone': 'O633041406'
+          'phone': '0633041406'
           'name': 'Myopium'
         'geometry':
           'type': 'Point'
@@ -69,7 +69,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@myopium.com'
-          'phone': 'O674025723'
+          'phone': '0674025723'
           'name': 'Rodeology'
         'geometry':
           'type': 'Point'
@@ -82,7 +82,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@rodeology.com'
-          'phone': 'O661197401'
+          'phone': '0661197401'
           'name': 'Cedward'
         'geometry':
           'type': 'Point'
@@ -95,7 +95,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@cedward.com'
-          'phone': 'O653505187'
+          'phone': '0653505187'
           'name': 'Xelegyl'
         'geometry':
           'type': 'Point'
@@ -108,7 +108,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@xelegyl.com'
-          'phone': 'O667579485'
+          'phone': '0667579485'
           'name': 'Rodemco'
         'geometry':
           'type': 'Point'
@@ -121,7 +121,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@rodemco.com'
-          'phone': 'O651608283'
+          'phone': '0651608283'
           'name': 'Manufact'
         'geometry':
           'type': 'Point'
@@ -134,7 +134,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@manufact.com'
-          'phone': 'O681767254'
+          'phone': '0681767254'
           'name': 'Kongle'
         'geometry':
           'type': 'Point'
@@ -147,7 +147,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@kongle.com'
-          'phone': 'O690474050'
+          'phone': '0690474050'
           'name': 'Assitia'
         'geometry':
           'type': 'Point'
@@ -160,7 +160,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@assitia.com'
-          'phone': 'O648235061'
+          'phone': '0648235061'
           'name': 'Cincyr'
         'geometry':
           'type': 'Point'
@@ -173,7 +173,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@cincyr.com'
-          'phone': 'O653907924'
+          'phone': '0653907924'
           'name': 'Songbird'
         'geometry':
           'type': 'Point'
@@ -186,7 +186,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@songbird.com'
-          'phone': 'O628194217'
+          'phone': '0628194217'
           'name': 'Medicroix'
         'geometry':
           'type': 'Point'
@@ -199,7 +199,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@medicroix.com'
-          'phone': 'O654074738'
+          'phone': '0654074738'
           'name': 'Teraprene'
         'geometry':
           'type': 'Point'
@@ -212,7 +212,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@teraprene.com'
-          'phone': 'O653193867'
+          'phone': '0653193867'
           'name': 'Everest'
         'geometry':
           'type': 'Point'
@@ -225,7 +225,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@everest.com'
-          'phone': 'O636014776'
+          'phone': '0636014776'
           'name': 'Mediot'
         'geometry':
           'type': 'Point'
@@ -238,7 +238,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@mediot.com'
-          'phone': 'O633528245'
+          'phone': '0633528245'
           'name': 'Austech'
         'geometry':
           'type': 'Point'
@@ -251,7 +251,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@austech.com'
-          'phone': 'O653921149'
+          'phone': '0653921149'
           'name': 'Ecratic'
         'geometry':
           'type': 'Point'
@@ -264,7 +264,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@ecratic.com'
-          'phone': 'O621207959'
+          'phone': '0621207959'
           'name': 'Cuizine'
         'geometry':
           'type': 'Point'
@@ -277,7 +277,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@cuizine.com'
-          'phone': 'O650890015'
+          'phone': '0650890015'
           'name': 'Geekola'
         'geometry':
           'type': 'Point'
@@ -290,7 +290,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@geekola.com'
-          'phone': 'O671245476'
+          'phone': '0671245476'
           'name': 'Medcom'
         'geometry':
           'type': 'Point'
@@ -303,7 +303,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@medcom.com'
-          'phone': 'O660335183'
+          'phone': '0660335183'
           'name': 'Amril'
         'geometry':
           'type': 'Point'
@@ -316,7 +316,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@amril.com'
-          'phone': 'O606449033'
+          'phone': '0606449033'
           'name': 'Inquala'
         'geometry':
           'type': 'Point'
@@ -329,7 +329,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@inquala.com'
-          'phone': 'O651224778'
+          'phone': '0651224778'
           'name': 'Equicom'
         'geometry':
           'type': 'Point'
@@ -342,7 +342,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@equicom.com'
-          'phone': 'O689198150'
+          'phone': '0689198150'
           'name': 'Buzzopia'
         'geometry':
           'type': 'Point'
@@ -355,7 +355,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@buzzopia.com'
-          'phone': 'O644201100'
+          'phone': '0644201100'
           'name': 'Gadtron'
         'geometry':
           'type': 'Point'
@@ -368,7 +368,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@gadtron.com'
-          'phone': 'O639465587'
+          'phone': '0639465587'
           'name': 'Zogak'
         'geometry':
           'type': 'Point'
@@ -381,7 +381,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@zogak.com'
-          'phone': 'O688202156'
+          'phone': '0688202156'
           'name': 'Gynko'
         'geometry':
           'type': 'Point'
@@ -394,7 +394,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@gynko.com'
-          'phone': 'O669346009'
+          'phone': '0669346009'
           'name': 'Pasturia'
         'geometry':
           'type': 'Point'
@@ -407,7 +407,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@pasturia.com'
-          'phone': 'O666695524'
+          'phone': '0666695524'
           'name': 'Terragen'
         'geometry':
           'type': 'Point'
@@ -420,7 +420,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@terragen.com'
-          'phone': 'O678993752'
+          'phone': '0678993752'
           'name': 'Fossiel'
         'geometry':
           'type': 'Point'
@@ -433,7 +433,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@fossiel.com'
-          'phone': 'O653119914'
+          'phone': '0653119914'
           'name': 'Xinware'
         'geometry':
           'type': 'Point'
@@ -446,7 +446,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@xinware.com'
-          'phone': 'O616659951'
+          'phone': '0616659951'
           'name': 'Comtrak'
         'geometry':
           'type': 'Point'
@@ -459,7 +459,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@comtrak.com'
-          'phone': 'O602663512'
+          'phone': '0602663512'
           'name': 'Tourmania'
         'geometry':
           'type': 'Point'
@@ -472,7 +472,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@tourmania.com'
-          'phone': 'O694389609'
+          'phone': '0694389609'
           'name': 'Qualitern'
         'geometry':
           'type': 'Point'
@@ -485,7 +485,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@qualitern.com'
-          'phone': 'O604688268'
+          'phone': '0604688268'
           'name': 'Senmao'
         'geometry':
           'type': 'Point'
@@ -498,7 +498,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@senmao.com'
-          'phone': 'O686430238'
+          'phone': '0686430238'
           'name': 'Calcula'
         'geometry':
           'type': 'Point'
@@ -511,7 +511,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@calcula.com'
-          'phone': 'O645123496'
+          'phone': '0645123496'
           'name': 'Strozen'
         'geometry':
           'type': 'Point'
@@ -524,7 +524,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@strozen.com'
-          'phone': 'O698498192'
+          'phone': '0698498192'
           'name': 'Inear'
         'geometry':
           'type': 'Point'
@@ -537,7 +537,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@inear.com'
-          'phone': 'O612713579'
+          'phone': '0612713579'
           'name': 'Moltonic'
         'geometry':
           'type': 'Point'
@@ -550,7 +550,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@moltonic.com'
-          'phone': 'O642548514'
+          'phone': '0642548514'
           'name': 'Skinserve'
         'geometry':
           'type': 'Point'
@@ -563,7 +563,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@skinserve.com'
-          'phone': 'O686849042'
+          'phone': '0686849042'
           'name': 'Krag'
         'geometry':
           'type': 'Point'
@@ -576,7 +576,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@krag.com'
-          'phone': 'O667663458'
+          'phone': '0667663458'
           'name': 'Enormo'
         'geometry':
           'type': 'Point'
@@ -589,7 +589,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@enormo.com'
-          'phone': 'O652508599'
+          'phone': '0652508599'
           'name': 'Ontagene'
         'geometry':
           'type': 'Point'
@@ -602,7 +602,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@ontagene.com'
-          'phone': 'O610085129'
+          'phone': '0610085129'
           'name': 'Accruex'
         'geometry':
           'type': 'Point'
@@ -615,7 +615,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@accruex.com'
-          'phone': 'O680788387'
+          'phone': '0680788387'
           'name': 'Lumbrex'
         'geometry':
           'type': 'Point'
@@ -628,7 +628,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@lumbrex.com'
-          'phone': 'O683810128'
+          'phone': '0683810128'
           'name': 'Skyplex'
         'geometry':
           'type': 'Point'
@@ -641,7 +641,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@skyplex.com'
-          'phone': 'O638328436'
+          'phone': '0638328436'
           'name': 'Vinch'
         'geometry':
           'type': 'Point'
@@ -654,7 +654,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@vinch.com'
-          'phone': 'O687908951'
+          'phone': '0687908951'
           'name': 'Mixers'
         'geometry':
           'type': 'Point'
@@ -667,7 +667,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@mixers.com'
-          'phone': 'O681811346'
+          'phone': '0681811346'
           'name': 'Vicon'
         'geometry':
           'type': 'Point'
@@ -680,7 +680,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@vicon.com'
-          'phone': 'O617565261'
+          'phone': '0617565261'
           'name': 'Enthaze'
         'geometry':
           'type': 'Point'
@@ -693,7 +693,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@enthaze.com'
-          'phone': 'O603638730'
+          'phone': '0603638730'
           'name': 'Squish'
         'geometry':
           'type': 'Point'
@@ -706,7 +706,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@squish.com'
-          'phone': 'O657892670'
+          'phone': '0657892670'
           'name': 'Quizmo'
         'geometry':
           'type': 'Point'
@@ -719,7 +719,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@quizmo.com'
-          'phone': 'O647569221'
+          'phone': '0647569221'
           'name': 'Ultrasure'
         'geometry':
           'type': 'Point'
@@ -732,7 +732,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@ultrasure.com'
-          'phone': 'O644853773'
+          'phone': '0644853773'
           'name': 'Centrexin'
         'geometry':
           'type': 'Point'
@@ -745,7 +745,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@centrexin.com'
-          'phone': 'O654980041'
+          'phone': '0654980041'
           'name': 'Bisba'
         'geometry':
           'type': 'Point'
@@ -758,7 +758,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@bisba.com'
-          'phone': 'O671970094'
+          'phone': '0671970094'
           'name': 'Quility'
         'geometry':
           'type': 'Point'
@@ -771,7 +771,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@quility.com'
-          'phone': 'O644448883'
+          'phone': '0644448883'
           'name': 'Magnina'
         'geometry':
           'type': 'Point'
@@ -784,7 +784,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@magnina.com'
-          'phone': 'O671140467'
+          'phone': '0671140467'
           'name': 'Klugger'
         'geometry':
           'type': 'Point'
@@ -797,7 +797,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@klugger.com'
-          'phone': 'O612192259'
+          'phone': '0612192259'
           'name': 'Idego'
         'geometry':
           'type': 'Point'
@@ -810,7 +810,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@idego.com'
-          'phone': 'O695763628'
+          'phone': '0695763628'
           'name': 'Lyria'
         'geometry':
           'type': 'Point'
@@ -823,7 +823,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@lyria.com'
-          'phone': 'O677456278'
+          'phone': '0677456278'
           'name': 'Cowtown'
         'geometry':
           'type': 'Point'
@@ -836,7 +836,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@cowtown.com'
-          'phone': 'O609507258'
+          'phone': '0609507258'
           'name': 'Entropix'
         'geometry':
           'type': 'Point'
@@ -849,7 +849,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@entropix.com'
-          'phone': 'O603825894'
+          'phone': '0603825894'
           'name': 'Amtas'
         'geometry':
           'type': 'Point'
@@ -862,7 +862,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@amtas.com'
-          'phone': 'O611051775'
+          'phone': '0611051775'
           'name': 'Flotonic'
         'geometry':
           'type': 'Point'
@@ -875,7 +875,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@flotonic.com'
-          'phone': 'O612050698'
+          'phone': '0612050698'
           'name': 'Deviltoe'
         'geometry':
           'type': 'Point'
@@ -888,7 +888,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@deviltoe.com'
-          'phone': 'O625301719'
+          'phone': '0625301719'
           'name': 'Zentility'
         'geometry':
           'type': 'Point'
@@ -901,7 +901,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@zentility.com'
-          'phone': 'O638084004'
+          'phone': '0638084004'
           'name': 'Geeknet'
         'geometry':
           'type': 'Point'
@@ -914,7 +914,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@geeknet.com'
-          'phone': 'O658481559'
+          'phone': '0658481559'
           'name': 'Hometown'
         'geometry':
           'type': 'Point'
@@ -927,7 +927,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@hometown.com'
-          'phone': 'O602404687'
+          'phone': '0602404687'
           'name': 'Exospeed'
         'geometry':
           'type': 'Point'
@@ -940,7 +940,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@exospeed.com'
-          'phone': 'O634347354'
+          'phone': '0634347354'
           'name': 'Colaire'
         'geometry':
           'type': 'Point'
@@ -953,7 +953,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@colaire.com'
-          'phone': 'O601861704'
+          'phone': '0601861704'
           'name': 'Sustenza'
         'geometry':
           'type': 'Point'
@@ -966,7 +966,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@sustenza.com'
-          'phone': 'O692766934'
+          'phone': '0692766934'
           'name': 'Enerforce'
         'geometry':
           'type': 'Point'
@@ -979,7 +979,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@enerforce.com'
-          'phone': 'O628440237'
+          'phone': '0628440237'
           'name': 'Daisu'
         'geometry':
           'type': 'Point'
@@ -992,7 +992,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@daisu.com'
-          'phone': 'O654688407'
+          'phone': '0654688407'
           'name': 'Eplode'
         'geometry':
           'type': 'Point'
@@ -1005,7 +1005,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@eplode.com'
-          'phone': 'O658612193'
+          'phone': '0658612193'
           'name': 'Ginkle'
         'geometry':
           'type': 'Point'
@@ -1018,7 +1018,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@ginkle.com'
-          'phone': 'O646448543'
+          'phone': '0646448543'
           'name': 'Veraq'
         'geometry':
           'type': 'Point'
@@ -1031,7 +1031,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@veraq.com'
-          'phone': 'O664601685'
+          'phone': '0664601685'
           'name': 'Earbang'
         'geometry':
           'type': 'Point'
@@ -1044,7 +1044,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@earbang.com'
-          'phone': 'O611062654'
+          'phone': '0611062654'
           'name': 'Geeky'
         'geometry':
           'type': 'Point'
@@ -1057,7 +1057,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@geeky.com'
-          'phone': 'O600378966'
+          'phone': '0600378966'
           'name': 'Solaren'
         'geometry':
           'type': 'Point'
@@ -1070,7 +1070,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@solaren.com'
-          'phone': 'O653819079'
+          'phone': '0653819079'
           'name': 'Waab'
         'geometry':
           'type': 'Point'
@@ -1083,7 +1083,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@waab.com'
-          'phone': 'O666447991'
+          'phone': '0666447991'
           'name': 'Zytrex'
         'geometry':
           'type': 'Point'
@@ -1096,7 +1096,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@zytrex.com'
-          'phone': 'O692662086'
+          'phone': '0692662086'
           'name': 'Lingoage'
         'geometry':
           'type': 'Point'
@@ -1109,7 +1109,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@lingoage.com'
-          'phone': 'O601222376'
+          'phone': '0601222376'
           'name': 'Ginkogene'
         'geometry':
           'type': 'Point'
@@ -1122,7 +1122,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@ginkogene.com'
-          'phone': 'O678738745'
+          'phone': '0678738745'
           'name': 'Insuresys'
         'geometry':
           'type': 'Point'
@@ -1135,7 +1135,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@insuresys.com'
-          'phone': 'O613401742'
+          'phone': '0613401742'
           'name': 'Sarasonic'
         'geometry':
           'type': 'Point'
@@ -1148,7 +1148,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@sarasonic.com'
-          'phone': 'O601206629'
+          'phone': '0601206629'
           'name': 'Plasto'
         'geometry':
           'type': 'Point'
@@ -1161,7 +1161,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@plasto.com'
-          'phone': 'O660523218'
+          'phone': '0660523218'
           'name': 'Pathways'
         'geometry':
           'type': 'Point'
@@ -1174,7 +1174,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@pathways.com'
-          'phone': 'O635766126'
+          'phone': '0635766126'
           'name': 'Orboid'
         'geometry':
           'type': 'Point'
@@ -1187,7 +1187,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@orboid.com'
-          'phone': 'O625669054'
+          'phone': '0625669054'
           'name': 'Zaphire'
         'geometry':
           'type': 'Point'
@@ -1200,7 +1200,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@zaphire.com'
-          'phone': 'O643422887'
+          'phone': '0643422887'
           'name': 'Illumity'
         'geometry':
           'type': 'Point'
@@ -1213,7 +1213,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@illumity.com'
-          'phone': 'O666942811'
+          'phone': '0666942811'
           'name': 'Zillatide'
         'geometry':
           'type': 'Point'
@@ -1226,7 +1226,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@zillatide.com'
-          'phone': 'O622687228'
+          'phone': '0622687228'
           'name': 'Gleamink'
         'geometry':
           'type': 'Point'
@@ -1239,7 +1239,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@gleamink.com'
-          'phone': 'O696983707'
+          'phone': '0696983707'
           'name': 'Applica'
         'geometry':
           'type': 'Point'
@@ -1252,7 +1252,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@applica.com'
-          'phone': 'O606387679'
+          'phone': '0606387679'
           'name': 'Zaya'
         'geometry':
           'type': 'Point'
@@ -1265,7 +1265,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@zaya.com'
-          'phone': 'O606961069'
+          'phone': '0606961069'
           'name': 'Terrasys'
         'geometry':
           'type': 'Point'
@@ -1278,7 +1278,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@terrasys.com'
-          'phone': 'O658170311'
+          'phone': '0658170311'
           'name': 'Mondicil'
         'geometry':
           'type': 'Point'
@@ -1291,7 +1291,7 @@ app.factory "Organisations", ->
         'type': 'Feature'
         'properties':
           'email': 'glovermercado@mondicil.com'
-          'phone': 'O686128927'
+          'phone': '0686128927'
           'name': 'Zuvy'
         'geometry':
           'type': 'Point'
