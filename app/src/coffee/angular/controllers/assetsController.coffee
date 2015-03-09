@@ -1,1 +1,1 @@
-app.controller 'assetsController', ($scope, leafletData) ->
+app.controller 'AssetsController', ($scope, leafletData) ->

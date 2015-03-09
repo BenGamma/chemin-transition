@@ -1,4 +1,4 @@
-app.controller 'registerController', ($scope, $modalInstance, authService, userData) ->
+app.controller 'RegisterController', ($scope, $modalInstance, authService, userData) ->
     $scope.cancel = ->
        authService.hideRegister() 
 
