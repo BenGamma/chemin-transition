@@ -32,13 +32,15 @@
                     </div>
                 </div>
             </li>
-
         </ul>
 
         <ul class="right" ng-switch="isLogged">
-            <li ng-switch-when="true"><a ng-click="logout()">logout</a></li>
-            <li ng-switch-when="false"><a ng-click="openRegister()">sign up</a></li>
-            <li ng-switch-when="false"><a ng-click="openLogin()">sign in</a></li>
+            <li ng-switch-when="true"><a ng-click="logout()">logout</a>
+            </li>
+            <li ng-switch-when="false"><a ng-click="openRegister()">sign up</a>
+            </li>
+            <li ng-switch-when="false"><a ng-click="openLogin()">sign in</a>
+            </li>
         </ul>
     </section>
 </nav>

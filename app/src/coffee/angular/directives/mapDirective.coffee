@@ -38,7 +38,20 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
         #        southWest.lng + lngSpan * Math.random()
         #    )
         
-        
+        ###
+        # Filters markers
+        # @params {c} id of tag
+        # @params {markerSymbol} marker symboles
+        ###
+        filter = (markerSymbol) ->
+            # document.getElementsByClassName('active') == ''
+            # c.className = 'active'
+            L.mapbox.featureLayer(Organisations).addTo(map).setFilter (f) ->
+                (f.properties["skills"]).toString() == markerSymbol
+                
+            # if c.className is 'active'
+            #     c.className = ''
+            return false
         
     
         
@@ -50,7 +63,7 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
                 layer.feature.properties["marker-color"] = '#f86767'
                 clusterGroup.addLayer layer
                 layer.bindPopup layer.feature.properties.name
-                console.log layer.feature.properties
+                ###console.log layer.feature.properties###
 
             map.addLayer clusterGroup
             
@@ -99,6 +112,7 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
         #    m.bindPopup("<strong>" + m.options.name + "</strong><br><img src='http://placehold.it/250x180'>").openPopup()
         
         
+        
         onLocationError = (e) ->
             alert e.message
         
@@ -106,3 +120,7 @@ app.directive 'map', (leafletData, $timeout, Organisations) ->
         map.on 'locationerror', onLocationError
         
         onLocationFound() if !locate
+
+        filter("poterie")
+
+        
