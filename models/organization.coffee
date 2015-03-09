@@ -11,33 +11,31 @@ OrganizationSchema = new userBaseSchema
     city: String, 
     zipCode: String, 
     phone: String,
-    latlng:
+    coordinates:
         lt: String,
         lg: String,
     organizationPersons:[{ type:Schema.ObjectId, ref:"organizationPerson" }]
 
 OrganizationSchema.methods.serializeOrg = ->
-	"name"    : @name
-    "email"   : @email
-    "address" : @address
-    "city"    : @city
-    "zipCode" : @zipCode
-    "phone"   : @phone
-    "latlng"  :
-        'lt'  : @lt
-        'lg'  : @lg
+	"name"        : @name
+    "email"       : @email
+    "address"     : @address
+    "city"        : @city
+    "zipCode"     : @zipCode
+    "phone"       : @phone
+    "coordinates" : [@coordinates.lt, @coordinates.lg]
 
 OrganizationSchema.statics.ArraySerialize = (organizations) ->
     result = [];
     async.each organizations, (organization) ->
         result.push
-            "id"      : organization._id
-            "email"   : organization.local.email
-            "address" : organization.address
-            "city"    : organization.city
-            "zipcode" : organization.zipcode
-            "phone"   : organization.phone
-            "lalng"   : organization.latlng
+            "id"          : organization._id
+            "email"       : organization.local.email
+            "address"     : organization.address
+            "city"        : organization.city
+            "zipcode"     : organization.zipcode
+            "phone"       : organization.phone
+            "coordinates" : [organization.coordinates.lt, organization.coordinates.lg]
 
     result
 
