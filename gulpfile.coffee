@@ -4,7 +4,7 @@ gulp           = require('gulp')
 pngquant       = require('imagemin-pngquant');
 $              = require('gulp-load-plugins')()
 angularPath    = 'app/src/coffee/angular'
-tasks          = ['coffee', 'concat', 'ngAnnotate', 'js-compress', 'compass', 'css-concat', 'css-compress', 'index-dev']
+tasks          = ['coffee', 'concat', 'ngAnnotate', 'js-compress', 'compass', 'css-concat', 'css-compress', 'index-dev', 'bower']
 angularFile    = ['app/src/coffee/angular/app.coffee','app/src/coffee/angular/controllers/*.coffee','app/src/coffee/angular/directives/*.coffee','app/src/coffee/angular/services/*.coffee']
 browsers       = ["ie >= 9", "ie_mob >= 10", "ff >= 30", "chrome >= 34", "safari >= 7", "opera >= 23", "ios >= 7", "android >= 4.4", "bb >= 10"]
 
