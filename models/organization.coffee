@@ -16,14 +16,15 @@ OrganizationSchema = new userBaseSchema
         lg: String,
     organizationPersons:[{ type:Schema.ObjectId, ref:"organizationPerson" }]
 
-OrganizationSchema.methods.serializeOrg = ->
-	"name"        : @name
-    "email"       : @email
-    "address"     : @address
-    "city"        : @city
-    "zipCode"     : @zipCode
-    "phone"       : @phone
-    "coordinates" : [@coordinates.lt, @coordinates.lg]
+OrganizationSchema.methods.serialize = ->
+	result = 
+        "name"        : @name
+        "email"       : @local.email
+        "address"     : @address
+        "city"        : @city
+        "zipCode"     : @zipCode
+        "phone"       : @phone
+        "coordinates" : [@coordinates.lt, @coordinates.lg]
 
 OrganizationSchema.statics.ArraySerialize = (organizations) ->
     result = [];
@@ -33,7 +34,7 @@ OrganizationSchema.statics.ArraySerialize = (organizations) ->
             "email"       : organization.local.email
             "address"     : organization.address
             "city"        : organization.city
-            "zipcode"     : organization.zipcode
+            "zipcode"     : organization.zipCode
             "phone"       : organization.phone
             "coordinates" : [organization.coordinates.lt, organization.coordinates.lg]
 
