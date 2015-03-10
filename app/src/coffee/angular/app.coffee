@@ -19,10 +19,10 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
         views:
             "":
                 templateUrl: "partials/home.html",
-                controller: "homeController"
+                controller: "HomeController"
             "navbar":
                 templateUrl: 'partials/navbar.html',
-                controller: "navBarController"
+                controller: "NavBarController"
 
         onEnter: (authService)->
             if authService.needsLogin
@@ -41,17 +41,17 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
     .state 'structures',
         url: "/structures",
         templateUrl: "partials/structures.html",
-        controller: "structuresController"
+        controller: "StructuresController"
 
     .state 'skills',
         url: "/skills",
         templateUrl: "partials/skills.html",
-        controller: "skillsController"
+        controller: "SkillsController"
 
     .state 'assets',
         url: "/assets",
         templateUrl: "partials/assets.html",
-        controller: "assetsController"
+        controller: "AssetsController"
 
     #.state 'actors',
     #    url: "/actors",
