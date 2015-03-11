@@ -3,7 +3,6 @@ bower_components
 app/src/lib
 app/src/.compile
 app/images
-public/lib
 local.0
 local.ns
 mongod.lock
