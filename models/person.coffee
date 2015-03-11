@@ -7,13 +7,15 @@ ObjectId     = Schema.ObjectId
 PersonSchema = new userBaseSchema
     firstName: String, 
     lastName: String, 
-    bladge: String ,
+    badge: String ,
     personOrganizations:[{ type:Schema.ObjectId, ref:"OrganizationPerson" }]
 
 PersonSchema.methods.serialize = ->
-	"firstName" : @local.firstName
-    "lastName": @local.lastName
-    "badge" : @local.badge
+    result = 
+        "firstName" : @firstName
+        "lastName"  : @lastName
+        "email"     : @local.email
+        "badge"     : @badge
 
 Person = User.discriminator 'Person', PersonSchema
 

@@ -47,32 +47,34 @@ app.controller 'HomeController', ($scope, leafletData, authService, Organisation
             lng: 2.3
             zoom: 10
             
-    
-    leafletData.getMap('map').then (map) ->        
-        
-        clusterGroup = new L.MarkerClusterGroup
-            polygonOptions: 
-                fillColor: '#3887be'
-                color: '#3887be'
-                weight: 2
-                opacity: 1
-                fillOpacity: 0.3
+    Organisations.getOrganizations().then (organisations) ->
+        $scope.organisations = organisations
+        console.log(organisations)
+        leafletData.getMap('map').then (map) ->        
+            
+            clusterGroup = new L.MarkerClusterGroup
+                polygonOptions: 
+                    fillColor: '#3887be'
+                    color: '#3887be'
+                    weight: 2
+                    opacity: 1
+                    fillOpacity: 0.3
 
 
-        myLayer = L.mapbox.featureLayer()
+            myLayer = L.mapbox.featureLayer()
 
-        for org in Organisations
-            org.properties['marker-color'] = '#f86767'
+            for org in organisations
+                org.properties['marker-color'] = '#f86767'
 
-        myLayer.setGeoJSON Organisations
+            myLayer.setGeoJSON organisations
 
-        myLayer.eachLayer (layer) ->
-            layer.bindPopup layer.feature.properties.name
-            layer.on 'mouseover', (e) -> layer.openPopup()
-            layer.on 'mouseout', (e) -> layer.closePopup()
-            layer.on 'click', (e) ->
-                $scope.showModal e
-            clusterGroup.addLayer layer
+            myLayer.eachLayer (layer) ->
+                layer.bindPopup layer.feature.properties.name
+                layer.on 'mouseover', (e) -> layer.openPopup()
+                layer.on 'mouseout', (e) -> layer.closePopup()
+                layer.on 'click', (e) ->
+                    $scope.showModal e
+                clusterGroup.addLayer layer
 
 
-        map.addLayer clusterGroup           
+            map.addLayer clusterGroup           

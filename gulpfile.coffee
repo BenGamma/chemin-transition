@@ -4,7 +4,8 @@ gulp           = require('gulp')
 pngquant       = require('imagemin-pngquant');
 $              = require('gulp-load-plugins')()
 angularPath    = 'app/src/coffee/angular'
-tasks          = ['coffee', 'concat', 'ngAnnotate', 'js-compress', 'compass', 'css-concat', 'css-compress', 'index-dev']
+tasks          = ['coffee', 'concat', 'ngAnnotate', 'js-compress', 'compass', 'css-concat', 'css-compress', 'index-dev', 'bower']
+productions    = ['coffee', 'concat', 'ngAnnotate', 'js-compress', 'compass', 'css-concat', 'css-compress','bower', 'partials']
 angularFile    = ['app/src/coffee/angular/app.coffee','app/src/coffee/angular/controllers/*.coffee','app/src/coffee/angular/directives/*.coffee','app/src/coffee/angular/services/*.coffee']
 browsers       = ["ie >= 9", "ie_mob >= 10", "ff >= 30", "chrome >= 34", "safari >= 7", "opera >= 23", "ios >= 7", "android >= 4.4", "bb >= 10"]
 
@@ -83,7 +84,11 @@ gulp.task 'bower', ->
 options =
     progressive: true,
     svgoPlugins: [removeViewBox: false],
-    use: [pngquant()] 
+    use: [pngquant()]
+
+gulp.task 'partials', ->
+  gulp.src('app/src/partials/*.html')
+  .pipe gulp.dest 'public/partials'
 
 gulp.task 'image', ->
     gulp.src 'app/src/images/*' 
@@ -124,6 +129,6 @@ gulp.task 'watch-dev', ['connect-dev'], ->
 
 
 
-gulp.task 'default', tasks
+gulp.task 'default', productions
 
 

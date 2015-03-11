@@ -1,0 +1,51 @@
+<nav class="top-bar" role="navigation">
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="#">Transition Ways</a></h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
+        </li>
+    </ul>
+
+    <section class="top-bar-section">
+        <!-- Left Nav Section -->
+        <ul class="left">
+            <li><a ui-sref="index">News</a>
+            </li>
+            <li><a hui-sref="structures">Structures</a>
+            </li>
+            <li><a ui-sref="skills">Skills</a>
+            </li>
+            <li><a ui-sref="assets">Assets</a>
+            </li>
+            <li><a ui-sref="actors">Actors</a>
+            </li>
+
+            <li class="has-form">
+                <div class="row collapse">
+                    <div class="large-8 small-9 columns">
+                        <input type="text" placeholder="Find Stuff">
+                    </div>
+                    <div class="large-4 small-3 columns">
+                        <a href="#" class="button expand">Search</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <user class="right" ng-switch="isLogged">
+            <ul>
+                <user ng-switch-when="true">
+                    <li><a ng-click="logout()">logout</a>
+                    </li>
+                </user>
+                <user ng-switch-when="false">
+                    <li><a ng-click="openRegister()">sign up</a>
+                    </li>
+                    <li><a ng-click="openLogin()">sign in</a>
+                    </li>
+                </user>
+            </ul>
+        </user>
+    </section>
+</nav>

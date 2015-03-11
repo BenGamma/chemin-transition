@@ -13,6 +13,7 @@ userBaseSchema = ->
             email        : type: String, required: true
             password     : type: String, required: true
             token        : String, 
+        image: type: String
     #methods ======================
     #generating a hash
     @methods.generateHash = (password) ->
@@ -25,11 +26,6 @@ userBaseSchema = ->
     #generate token
     @methods.generateToken = ->
         @local.token = randtoken.generate(16);
-
-    @methods.serialize = ->
-        "id": @_id,
-        "email": @local.email,
-        "token": @local.token
 
     @pre 'save', (next) ->
         @generateToken() if @isNew

@@ -6,8 +6,8 @@ async                = require 'async'
 
 exports.index = (req, res) ->
     Organization.find()
-        .where('lalng.ln').ne(null)
-        .where('lalng.lt').ne(null)
+        .where('coordinates.lg').ne(null)
+        .where('coordinates.lt').ne(null)
         .exec (err, organizations) ->
             if err
                 res.status(400).json('errors')

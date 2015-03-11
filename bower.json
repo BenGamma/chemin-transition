@@ -23,6 +23,7 @@
     "leaflet.markercluster": "~0.4.0",
     "angular-cookie": "~4.0.6",
     "angular-foundation": "~0.5.1",
-    "angular-dropzone": "~0.1.1"
+    "angular-dropzone": "~0.1.1",
+    "ngAutocomplete": "~1.0.0"
   }
 }

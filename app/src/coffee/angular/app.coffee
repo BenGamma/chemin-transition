@@ -1,4 +1,4 @@
-app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie', 'mm.foundation'])
+app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie', 'mm.foundation', 'ngAutocomplete'])
 
 app.run ($rootScope, $location, $state, authService, ipCookie) ->
     $rootScope.$on '$stateChangeStart', (ev, to, toParams, from, fromParams) ->
