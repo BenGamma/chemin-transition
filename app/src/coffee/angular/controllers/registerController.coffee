@@ -1,4 +1,6 @@
 app.controller 'RegisterController', ($scope, $modalInstance, authService, userData) ->
+    $scope.type = true
+
     $scope.cancel = ->
        authService.hideRegister() 
 
@@ -9,3 +11,9 @@ app.controller 'RegisterController', ($scope, $modalInstance, authService, userD
             (data) ->
                 user.error = "email Already use"
             )
+
+    $scope.typeChange = (user) ->
+       if user.type == "Organization"
+            $scope.type = false
+        else
+            $scope.type = true

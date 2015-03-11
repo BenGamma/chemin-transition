@@ -25,7 +25,7 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
                     $state.reload()
         )
 
-    showLogin: ->
+    showLogin: (size) ->
         @login = $modal.open
             templateUrl: 'partials/login.html',
             controller: 'LoginController'

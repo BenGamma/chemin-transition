@@ -30,13 +30,15 @@ OrganizationSchema.statics.ArraySerialize = (organizations) ->
     result = [];
     async.each organizations, (organization) ->
         result.push
-            "id"          : organization._id
-            "email"       : organization.local.email
-            "address"     : organization.address
-            "city"        : organization.city
-            "zipcode"     : organization.zipCode
-            "phone"       : organization.phone
-            "coordinates" : [organization.coordinates.lt, organization.coordinates.lg]
+            "type"            : 'Feature'
+            "id"              : organization._id
+            'properties'      :
+                "email"       : organization.local.email
+                "phone"       : organization.phone
+                "name"        : organization.name
+            'geometry'        :
+                'type'        : 'Point'
+                "coordinates" : [organization.coordinates.lt, organization.coordinates.lg]
 
     result
 
