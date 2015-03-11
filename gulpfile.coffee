@@ -83,7 +83,11 @@ gulp.task 'bower', ->
 options =
     progressive: true,
     svgoPlugins: [removeViewBox: false],
-    use: [pngquant()] 
+    use: [pngquant()]
+
+gulp.task 'move', ->
+  gulp.src('app/src/lib')
+  .pipe gulp.dest 'public/lib'
 
 gulp.task 'image', ->
     gulp.src 'app/src/images/*' 
