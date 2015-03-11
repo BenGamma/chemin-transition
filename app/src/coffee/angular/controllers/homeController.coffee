@@ -25,11 +25,14 @@ app.controller 'HomeController', ($scope, leafletData, authService, Organisation
     
     $scope.showModal = (e) ->
             $scope.selected = e.target.feature.properties
-            modalInstance = $modal.open
+            @modalInstance = $modal.open
                 templateUrl: 'partials/modal.html'
                 windowClass: 'large'
                 scope: $scope
-                
+    
+    $scope.closeModal = ->
+        @modalInstance.dismiss 'cancel'
+    
     
     $('#map').parents().height('100%')
     
@@ -64,7 +67,8 @@ app.controller 'HomeController', ($scope, leafletData, authService, Organisation
         for org in Organisations
             org.properties['marker-color'] = '#f86767'
 
-        myLayer.setGeoJSON Organisations
+        
+        myLayer.setGeoJSON $scope.organisations
 
         myLayer.eachLayer (layer) ->
             layer.bindPopup layer.feature.properties.name
