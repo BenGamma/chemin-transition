@@ -2,6 +2,7 @@ node_modules
 bower_components
 app/src/.compile
 app/images
+app/src/lib
 local.0
 local.ns
 mongod.lock
