@@ -3,7 +3,6 @@ app.controller 'RegisterController', ($scope, $modalInstance, authService, userD
        authService.hideRegister() 
 
     $scope.register = (registerForm, user)->
-        console.log user
         unless registerForm.$invalid
             userData.create(user).then((result) ->
                 authService.hideRegister()

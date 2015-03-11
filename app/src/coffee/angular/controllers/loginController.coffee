@@ -5,7 +5,7 @@ app.controller 'LoginController', ($scope, $modalInstance, authService, userData
     $scope.login = (loginForm, user)->
         unless loginForm.$invalid
             userData.login(user).then((user) ->
-                console.log(user)
+                
                 authService.setSession(user)
                 $state.go('index').then ->
                     authService.hideLogin()
