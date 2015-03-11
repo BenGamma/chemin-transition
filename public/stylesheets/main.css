@@ -1,3 +1,12 @@
-#map{display:block;height:100%}
-.no-padding{padding:0!important}
-body{margin:0}
+#map {
+  display: block;
+  height: 100%; }
+
+.no-padding {
+  padding: 0 !important; }
+
+.pac-container {
+  z-index: 1005; }
+
+body {
+  margin: 0; }

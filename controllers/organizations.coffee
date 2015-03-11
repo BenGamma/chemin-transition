@@ -6,7 +6,7 @@ async                = require 'async'
 
 exports.index = (req, res) ->
     Organization.find()
-        .where('coordinates.ln').ne(null)
+        .where('coordinates.lg').ne(null)
         .where('coordinates.lt').ne(null)
         .exec (err, organizations) ->
             if err

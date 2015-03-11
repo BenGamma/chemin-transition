@@ -15,6 +15,7 @@ OrganizationSchema = new userBaseSchema
         lt: String,
         lg: String,
     organizationPersons:[{ type:Schema.ObjectId, ref:"organizationPerson" }]
+    organizationSkills:[{ type:Schema.ObjectId, ref:"organizationSkill" }]
 
 OrganizationSchema.methods.serialize = ->
 	result = 

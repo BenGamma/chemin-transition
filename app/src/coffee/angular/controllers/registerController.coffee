@@ -1,10 +1,15 @@
 app.controller 'RegisterController', ($scope, $modalInstance, authService, userData) ->
-    $scope.type = true
-
+    $scope.type = false
+    $scope.autocomplete = {};
     $scope.cancel = ->
        authService.hideRegister() 
 
     $scope.register = (registerForm, user)->
+        coordinates = $scope.autocomplete.details.geometry.location
+        user.coordinates =
+            lt: coordinates.D
+            lg: coordinates.k
+
         unless registerForm.$invalid
             userData.create(user).then((result) ->
                 authService.hideRegister()
@@ -13,7 +18,9 @@ app.controller 'RegisterController', ($scope, $modalInstance, authService, userD
             )
 
     $scope.typeChange = (user) ->
+
        if user.type == "Organization"
             $scope.type = false
         else
             $scope.type = true
+

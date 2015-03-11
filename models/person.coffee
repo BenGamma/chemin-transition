@@ -11,7 +11,6 @@ PersonSchema = new userBaseSchema
     personOrganizations:[{ type:Schema.ObjectId, ref:"OrganizationPerson" }]
 
 PersonSchema.methods.serialize = ->
-    console.log(@)
     result = 
         "firstName" : @firstName
         "lastName"  : @lastName
