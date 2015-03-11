@@ -49,7 +49,6 @@ app.controller 'HomeController', ($scope, leafletData, authService, Organisation
             
     Organisations.getOrganizations().then (organisations) ->
         $scope.organisations = organisations
-        console.log(organisations)
         leafletData.getMap('map').then (map) ->        
             
             clusterGroup = new L.MarkerClusterGroup
