@@ -32,8 +32,6 @@ app.directive 'map', (leafletData, $timeout, Organisations, $modal) ->
         #                return "coucou"
         #        windowClass: 'large'
         #        
-        #    
-
         
         #onLocationFound = (e) ->
         #    
@@ -107,7 +105,7 @@ app.directive 'map', (leafletData, $timeout, Organisations, $modal) ->
         #    m = e.target
         #    m.bindPopup("<strong>" + m.options.name + "</strong><br><img src='http://placehold.it/250x180'>").openPopup()
         
-        
+    
         #onLocationError = (e) ->
         #    alert e.message
         #

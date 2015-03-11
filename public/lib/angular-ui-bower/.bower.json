@@ -1,0 +1,17 @@
+{
+  "name": "angular-ui",
+  "version": "0.4.0",
+  "main": "./build/angular-ui.js",
+  "dependencies": {},
+  "homepage": "https://github.com/mwagena/angular-ui-bower",
+  "_release": "0.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.4.0",
+    "commit": "155b2fb5a362264b1ef7e2660ffa9cb6aa4f8662"
+  },
+  "_source": "git://github.com/mwagena/angular-ui-bower.git",
+  "_target": "~0.4.0",
+  "_originalSource": "angular-ui-bower",
+  "_direct": true
+}
