@@ -76,12 +76,11 @@ exports.addSkill = (req, res) ->
 
 
 exports.show = (req, res) ->
-    Organization.findById("5500428721dbf7e3170c165c")
+
+    Organization.findOne({'local.token': req.headers['x-token'], 'local.email': req.headers['x-email']})
         .populate('skills')
-        .populate('users')
         .exec (err, organization) ->
-            console.log(organization)
-            if err
+            if err || !organization
                 res.status(400).json('errors')
 
             res.status(200).json(organization.serialize())
