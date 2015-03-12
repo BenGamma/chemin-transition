@@ -14,8 +14,7 @@ OrganizationSchema = new userBaseSchema
     coordinates:
         lt: String,
         lg: String,
-    organizationPersons:[{ type:Schema.ObjectId, ref:"organizationPerson" }]
-    organizationSkills:[{ type:Schema.ObjectId, ref:"organizationSkill" }]
+    organizationPersons:[{ type:Schema.ObjectId, ref:"OrganizationPerson" }]
 
 OrganizationSchema.methods.serialize = ->
 	result = 
@@ -26,6 +25,7 @@ OrganizationSchema.methods.serialize = ->
         "zipCode"     : @zipCode
         "phone"       : @phone
         "coordinates" : [@coordinates.lt, @coordinates.lg]
+        "skills"      : @skills
 
 OrganizationSchema.statics.ArraySerialize = (organizations) ->
     result = [];
