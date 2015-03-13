@@ -7,8 +7,11 @@ router               = express.Router()
 router.route '/'
     .get(organizations.index)
 
-router.route '/show'
+router.route '/show/:organization'
 	.get(organizations.show)
+
+router.route '/profile'
+    .get(authorization.requiresLogin, organizations.profile)
 
 router.route '/actor/:organization/:person'
     .post(actorAuthorization.checkOrganization, organizations.addActor)

@@ -13,7 +13,7 @@
         <ul class="left">
             <li><a ui-sref="index">News</a>
             </li>
-            <li><a hui-sref="structures">Structures</a>
+            <li><a ui-sref="structures">Structures</a>
             </li>
             <li><a ui-sref="skills">Skills</a>
             </li>
@@ -36,8 +36,8 @@
         <user class="right" ng-switch="isLogged">
             <ul>
                 <user ng-switch-when="true">
-                    <li><a ng-click="logout()">logout</a>
-                    </li>
+                    <li><a ui-sref="users.profile" >Profil</a></li>
+                    <li><a ng-click="logout()">logout</a></li>
                 </user>
                 <user ng-switch-when="false">
                     <li><a ng-click="openRegister()">sign up</a>

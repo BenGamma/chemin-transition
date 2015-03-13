@@ -18,6 +18,8 @@ OrganizationSchema = new userBaseSchema
 
 OrganizationSchema.methods.serialize = ->
 	result = 
+        "type"        : @__t
+        "image"       : @image
         "name"        : @name
         "email"       : @local.email
         "address"     : @address
@@ -26,6 +28,7 @@ OrganizationSchema.methods.serialize = ->
         "phone"       : @phone
         "coordinates" : [@coordinates.lt, @coordinates.lg]
         "skills"      : @skills
+        "token"       : @local.token
 
 OrganizationSchema.statics.ArraySerialize = (organizations) ->
     result = [];

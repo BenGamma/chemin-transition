@@ -1,0 +1,11 @@
+<div ng-if="user.type == 'Organization'" class="organization">
+    <form name="organizationForm">
+        <input type="text" ng-model="user.name" required placeholder="Name">
+        <input type="text" id="Autocomplete" class="form-control" ng-hide="type" ng-autocomplete ng-model="autocomplete.coordinates" details="autocomplete.details">
+        <tags-input ng-model="user.skills">
+        </tags-input>
+        <button ng-click="register(organizationForm, user)" ng-disabled="organizationForm.$invalid" type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+</div>
+<div ng-if="user.type != 'Organization'" class="person">
+</div>

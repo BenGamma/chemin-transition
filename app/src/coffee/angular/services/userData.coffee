@@ -9,6 +9,24 @@ app.factory 'userData', ($http, $q, appConfig, ipCookie ) ->
                 deferred.reject(data)
         deferred.promise
 
+    getOrganizationProfile: ->
+        deferred = $q.defer()
+        $http({method: 'GET', url: appConfig.url('organizations/profile'), headers: {'X-token': ipCookie('token'), 'X-email': ipCookie('email')} })
+            .success (data, status, headers, config) ->
+                deferred.resolve(data)
+            .error (data, status, headers, config) ->
+                deferred.reject(data)
+        deferred.promise   
+
+    getCurrentUser: ->
+        deferred = $q.defer()
+        $http({method: 'GET', url: appConfig.url('sessions'), headers: {'X-token': ipCookie('token'), 'X-email': ipCookie('email')} })
+            .success (data, status, headers, config) ->
+                deferred.resolve(data)
+            .error (data, status, headers, config) ->
+                deferred.reject(data)
+        deferred.promise    
+
     checkUser: ->
         deferred = $q.defer()
         $http({method: 'GET', url: appConfig.url('sessions'), headers: {'X-token': ipCookie('token'), 'X-email': ipCookie('email')} })
