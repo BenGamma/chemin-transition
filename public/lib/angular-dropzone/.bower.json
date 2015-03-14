@@ -26,5 +26,6 @@
   },
   "_source": "git://github.com/sandbochs/angular-dropzone.git",
   "_target": "~0.1.1",
-  "_originalSource": "angular-dropzone"
+  "_originalSource": "angular-dropzone",
+  "_direct": true
 }

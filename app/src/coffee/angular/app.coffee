@@ -1,4 +1,4 @@
-app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie', 'mm.foundation', 'ngAutocomplete'])
+app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie', 'mm.foundation', 'ngAutocomplete', 'ngTagsInput', 'ngDropzone'])
 
 app.run ($rootScope, $location, $state, authService, ipCookie) ->
     $rootScope.$on '$stateChangeStart', (ev, to, toParams, from, fromParams) ->
@@ -33,15 +33,36 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
         resolve:
             check: ($state, authService) ->
                 authService.isAuthorize()
+        views:
+            "":
+                template: "<div ui-view></div>",
+            "navbar":
+                templateUrl: 'partials/navbar.html',
+                controller: "NavBarController"
 
 
     .state 'users.profile',
         url: "/profile"
+        controller: 'UsersController'
+        templateUrl: 'partials/users/profile.html'
 
     .state 'structures',
         url: "/structures",
-        templateUrl: "partials/structures.html",
-        controller: "StructuresController"
+        views:
+            "":
+                templateUrl: "partials/structures.html",
+                controller: "StructuresController"
+            "navbar":
+                templateUrl: 'partials/navbar.html',
+                controller: "NavBarController"
+
+    .state 'structures.show',
+        url: '/:id',
+        templateUrl: "partials/structures/show.html"
+        resolve:
+            id: ($stateParams, Organisations) ->
+                return $stateParams.id
+        controller: "StructuresShowController"
 
     .state 'skills',
         url: "/skills",

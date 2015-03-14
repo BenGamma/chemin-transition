@@ -1,8 +1,9 @@
 userBaseSchema = require './userBase'
 User           = require './user'
-mongoose     = require('mongoose')
-Schema       = mongoose.Schema
-ObjectId     = Schema.ObjectId
+mongoose       = require('mongoose')
+Schema         = mongoose.Schema
+ObjectId       = Schema.ObjectId
+async          = require 'async'
 
 PersonSchema = new userBaseSchema
     firstName: String, 
@@ -12,10 +13,24 @@ PersonSchema = new userBaseSchema
 
 PersonSchema.methods.serialize = ->
     result = 
+        "id"        : @_id
         "firstName" : @firstName
         "lastName"  : @lastName
         "email"     : @local.email
         "badge"     : @badge
+        "token"     : @local.token
+
+PersonSchema.statics.ArraySerialize = (persons) ->
+    result = [];
+    async.each persons, (person) ->
+        result.push
+            "id"        : person._id
+            "image"     : person.image
+            "firstName" : person.firstName
+            "lastName"  : person.lastName
+            "email"     : person.local.email
+            "fullName"  : person.firstName+' '+person.lastName 
+    result
 
 Person = User.discriminator 'Person', PersonSchema
 

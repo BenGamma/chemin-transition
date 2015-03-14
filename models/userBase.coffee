@@ -14,6 +14,7 @@ userBaseSchema = ->
             password     : type: String, required: true
             token        : String, 
         image: type: String
+        skills:[{ type:Schema.ObjectId, ref:"Skill", unique: true, childPath:"users"}]
     #methods ======================
     #generating a hash
     @methods.generateHash = (password) ->

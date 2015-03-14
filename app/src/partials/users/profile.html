@@ -1,0 +1,25 @@
+<div ng-if="user.type == 'Organization'" class="organization">
+    <div class="upload">
+        <div class="preview-avatar" style="background-image:url('{{avatar}}')">
+        </div>
+        <form class="dropzone" method="post" enctype="multipart/form-data" ng-dropzone dropzone="dropzone" dropzone-config="dropzoneConfig" event-handlers="eventHandlers">
+            <!--<input name="file" type="file" multiple />-->
+        </form>
+    </div>
+    <form  name="organizationForm"class="profile" >
+        <input type="text" ng-model="user.name" required placeholder="Name">
+        <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="autocomplete.coordinates" details="autocomplete.details">
+        <label>Skills:</label>
+        <tags-input ng-model="user.skills" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="false">
+            <auto-complete source="skills"></auto-complete>
+        </tags-input>
+        <label>Actors:</label>
+        <tags-input template="actors.html" display-property="fullName"ng-model="user.actors" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="true" on-tag-added="addActor($tag)" on-tag-removed="removeActor($tag)">
+            <auto-complete source="persons"></auto-complete>
+        </tags-input>
+        <button ng-click="update(organizationForm, user)" ng-disabled="organizationForm.$invalid" type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+<div ng-if="user.type != 'Organization'" class="person">
+</div>
+<alert type="alerts[1].type">{{alerts[1].msg}}</alert>

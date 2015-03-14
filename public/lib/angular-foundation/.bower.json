@@ -19,5 +19,6 @@
   },
   "_source": "git://github.com/pineconellc/angular-foundation-bower.git",
   "_target": "~0.5.1",
-  "_originalSource": "angular-foundation"
+  "_originalSource": "angular-foundation",
+  "_direct": true
 }

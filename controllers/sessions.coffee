@@ -1,4 +1,5 @@
 passport      = require 'passport'
+User          = require '../models/user'
 
 exports.login = (req, res, next) ->
     unless req.body.email || req.body.password
@@ -11,3 +12,4 @@ exports.login = (req, res, next) ->
         else
             return res.status(400).json('wrong')
     )(req, res, next)
+
