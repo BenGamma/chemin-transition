@@ -15,7 +15,7 @@
         <div ng-repeat="org in organisations" class="radius panel">
             <div class="row">
                 <div class="columns large-4 small-12">
-                    <img src="http://placehold.it/350x220" alt="">
+                    <img ng-src="{{org.avatar}}" alt="">
                 </div>
                 <div class="columns large-8 small-12">
                     <h3>{{org.name}}</h3> {{org.email}}<br>

@@ -1,4 +1,4 @@
-app.controller 'HomeController', ($scope, leafletData, authService, Organisations, $modal) ->
+app.controller 'HomeController', ($scope, leafletData, authService, Organisations, $modal, appConfig) ->
     
     $scope.open = (size) ->
         authService.showLogin()
@@ -63,6 +63,7 @@ app.controller 'HomeController', ($scope, leafletData, authService, Organisation
             myLayer = L.mapbox.featureLayer()
 
             for org in organisations
+                org.avatar =  appConfig.domain()+org.image
                 org.properties['marker-color'] = '#f86767'
 
             myLayer.setGeoJSON organisations

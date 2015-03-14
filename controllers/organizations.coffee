@@ -60,8 +60,8 @@ exports.addSkill = (req, res) ->
 
 
 exports.show = (req, res) ->
-    async.parallel(
-        organization:(callback) ->
+    async.series(
+        user:(callback) ->
             Organization.findById(req.params.organization)
                 .populate('skills')
                 .exec (err, organization) ->
@@ -82,6 +82,9 @@ exports.show = (req, res) ->
                     actors = OrganizationPerson.ArraySerialize(actors)
                     callback(null, actors)
     (err, results) ->
+        result = results.user
+        result.actors = results.actors
+        res.status(200).json(result)
     )
 
 exports.profile = (req, res) ->

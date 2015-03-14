@@ -49,6 +49,7 @@ OrganizationSchema.statics.ArraySerialize = (organizations) ->
         result.push
             "type"            : 'Feature'
             "id"              : organization._id
+            "image"           : organization.image
             'properties'      :
                 "email"       : organization.local.email
                 "phone"       : organization.phone
