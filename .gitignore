@@ -9,3 +9,4 @@ mongod.lock
 journal
 .DS_Store
 app/.DS_Store
+public/files
