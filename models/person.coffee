@@ -13,6 +13,7 @@ PersonSchema = new userBaseSchema
 
 PersonSchema.methods.serialize = ->
     result = 
+        "id"        : @_id
         "firstName" : @firstName
         "lastName"  : @lastName
         "email"     : @local.email
@@ -28,6 +29,7 @@ PersonSchema.statics.ArraySerialize = (persons) ->
             "firstName" : person.firstName
             "lastName"  : person.lastName
             "email"     : person.local.email
+            "fullName"  : person.firstName+' '+person.lastName 
     result
 
 Person = User.discriminator 'Person', PersonSchema

@@ -10,3 +10,46 @@
 .pac-container {
 	z-index: 1005;
 }
+
+.organization {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.upload {
+    width: 55%;
+    margin: 0 auto;
+    overflow: hidden;
+    .preview-avatar {
+        float: left;
+        width: 48%;
+        height: 150px;
+        margin-right: 3%;
+        background-size: cover;
+    }
+    form {
+        width: 48%;
+        float: left;
+        border: none;
+    }
+}
+
+.profile {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 40px;
+    button {
+        display: block;
+        margin: 0 auto;
+        margin-top: 5px;
+    }
+
+    .host {
+        height: 35px;
+        border-radius: 0;
+    }
+    .tag-list {
+        .tag-item {
+            margin-top: 3px;
+        }
+    }
+}

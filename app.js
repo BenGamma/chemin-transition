@@ -10,7 +10,8 @@ var express      = require('express')
 ,flash           = require('connect-flash')
 ,session         = require('express-session')
 ,env             = require('./config/environement')
-,swig            = require('swig');
+,swig            = require('swig')
+,busboy          = require('connect-busboy');
 
 
 mongoose.connect(env.development.db);
@@ -35,6 +36,8 @@ app.use(session({
     })
 ); // session secret
 
+app.use(busboy());
+
 // Add headers
 app.use(function (req, res, next) {
 
@@ -45,8 +48,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type,X-token, X-email");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type,X-token, X-email, Cache-Control, X-Requested-With");
 
     // Pass to next layer of middleware
     next();

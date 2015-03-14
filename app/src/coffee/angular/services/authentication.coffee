@@ -1,4 +1,4 @@
-app.service 'authService', (ipCookie, userData, $state, $modal) ->
+app.service 'authService', (ipCookie, userData, $state, $modal, $q) ->
     user: {},
     token: null,
     needsLogin: false,
@@ -51,6 +51,22 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
     destroySession: ->
         ipCookie.remove('token')
         ipCookie.remove('email')
+
+    getGeocode: (data) ->
+        deferred = $q.defer()
+        geocoder = new google.maps.Geocoder();
+        latlng   = new google.maps.LatLng(parseFloat(data.coordinates[1]), parseFloat(data.coordinates[0]))
+        geocoder.geocode {'latLng': latlng}, (results, status) ->
+            deferred.resolve(results)
+        deferred.promise
+
+    setUserCoordinates: (user, data) ->
+        if data.details
+            coordinates = data.details.geometry.location
+            user.coordinates =
+                lt: coordinates.D
+                lg: coordinates.k
+        user
 
 
 

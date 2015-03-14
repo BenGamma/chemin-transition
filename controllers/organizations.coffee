@@ -57,23 +57,6 @@ exports.removeActor = (req, res, next) ->
         res.status(204)
 
 exports.addSkill = (req, res) ->
-    req.body.skills = [
-        "550196ede648b51a29cae837"
-    ]
-
-    Organization.findById("5500428721dbf7e3170c165c")
-        .exec (err, organization) ->
-            result = false
-            async.each req.body.skills, (skill) ->
-                async.each organization.skills, (orgSkill) ->
-                    if skill.toString() == orgSkill.toString()
-                       result = true
-                       return true
-                unless result
-                    organization.skills.push(skill)
-
-            organization.save()
-            res.status(200).json('accepted')
 
 
 exports.show = (req, res) ->
@@ -90,19 +73,19 @@ exports.show = (req, res) ->
 
         actors: (callback) ->
             OrganizationPerson.find()
-                .where(person: req.params.organization)
+                .where(organization: req.params.organization)
                 .where(actor: true)
                 .populate('person')
                 .exec (err, actors) ->
                     if err
                         res.status(400).json('errors')
-                    actors = Person.ArraySerialize(actors)
+                    actors = OrganizationPerson.ArraySerialize(actors)
                     callback(null, actors)
     (err, results) ->
     )
 
 exports.profile = (req, res) ->
-    async.parallel(
+    async.series(
         user: (callback) ->
             Organization.findOne()
                 .where('local.token': req.headers['x-token'])
@@ -111,19 +94,20 @@ exports.profile = (req, res) ->
                 .exec (err, organization) ->
                     if err || !organization
                         res.status(400).json('errors')
+                    req.params.organization = organization._id
                     result = organization.serialize()
                     delete result['token']
                     callback(null, result)
 
         actors: (callback) ->
             OrganizationPerson.find()
-                .where(person: req.params.organization)
+                .where(organization: req.params.organization)
                 .where(actor: true)
                 .populate('person')
                 .exec (err, actors) ->
                     if err
                         res.status(400).json('errors')
-                    actors = Person.ArraySerialize(actors)
+                    actors = OrganizationPerson.ArraySerialize(actors)
                     callback(null, actors)
     (err, results) ->
         result = results.user
@@ -132,10 +116,16 @@ exports.profile = (req, res) ->
     )
 
 exports.update = (req, res) ->
-    Organization.update({'token': req.headers['x-token'], 'email': req.headers['x-email']}, req.body, (err, organization) ->
+    Organization.findOne({'local.token': req.headers['x-token'], 'local.email': req.headers['x-email']}, (err, organization) ->
+        organization.name           = req.body.name
+        organization.local.email    = req.body.email
+        organization.skills         = req.body.skills 
+        unless _.isArray(req.body.coordinates)
+            organization.coordinates    = req.body.coordinates
+        organization.save()
         if (err) 
-            res.status(400).json('bad user')
-        res.status(201).json('created');
+            res.status(400).json('error')
+        res.status(200).json('updated');
     )
 
 

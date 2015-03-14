@@ -19,10 +19,10 @@ router.route '/actor/:organization/:person'
 router.route '/addSkill'
 	.post(organizations.addSkill)
 
-router.route '/actor/:id'
+router.route '/actor/:organization/:id'
     .delete(actorAuthorization.checkOrganization, organizations.removeActor)
 
-router.route '/update'
-    .put(authorization.requiresLogin, organizations.update)
+router.route '/update/:organization'
+    .put(authorization.requiresLogin, actorAuthorization.checkOrganization, actorAuthorization.addSkills, organizations.update)
 
 module.exports = router;

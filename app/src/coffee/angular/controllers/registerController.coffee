@@ -5,11 +5,7 @@ app.controller 'RegisterController', ($scope, $modalInstance, authService, userD
        authService.hideRegister() 
 
     $scope.register = (registerForm, user)->
-        coordinates = $scope.autocomplete.details.geometry.location
-        user.coordinates =
-            lt: coordinates.D
-            lg: coordinates.k
-
+        authService.setUserCoordinates(user, $scope.autocomplete)
         unless registerForm.$invalid
             userData.create(user).then((result) ->
                 authService.hideRegister()
