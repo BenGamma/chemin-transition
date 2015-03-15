@@ -5,7 +5,7 @@ app/images
 app/src/lib
 public/lib
 public/javascripts/main.js
-public/javascripts/main.css
+public/stylesheets/main.css
 local.0
 local.ns
 mongod.lock
