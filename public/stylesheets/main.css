@@ -1,15 +1,18 @@
-.dropzone,.dropzone:active,.panel .tag,.panel .tag:hover{transition:all 300ms;-webkit-transition:all 300ms}
+.dropzone,.tag{border-radius:3px}
+.dropzone,.dropzone:active,.tag,.tag:hover{transition:all 300ms;-webkit-transition:all 300ms}
 #map{display:block;height:100%}
+.popup img{max-height:100px}
+.popup .tag{margin:8px 3px 3px}
 .no-padding{padding:0!important}
 .pac-container{z-index:1005}
 .over-map-btns{position:absolute;top:5px;display:block;right:5px;z-index:2}
 .profile{padding-top:20px}
-.dropzone{border:2px dashed #313131;border-radius:3px}
+.dropzone{border:2px dashed #313131}
 .dropzone:active{border:2px solid #292929}
 .panel{background:#f8f8f8;border:1px solid #f0f0f0;margin-bottom:10px;padding:10px}
 .panel h3{font-weight:300}
-.panel .tag{background:#6ecc39;color:#fff;margin:0 2px;padding:1px 4px;border-radius:3px;font-size:12px;display:inline-block;text-transform:capitalize}
-.panel .tag:hover{background:#56a02c}
+.tag{background:#6ecc39;color:#fff;margin:0 2px;padding:1px 4px;font-size:12px;display:inline-block;text-transform:capitalize}
+.tag:hover{background:#56a02c}
 .valign-middle{display:table}
 .valign-middle>.columns{display:table-cell;vertical-align:middle}
 .valign-middle>.columns,.valign-middle>[class*=column]+[class*=column]:last-child{float:none}
