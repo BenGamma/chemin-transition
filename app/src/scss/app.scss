@@ -53,3 +53,47 @@
         }
     }
 }
+
+/* AUTOCOMPLETE */
+
+.autocomplete{
+  width: 100%;
+}
+
+.autocomplete input{
+  width: 100%;
+  padding:0.4em;
+}
+
+.autocomplete ul{
+  position: absolute;
+  left: 0;
+  top: 45px;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+}
+
+.autocomplete li{
+  text-align: left;
+  list-style:none;
+  width: 100%;
+  padding:0.4em;
+  background-color: #fff;
+  color: white;
+  font-size: 0.8em;
+  font-weight: normal;
+}
+
+.autocomplete li.active{
+  width: 100%;
+}
+
+.autocomplete .highlight {
+    background: #008CBA;
+}
+
+.autocomplete li.active .highlight {
+  background: #666;
+  color: #fff;
+}

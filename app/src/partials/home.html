@@ -7,13 +7,13 @@
 
 
 <div class="medium-9 columns no-padding" ng-show="mapView.active">
-    <leaflet id="map" defaults="defaults"></leaflet>
+    <leaflet id="map" defaults="defaults"  markers="markers | filter: markerFilter"></leaflet>
 </div>
 
 <div class="row" ng-show="listView.active">
     <div class="medium-9 columns no-padding">
         <h1>Structures</h1>
-        <div ng-repeat="org in organisations" class="radius panel">
+        <div ng-repeat="org in organizations" class="radius panel">
             <div class="row">
                 <div class="columns large-4 small-12">
                     <img ng-src="{{org.avatar}}" alt="">
@@ -26,3 +26,4 @@
         </div>
     </div>
 </div>
+<div ui-view></div>

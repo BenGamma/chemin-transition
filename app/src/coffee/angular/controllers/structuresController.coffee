@@ -1,1 +1,2 @@
-app.controller 'StructuresController', ($scope, leafletData, $stateParams, Organisations) ->
+app.controller 'StructuresController', ($scope, leafletData, $stateParams, Organisations, appConfig) ->       
+

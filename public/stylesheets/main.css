@@ -9,4 +9,11 @@
 .profile button{display:block;margin:5px auto 0}
 .profile .host{height:35px;border-radius:0}
 .profile .tag-list .tag-item{margin-top:3px}
+.autocomplete{width:100%}
+.autocomplete input{width:100%;padding:.4em}
+.autocomplete ul{position:absolute;left:0;top:45px;width:100%;z-index:1;background-color:#fff}
+.autocomplete li{text-align:left;list-style:none;width:100%;padding:.4em;background-color:#fff;color:#fff;font-size:.8em;font-weight:400}
+.autocomplete li.active{width:100%}
+.autocomplete .highlight{background:#008CBA}
+.autocomplete li.active .highlight{background:#666;color:#fff}
 body{margin:0}
