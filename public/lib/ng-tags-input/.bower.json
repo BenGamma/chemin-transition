@@ -19,6 +19,5 @@
   },
   "_source": "git://github.com/mbenford/ngTagsInput-bower.git",
   "_target": "2.2.0",
-  "_originalSource": "ng-tags-input",
-  "_direct": true
+  "_originalSource": "ng-tags-input"
 }

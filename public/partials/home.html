@@ -2,6 +2,23 @@
     <h4>Welcome to Transition&nbsp;Ways&nbsp;!</h4>
     <button class="button small radius" ng-click="showMapView()">Map</button>
     <button class="button small radius" ng-click="showListView()">List</button>
+
+    <div ng-repeat="org in organisations" class="radius list-view-item">
+        <div class="row">
+           
+            <div class="columns large-4 small-12">
+                <img ng-src="{{org.avatar}}" alt="">
+            </div>
+            <div class="columns large-8 small-12">
+                <h3>{{org.properties.name}}</h3> {{org.properties.email}}
+                <br>
+                <span class="tag">Poterie</span>
+                <span class="tag">Découpe laser</span>
+                <span class="tag">Web</span>
+                <a ui-sref="structures.show({ id: org.id })" class="button tiny radius">See structure</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -18,7 +35,8 @@
                     <img ng-src="{{org.avatar}}" alt="">
                 </div>
                 <div class="columns large-8 small-12">
-                    <h3>{{org.name}}</h3> {{org.email}}<br>
+                    <h3>{{org.name}}</h3> {{org.email}}
+                    <br>
                     <a ui-sref="structures.show({ id: org.id })" class="button tiny radius">See structure</a>
                 </div>
             </div>

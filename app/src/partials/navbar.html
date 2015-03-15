@@ -17,10 +17,14 @@
             </li>
             <li><a ui-sref="skills">Skills</a>
             </li>
+<!--
             <li><a ui-sref="assets">Assets</a>
             </li>
+-->
+<!--
             <li><a ui-sref="actors">Actors</a>
             </li>
+-->
 
             <li class="has-form">
                 <div class="row collapse">
@@ -37,12 +41,12 @@
             <ul>
                 <user ng-switch-when="true">
                     <li><a ui-sref="users.profile" >Profile</a></li>
-                    <li><a ng-click="logout()">logout</a></li>
+                    <li><a ng-click="logout()">Logout</a></li>
                 </user>
                 <user ng-switch-when="false">
-                    <li><a ng-click="openRegister()">sign up</a>
+                    <li><a ng-click="openRegister()">Sign up</a>
                     </li>
-                    <li><a ng-click="openLogin()">sign in</a>
+                    <li><a ng-click="openLogin()">Sign in</a>
                     </li>
                 </user>
             </ul>

@@ -16,7 +16,7 @@ watch = ->
     gulp.watch 'app/src/images/*.png', ['image']
     gulp.watch 'app/src/images/*.jpg', ['image']
     gulp.watch 'app/src/images/*.gif', ['image']
-    gulp.watch 'app/src/partials/*.html', ['index-dev']
+    gulp.watch 'app/src/partials/**/*.html', ['index-dev']
     gulp.watch 'bower.json', ['bower', 'index-dev']
 
 gulp.task 'coffee', ->

@@ -1,5 +1,5 @@
 app.controller 'HomeController', ($scope, leafletData, authService, Organisations, $modal, appConfig) ->
-    
+
     $scope.open = (size) ->
         authService.showLogin()
         
@@ -52,6 +52,7 @@ app.controller 'HomeController', ($scope, leafletData, authService, Organisation
             
     Organisations.getOrganizations().then (organisations) ->
         $scope.organisations = organisations
+        console.log $scope.organisations
         leafletData.getMap('map').then (map) ->        
             
             clusterGroup = new L.MarkerClusterGroup
