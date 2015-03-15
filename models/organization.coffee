@@ -1,9 +1,10 @@
-userBaseSchema = require './userBase'
-User           = require './user'
-mongoose       = require('mongoose')
-async          = require 'async'
-Schema         = mongoose.Schema
-ObjectId       = Schema.ObjectId
+userBaseSchema     = require './userBase'
+User               = require './user'
+mongoose           = require('mongoose')
+async              = require 'async'
+Schema             = mongoose.Schema
+ObjectId           = Schema.ObjectId
+OrganizationPerson = require '../models/organizationPerson'
 
 OrganizationSchema = new userBaseSchema
     name: String, 
@@ -57,6 +58,7 @@ OrganizationSchema.statics.ArraySerialize = (organizations) ->
             'geometry'        :
                 'type'        : 'Point'
                 "coordinates" : [organization.coordinates.lt, organization.coordinates.lg]
+            "skills"          : organization.skills
 
     result
 

@@ -16,6 +16,10 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
     $stateProvider
     .state 'index',
         url: "/",
+        resolve:
+            organizations: (Organisations) ->
+                Organisations.getOrganizations().then (organisations) ->
+                    organisations
         views:
             "":
                 templateUrl: "partials/home.html",
