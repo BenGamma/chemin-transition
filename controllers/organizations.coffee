@@ -11,6 +11,7 @@ exports.index = (req, res) ->
     Organization.find()
         .where('coordinates.lg').ne(null)
         .where('coordinates.lt').ne(null)
+        .where('local.enable', true)
         .populate('skills')
         .exec (err, organizations) ->
             if err
