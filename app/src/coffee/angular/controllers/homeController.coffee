@@ -2,8 +2,6 @@ app.controller 'HomeController', ($scope, authService, organizations, $modal, ap
     $scope.organizations = organizations
     $scope.open = (size) ->
         authService.showLogin()
-        
-    $scope.organisations = Organisations
     
     $scope.mapView =
         active: true
@@ -20,7 +18,9 @@ app.controller 'HomeController', ($scope, authService, organizations, $modal, ap
     $scope.showListView = ->
         $scope.listView.active = true
         $scope.mapView.active = false
-        
+
+    $scope.closeModal = ->
+        @modalInstance.dismiss 'cancel'
         
     
     $scope.showModal = (e) ->

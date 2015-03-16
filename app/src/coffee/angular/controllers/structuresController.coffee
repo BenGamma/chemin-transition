@@ -18,11 +18,15 @@ app.controller 'StructuresController', ($scope, $stateParams, appConfig, mapServ
                 opacity: 1
                 fillOpacity: 0.3
         mapService.myLayer.eachLayer (layer) ->
-            layer.bindPopup layer.feature.properties.name
+            popupContent = "<div class='text-center popup'><strong>" + layer.feature.properties.name + "</strong>" + "<br><img src='" + layer.feature.avatar + "'><br>"
+            angular.forEach layer.feature.properties.skills, (value) ->
+                popupContent = popupContent + "<span class='tag'>" + value.name + "</span>"
+            popupContent = popupContent + "</div>"
+            layer.bindPopup  popupContent
             layer.on 'mouseover', (e) -> layer.openPopup()
             layer.on 'mouseout', (e) -> layer.closePopup()
             layer.on 'click', (e) ->
-                scope.showModal e
+                $scope.showModal e
             mapService.clusterGroup.addLayer layer
-        mapService.myLayer.addLayer mapService.clusterGroup
+            mapService.myLayer.addLayer mapService.clusterGroup
 

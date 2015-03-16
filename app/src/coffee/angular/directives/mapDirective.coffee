@@ -14,32 +14,30 @@ app.directive 'map', ($timeout, Organisations, $modal, appConfig, mapService) ->
         map.locate {setView: true, maxZoom: 10} if locate
         map.setView([48.8, 2.3], 10) if !locate  
         mapService.myLayer = L.mapbox.featureLayer().addTo map
-        Organisations.getOrganizations().then (organizations) ->
-            mapService.clusterGroup = new L.MarkerClusterGroup
-                polygonOptions: 
-                    fillColor: '#3887be'
-                    color: '#3887be'
-                    weight: 2
-                    opacity: 1
-                    fillOpacity: 0.3
+        mapService.clusterGroup = new L.MarkerClusterGroup
+            polygonOptions: 
+                fillColor: '#3887be'
+                color: '#3887be'
+                weight: 2
+                opacity: 1
+                fillOpacity: 0.3
 
-            for org in organizations
-                org.avatar =  appConfig.domain()+org.image
-                org.properties['marker-color'] = '#f86767'
+        for org in scope.organizations
+            org.avatar =  appConfig.domain()+org.image
+            org.properties['marker-color'] = '#f86767'
 
-            mapService.myLayer.setGeoJSON organizations
+        mapService.myLayer.setGeoJSON scope.organizations
 
-            mapService.myLayer.eachLayer (layer) ->
-                popupContent = "<div class='text-center popup'><strong>" + layer.feature.properties.name + "</strong>" + "<br><img src='" + layer.feature.avatar + "'><br>"
-                angular.forEach layer.feature.properties.skills, (value) ->
-                    console.log value.name
-                    popupContent = popupContent + "<span class='tag'>" + value.name + "</span>"
-                popupContent = popupContent + "</div>"
-                layer.bindPopup layer.feature.properties.name
-                layer.on 'mouseover', (e) -> layer.openPopup()
-                layer.on 'mouseout', (e) -> layer.closePopup()
-                layer.on 'click', (e) ->
-                    $scope.showModal e
-                mapService.clusterGroup.addLayer layer
-            map.addLayer mapService.clusterGroup
+        mapService.myLayer.eachLayer (layer) ->
+            popupContent = "<div class='text-center popup'><strong>" + layer.feature.properties.name + "</strong>" + "<br><img src='" + layer.feature.avatar + "'><br>"
+            angular.forEach layer.feature.properties.skills, (value) ->
+                popupContent = popupContent + "<span class='tag'>" + value.name + "</span>"
+            popupContent = popupContent + "</div>"
+            layer.bindPopup  popupContent
+            layer.on 'mouseover', (e) -> layer.openPopup()
+            layer.on 'mouseout', (e) -> layer.closePopup()
+            layer.on 'click', (e) ->
+                scope.showModal e
+            mapService.clusterGroup.addLayer layer
+            mapService.myLayer.addLayer mapService.clusterGroup
         
