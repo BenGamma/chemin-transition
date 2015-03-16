@@ -14,13 +14,6 @@ app.directive 'map', ($timeout, Organisations, $modal, appConfig, mapService) ->
         map.locate {setView: true, maxZoom: 10} if locate
         map.setView([48.8, 2.3], 10) if !locate  
         mapService.myLayer = L.mapbox.featureLayer().addTo map
-        mapService.clusterGroup = new L.MarkerClusterGroup
-            polygonOptions: 
-                fillColor: '#3887be'
-                color: '#3887be'
-                weight: 2
-                opacity: 1
-                fillOpacity: 0.3
 
         for org in scope.organizations
             org.avatar =  appConfig.domain()+org.image
@@ -38,6 +31,4 @@ app.directive 'map', ($timeout, Organisations, $modal, appConfig, mapService) ->
             layer.on 'mouseout', (e) -> layer.closePopup()
             layer.on 'click', (e) ->
                 scope.showModal e
-            mapService.clusterGroup.addLayer layer
-            mapService.myLayer.addLayer mapService.clusterGroup
         

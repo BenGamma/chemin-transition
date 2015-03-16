@@ -47,8 +47,16 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
         templateUrl: 'partials/structures/index.html'
 
     .state 'index.skills',
-        url: '/skills'
-        templateUrl: 'partials/structures/index.html'
+        url: '/skills',
+        views:
+            "":
+                templateUrl: 'partials/skills/index.html'
+                controller: "SkillsController"
+            "filter":
+                templateUrl: 'partials/ui/filter.html',
+                controller: "SkillsController"
+
+
 
     .state 'index.assets',
         url: '/assets'
