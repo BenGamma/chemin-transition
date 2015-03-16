@@ -63,7 +63,8 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
         url: "/users",
         resolve:
             check: ($state, authService) ->
-                authService.isAuthorize()
+                authService.isAuthorize().then (data) ->
+                    return authService.needsLogin = data
         views:
             "":
                 template: "<div ui-view></div>",
