@@ -38,4 +38,3 @@ app.directive 'map', ($timeout, Organisations, $modal, appConfig, mapService) ->
                 mapService.clusterGroup.addLayer layer
             map.addLayer mapService.clusterGroup
         
-
