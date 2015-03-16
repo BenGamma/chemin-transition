@@ -1,1 +1,1 @@
-app.controller 'SkillsController', ($scope, leafletData) ->
+app.controller 'SkillsController', ($scope) ->

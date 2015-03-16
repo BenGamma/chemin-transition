@@ -1,4 +1,4 @@
-app.controller 'NavBarController', ($scope, leafletData, $modal, authService, $state) ->
+app.controller 'NavBarController', ($scope, $modal, authService, $state) ->
     $(document).foundation()
     $scope.openLogin =  ->
         authService.showLogin()

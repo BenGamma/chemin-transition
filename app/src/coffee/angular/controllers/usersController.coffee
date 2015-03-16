@@ -1,9 +1,6 @@
-app.controller 'UsersController', ($scope, authService, userData, skillData, Organisations, appConfig) ->
+app.controller 'UsersController', ($scope, authService, userData, skillData, Organisations, appConfig, $timeout) ->
     $scope.autocomplete = {}
-    $scope.alerts = [
-        { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-        { type: 'alert-box success radius', msg: 'Well done! You successfully read this important alert message.' }
-    ];
+    $scope.alerts = []
 
     $scope.closeAlert = (index) ->
         $scope.alerts.splice(index, 1);
@@ -12,7 +9,9 @@ app.controller 'UsersController', ($scope, authService, userData, skillData, Org
         $scope.user = data
         authService.user = data;
         $scope.setUpload()
-        $scope.avatar = appConfig.domain()+data.image
+        if angular.isDefined data.image
+            $scope.avatar = appConfig.domain() + data.image
+        
         if data.type == "Organization"
             userData.getOrganizationProfile().then (data) ->
                 authService.getGeocode(data).then (result) ->
@@ -26,9 +25,20 @@ app.controller 'UsersController', ($scope, authService, userData, skillData, Org
         $scope.persons = data;
 
     $scope.update = (form, user) ->
-        unless form.$invalid
+        if form.$invalid
+            $scope.alerts.push
+                type: 'alert-box warning radius'
+                msg: 'Invalid informations.'
+        else
+            $scope.alerts.push
+                type: 'alert-box success radius'
+                msg: 'Profile updated !'
             user = authService.setUserCoordinates(user, $scope.autocomplete)
             Organisations.update(user).then (data) ->
+            
+        $timeout (->
+            $scope.closeAlert()
+        ), 4000
 
     $scope.addActor = (actor) ->
         Organisations.addActor(actor, authService.user).then (data) ->
@@ -37,12 +47,12 @@ app.controller 'UsersController', ($scope, authService, userData, skillData, Org
 
     $scope.setUpload = () ->
         $scope.dropzoneConfig =
-            url: appConfig.url('users/upload/image/'+authService.user.id),
-            maxFiles:1,
-            dictDefaultMessage: "Drag your avatar profile here",
+            url: appConfig.url('users/upload/image/' + authService.user.id)
+            maxFiles: 1
+            dictDefaultMessage: "Drag your avatar profile here"
             init: ->
-                mockFile = {name: 'test'}
-                mockFile = { name: "avatar", size: 12345 };
+                mockFile = { name: 'test' }
+                mockFile = { name: "avatar", size: 12345 }
                 @on "maxfilesexceeded", (file) ->
                     @removeAllFiles()
                     @addFile(file)
@@ -50,5 +60,4 @@ app.controller 'UsersController', ($scope, authService, userData, skillData, Org
         $scope.eventHandlers =
             success: (file, response) ->
                 $scope.avatar = response
-
-
+                

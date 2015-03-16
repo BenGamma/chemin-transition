@@ -1,4 +1,4 @@
-app = angular.module('app', ['ui.router', 'leaflet-directive','ipCookie', 'mm.foundation', 'ngAutocomplete', 'ngTagsInput', 'ngDropzone'])
+app = angular.module('app', ['ui.router', 'ipCookie', 'leaflet-directive', 'mm.foundation', 'ngAutocomplete', 'ngTagsInput', 'ngDropzone', 'autocomplete'])
 
 app.run ($rootScope, $location, $state, authService, ipCookie) ->
     $rootScope.$on '$stateChangeStart', (ev, to, toParams, from, fromParams) ->
@@ -11,11 +11,15 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
 
     $urlRouterProvider.otherwise ($injector, $location) ->
         $state = $injector.get("$state");
-        $state.go("index");
+        $state.go("index.structures");
 
     $stateProvider
     .state 'index',
-        url: "/",
+        url: "/map",
+        resolve:
+            organizations: (Organisations) ->
+                Organisations.getOrganizations().then (organisations) ->
+                    organisations
         views:
             "":
                 templateUrl: "partials/home.html",
@@ -28,11 +32,39 @@ app.config ($stateProvider, $urlRouterProvider, $locationProvider) ->
             if authService.needsLogin
                 authService.showLogin()
 
+    .state 'index.structures',
+        url: '/structures',
+        views:
+            "":
+                templateUrl: 'partials/structures/index.html'
+                controller: "StructuresController"
+            "filter":
+                templateUrl: 'partials/ui/filter.html',
+                controller: "StructuresController"
+
+    .state 'index.news',
+        url: '/'
+        templateUrl: 'partials/structures/index.html'
+
+    .state 'index.skills',
+        url: '/skills'
+        templateUrl: 'partials/structures/index.html'
+
+    .state 'index.assets',
+        url: '/assets'
+        templateUrl: 'partials/structures/index.html'
+
+    .state 'index.actors',
+        url: '/actors'
+        templateUrl: 'partials/structures/index.html'
+
+
     .state 'users',
         url: "/users",
         resolve:
             check: ($state, authService) ->
-                authService.isAuthorize()
+                authService.isAuthorize().then (data) ->
+                    return authService.needsLogin = data
         views:
             "":
                 template: "<div ui-view></div>",

@@ -1,4 +1,4 @@
-app.controller 'ModalController', ($scope, leafletData, $modal) ->
+app.controller 'ModalController', ($scope, $modal) ->
   $scope.items = [
     'item1'
     'item2'
