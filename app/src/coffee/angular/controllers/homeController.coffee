@@ -1,4 +1,4 @@
-app.controller 'HomeController', ($scope, leafletData, authService, organizations, $modal, appConfig) ->
+app.controller 'HomeController', ($scope, authService, organizations, $modal, appConfig) ->
     $scope.organizations = organizations
     $scope.open = (size) ->
         authService.showLogin()
@@ -27,7 +27,7 @@ app.controller 'HomeController', ($scope, leafletData, authService, organization
             templateUrl: 'partials/modal.html'
             windowClass: 'large'
             scope: $scope
-
+    ###
     L.mapbox.accessToken = 'pk.eyJ1IjoidG9ueWx1Y2FzIiwiYSI6IlRqa09UbE0ifQ.DGFIsGazdBZSk0t2PYe6Zw'
     
     angular.extend $scope, defaults:
@@ -60,11 +60,9 @@ app.controller 'HomeController', ($scope, leafletData, authService, organization
             org.properties['marker-color'] = '#f86767'
     
         myLayer.setGeoJSON $scope.organizations
-        ###
         myLayer.setFilter (t) ->
             if t.skills.length > 0 && t.skills[0].name == "découpeuse-laser"
                 return true
-        ###
     
         myLayer.eachLayer (layer) ->
             layer.bindPopup layer.feature.properties.name
@@ -76,4 +74,5 @@ app.controller 'HomeController', ($scope, leafletData, authService, organization
     
     
         map.addLayer clusterGroup
+        ###
                         

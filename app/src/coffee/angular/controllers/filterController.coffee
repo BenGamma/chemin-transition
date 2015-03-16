@@ -1,1 +1,2 @@
-app.controller 'FilterController', ($scope) ->
+app.controller 'FilterController', ($scope, map) ->
+    console.log map

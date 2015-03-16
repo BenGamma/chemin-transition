@@ -1,2 +1,2 @@
-app.service 'mapService', (leafletData) ->
+app.service 'mapService', () ->
     init: ->

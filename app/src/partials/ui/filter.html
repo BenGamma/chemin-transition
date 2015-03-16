@@ -1,9 +1,6 @@
 <div class="row collapse">
     {{data}}
-    <div class="large-8 small-9 columns">
-        <autocomplete attr-class="filter-result" ng-model="yourchoice" data="data" on-type="updateMovies" attr-placeholder="    {{placeholder}}"></autocomplete>
-    </div>
-    <div class="large-4 small-3 columns">
-        <a href="#" class="button expand">Search</a>
+    <div class="large-8 small-9 columns" style="width: 100%">
+        <autocomplete on-select="filter" attr-class="filter-result" ng-model="yourchoice" data="movies" on-type="updateMovies" attr-placeholder="{{placeholder}}"></autocomplete>
     </div>
 </div>
