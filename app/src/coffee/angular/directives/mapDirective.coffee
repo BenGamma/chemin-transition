@@ -4,4 +4,3 @@ app.directive 'map', (leafletData, $timeout, Organisations, $modal, appConfig, m
     link: (scope, element, attrs, ctrl, e) ->
         $('#map').parents().height('100%')
         
-

@@ -1,28 +1,83 @@
-<map></map>
-<div class="medium-3 columns right text-center">
+<div class="large-3 columns right text-center show-for-large-up" ng-show="mapView.active">
     <h4>Welcome to Transition&nbsp;Ways&nbsp;!</h4>
     <button class="button small radius" ng-click="showMapView()">Map</button>
     <button class="button small radius" ng-click="showListView()">List</button>
+
+    <div ng-repeat="org in organisations" class="radius panel">
+        <div class="row valign-middle">
+
+            <div class="avatar columns large-4 small-12">
+                <img ng-src="{{org.avatar}}" alt="">
+            </div>
+            <div class="columns large-8 small-12">
+                <a ui-sref="structures.show({ id: org.id })"><h3>{{org.properties.name}}</h3></a>
+                <a href="#" ng-repeat="skill in org.properties.skills" class="tag">{{skill.name}}</a>
+                
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <div class="medium-9 columns no-padding" ng-show="mapView.active">
-    <leaflet id="map" defaults="defaults"></leaflet>
+    <leaflet id="map" defaults="defaults"  markers="markers | filter: markerFilter"></leaflet>
 </div>
 
-<div class="row" ng-show="listView.active">
-    <div class="medium-9 columns no-padding">
-        <h1>Structures</h1>
+
+<div ng-show="listView.active">
+
+    <div class="row">
+        <div class="small-4 columns">
+            <h1>Structures</h1>
+        </div>
+        <div class="small-3 columns text-right">
+            <br>
+            <button class="button small radius" ng-click="showMapView()">Map</button>
+            <button class="button small radius" ng-click="showListView()">List</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--
         <div ng-repeat="org in organisations" class="radius panel">
+>>>>>>> feature/tony
             <div class="row">
                 <div class="columns large-4 small-12">
                     <img ng-src="{{org.avatar}}" alt="">
                 </div>
                 <div class="columns large-8 small-12">
-                    <h3>{{org.name}}</h3> {{org.email}}<br>
+                    <h3>{{org.name}}</h3> {{org.email}}
+                    <br>
                     <a ui-sref="structures.show({ id: org.id })" class="button tiny radius">See structure</a>
+                </div>
+            </div>
+        </div>
+-->
+        <div ng-repeat="org in organisations" class="radius panel">
+            <div class="row valign-middle">
+
+                <div class="avatar columns large-3 small-12">
+                    <img ng-src="{{org.avatar}}" alt="">
+                </div>
+                <div class="columns large-3 small-12">
+                    <a ui-sref="structures.show({ id: org.id })"><h3>{{org.properties.name}}</h3></a>
+                    <p>{{org.properties.email}}</p>
+                    <p>{{org.properties.phone}}</p>
+                </div>
+                
+                <div class="columns large-3 small-12">
+                    Skills
+                    <br>
+                    <a href="#" ng-if="org.properties.skills.length>0" ng-repeat="skill in org.properties.skills" class="tag">{{skill.name}}</a>
+                </div>
+
+                <div class="columns large-3 small-12">
+                    Actors
+                    <br>
+                    <a href="#" ng-if="org.properties.actors.length>0" ng-repeat="actor in org.properties.actors" class="tag">{{actor.name}}</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div ui-view></div>

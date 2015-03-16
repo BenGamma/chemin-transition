@@ -55,6 +55,7 @@ OrganizationSchema.statics.ArraySerialize = (organizations) ->
                 "email"       : organization.local.email
                 "phone"       : organization.phone
                 "name"        : organization.name
+                "skills"      : organization.skills
             'geometry'        :
                 'type'        : 'Point'
                 "coordinates" : [organization.coordinates.lt, organization.coordinates.lg]
