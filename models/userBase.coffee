@@ -13,6 +13,7 @@ userBaseSchema = ->
             email        : type: String, required: true
             password     : type: String, required: true
             token        : String, 
+            enable       : type: Boolean, default: true
         image: type: String
         skills:[{ type:Schema.ObjectId, ref:"Skill", unique: true, childPath:"users"}]
     #methods ======================
@@ -26,6 +27,7 @@ userBaseSchema = ->
 
     #generate token
     @methods.generateToken = ->
+        @local.enable = true
         @local.token = randtoken.generate(16);
 
     @pre 'save', (next) ->
