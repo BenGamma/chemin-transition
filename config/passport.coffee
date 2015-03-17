@@ -32,12 +32,15 @@ module.exports = (passport) ->
                     #if there is no user with that email
                     #create the user
                     if req.body.type == "Person"
-                        newUser = new Person();
+                        newUser = new Person(req.body);
                     else
-                        newUser = new Organization();
+                        newUser = new Organization(req.body);
 
                     #set the user's local credentials
-                    newUser.local = req.body
+                    newUser.local =
+                        "email"    : req.body.email,
+                        "password" : req.body.password
+
                     newUser.local.password = newUser.generateHash(password);
                     #save the user
                     newUser.save (err)->

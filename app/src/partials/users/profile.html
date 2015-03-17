@@ -1,0 +1,83 @@
+<div class="profile">
+    <div ng-if="user.type == 'Organization'">
+
+        <div class="row">
+            <div class="medium-3 small-12 small-centered text-center columns">
+                <img ng-src="{{avatar}}" alt="avatar" ng-show="avatar">
+                <form class="dropzone" method="post" enctype="multipart/form-data" ng-dropzone dropzone="dropzone" dropzone-config="dropzoneConfig" event-handlers="eventHandlers" ng-hide="avatar">
+                    <!--            <input name="file" type="file" multiple />-->
+                </form>
+                <br>
+                <br>
+                <button ng-click="avatar=null" ng-show="avatar" type="submit" class="button tiny success radius">Update avatar</button>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="medium-6 small-12 small-centered columns">
+                <form name="organizationForm">
+                    <input type="text" ng-model="user.name" required placeholder="Name" class="radius">
+                    <input type="text" id="Autocomplete" class="form-control radius" ng-autocomplete ng-model="autocomplete.coordinates" details="autocomplete.details">
+                    <label>Skills:</label>
+                    <tags-input ng-model="user.skills" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="false">
+                        <auto-complete source="skills"></auto-complete>
+                    </tags-input>
+                    <label>Actors:</label>
+                    <tags-input template="actors.html" display-property="fullName" ng-model="user.actors" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="true" on-tag-added="addActor($tag)" on-tag-removed="removeActor($tag)">
+                        <auto-complete source="persons"></auto-complete>
+                    </tags-input>
+                    <br>
+                    <button ng-click="update(organizationForm, user)" ng-disabled="organizationForm.$invalid" type="button" class="button  small success radius">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div ng-if="user.type != 'Organization'" class="person">
+        <div class="row">
+            <div class="medium-3 small-12 small-centered text-center columns">
+                <img ng-src="{{avatar}}" alt="avatar" ng-show="avatar">
+<!--
+                <form class="dropzone" method="post" enctype="multipart/form-data" ng-dropzone dropzone="dropzone" dropzone-config="dropzoneConfig" event-handlers="eventHandlers" ng-hide="avatar">
+                                <input name="file" type="file" multiple />
+                </form>
+-->
+                <br>
+                <br>
+                <button ng-click="avatar=null" ng-show="avatar" type="submit" class="button tiny success radius">Update avatar</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="medium-6 small-12 small-centered columns">
+                <form name="organizationForm">
+
+                    <input type="text" ng-model="user.firstName" required placeholder="First name" class="radius">
+                    <input type="text" ng-model="user.lastName" required placeholder="Last name" class="radius">
+                    <input type="text" ng-model="user.email" required placeholder="Email" class="radius">
+                    <label>Skills:</label>
+                    <tags-input ng-model="user.skills" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="false">
+                        <auto-complete source="skills"></auto-complete>
+                    </tags-input>
+
+                    <br>
+                    <button ng-click="update(organizationForm, user)" ng-disabled="organizationForm.$invalid" type="button" class="button  small success radius">Update</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-6 small-12 small-centered text-center columns">
+            <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+    </div>
+
+
+</div>

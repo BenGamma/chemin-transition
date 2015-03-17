@@ -1,12 +1,15 @@
 node_modules
 bower_components
-app/src/lib
 app/src/.compile
 app/images
+app/src/lib
 public/lib
+public/javascripts/main.js
+public/stylesheets/main.css
 local.0
 local.ns
 mongod.lock
 journal
 .DS_Store
 app/.DS_Store
+public/files

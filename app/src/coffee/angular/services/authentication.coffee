@@ -1,4 +1,4 @@
-app.service 'authService', (ipCookie, userData, $state, $modal) ->
+app.service 'authService', (ipCookie, userData, $state, $modal, $q) ->
     user: {},
     token: null,
     needsLogin: false,
@@ -25,10 +25,11 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
                     $state.reload()
         )
 
-    showLogin: ->
+    showLogin: (size) ->
         @login = $modal.open
             templateUrl: 'partials/login.html',
-            controller: 'loginController'
+            controller: 'LoginController'
+            windowClass: 'tiny'
 
         @login.result.then (selectedItem) ->
             $scope.selected = selectedItem;
@@ -39,7 +40,8 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
     showRegister: (size) ->
         @register = $modal.open
             templateUrl: 'partials/register.html',
-            controller: 'registerController'
+            controller: 'RegisterController'
+            windowClass: 'tiny'
         @register.result.then (selectedItem) ->
             $scope.selected = selectedItem
 
@@ -49,6 +51,22 @@ app.service 'authService', (ipCookie, userData, $state, $modal) ->
     destroySession: ->
         ipCookie.remove('token')
         ipCookie.remove('email')
+
+    getGeocode: (data) ->
+        deferred = $q.defer()
+        geocoder = new google.maps.Geocoder();
+        latlng   = new google.maps.LatLng(parseFloat(data.coordinates[1]), parseFloat(data.coordinates[0]))
+        geocoder.geocode {'latLng': latlng}, (results, status) ->
+            deferred.resolve(results)
+        deferred.promise
+
+    setUserCoordinates: (user, data) ->
+        if data.details
+            coordinates = data.details.geometry.location
+            user.coordinates =
+                lt: coordinates.D
+                lg: coordinates.k
+        user
 
 
 
