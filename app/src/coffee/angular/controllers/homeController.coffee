@@ -1,5 +1,7 @@
-app.controller 'HomeController', ($scope, authService, organizations, $modal, appConfig) ->
+app.controller 'HomeController', ($scope, authService, organizations, $modal, appConfig, mapService, $timeout) ->
     $scope.organizations = organizations
+    $timeout () ->
+        mapService.resetFilter()
     $scope.open = (size) ->
         authService.showLogin()
     
