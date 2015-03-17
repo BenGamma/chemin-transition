@@ -1,6 +1,6 @@
 app.factory 'appConfig', ->
-    path = 'http://localhost:3000/api'
+    path = 'api'
     url: (url) ->
         "#{path}/#{url}"
     domain: () ->
-        "http://localhost:3000"
+        "http://178.62.141.159"
