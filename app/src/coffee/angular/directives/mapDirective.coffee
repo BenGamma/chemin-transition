@@ -31,4 +31,6 @@ app.directive 'map', ($timeout, Organisations, $modal, appConfig, mapService) ->
             layer.on 'mouseout', (e) -> layer.closePopup()
             layer.on 'click', (e) ->
                 scope.showModal e
+            console.log layer
+            mapService.myLayer.addLayer layer
         
