@@ -1,3 +1,4 @@
+body{overflow:hidden}
 #map{display:block;height:100%}
 .popup img{max-height:100px}
 .popup .tag{margin:8px 3px 3px}
