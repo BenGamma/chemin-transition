@@ -52,7 +52,9 @@
         font-weight: 300;
     }
     .avatar {
-        //        padding: 0;
+        img {
+            max-height: 180px;
+        }
     }
 }
 
