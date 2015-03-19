@@ -15,7 +15,7 @@
 .dropzone:active{border:2px solid #292929}
 .panel{background:#f8f8f8;border:1px solid #f0f0f0;margin-bottom:10px;padding:10px 5px}
 .panel h3{font-weight:300}
-.panel .avatar{padding:0}
+.sidebar .avatar{padding:0}
 .tag{background:#6ecc39;color:#fff;margin:0 2px 2px;padding:1px 4px;font-size:12px;display:inline-block}
 .tag:hover{background:#56a02c;color:#fff}
 .valign-middle{display:table}

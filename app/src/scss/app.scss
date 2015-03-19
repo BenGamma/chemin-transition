@@ -8,11 +8,12 @@
     padding-top: 45px;
 }
 
-.view-navbar{
+.view-navbar {
     position: fixed;
     z-index: 1000;
     width: 100%;
 }
+
 .popup {
     img {
         max-height: 100px;
@@ -63,10 +64,15 @@
         font-weight: 300;
     }
     .avatar {
-        padding: 0;
         img {
             width: 100%;
         }
+    }
+}
+
+.sidebar {
+    .avatar {
+        padding: 0;
     }
 }
 
