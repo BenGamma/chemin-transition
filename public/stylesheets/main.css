@@ -5,6 +5,7 @@
 #map{display:block;height:100%}
 .main-content{height:100%!important;padding-top:45px}
 .view-navbar{position:fixed;z-index:1000}
+.view-navbar .autocomplete ul{top:38px}
 .popup img{max-height:100px}
 .popup .tag{margin:8px 3px 3px}
 .no-padding{padding:0!important}

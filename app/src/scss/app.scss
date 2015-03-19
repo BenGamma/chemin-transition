@@ -12,6 +12,9 @@
     position: fixed;
     z-index: 1000;
     width: 100%;
+    .autocomplete ul {
+        top: 38px;
+    }
 }
 
 .popup {
