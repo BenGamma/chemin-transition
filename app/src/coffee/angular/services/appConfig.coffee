@@ -1,5 +1,5 @@
 app.factory 'appConfig', ->
-    path = 'api'
+    path = 'http://178.62.141.159/api'
     url: (url) ->
         "#{path}/#{url}"
     domain: () ->

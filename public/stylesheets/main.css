@@ -1,5 +1,7 @@
-body{overflow:hidden}
 #map{display:block;height:100%}
+.main-content{height:100%!important;padding-top:45px}
+.view-navbar{position:fixed;z-index:1000;width:100%}
+.view-navbar .autocomplete ul{top:38px}
 .popup img{max-height:100px}
 .popup .tag{margin:8px 3px 3px}
 .no-padding{padding:0!important}
@@ -8,10 +10,11 @@ body{overflow:hidden}
 .profile,.structure{padding-top:20px}
 .dropzone{border:2px dashed #313131;border-radius:3px;-webkit-transition:all 300ms;transition:all 300ms}
 .dropzone:active{border:2px solid #292929;-webkit-transition:all 300ms;transition:all 300ms}
-.panel{background:#f8f8f8;border:1px solid #f0f0f0;margin-bottom:10px;padding:10px}
+.panel{background:#f8f8f8;border:1px solid #f0f0f0;margin-bottom:10px;padding:10px 5px}
 .panel h3{font-weight:300}
-.panel .avatar img{max-height:180px}
-.tag{background:#6ecc39;color:#fff;margin:0 2px;padding:1px 4px;border-radius:3px;font-size:12px;display:inline-block;-webkit-transition:all 300ms;transition:all 300ms;text-transform:capitalize}
+.panel .avatar img{width:100%}
+.sidebar .avatar{padding:0}
+.tag{background:#6ecc39;color:#fff;margin:0 2px 2px;padding:1px 4px;border-radius:3px;font-size:12px;display:inline-block;-webkit-transition:all 300ms;transition:all 300ms;text-transform:capitalize}
 .tag:hover{background:#56a02c;-webkit-transition:all 300ms;transition:all 300ms;color:#fff}
 .valign-middle{display:table}
 .valign-middle>.columns{display:table-cell;vertical-align:middle}
