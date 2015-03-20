@@ -1,6 +1,23 @@
+body {
+}
+
 #map {
     display: block;
     height: 100%;
+}
+
+.main-content {
+    height: 100% !important;
+    padding-top: 45px;
+}
+
+.view-navbar {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    .autocomplete ul {
+        top: 38px;
+    }
 }
 
 .popup {
@@ -17,7 +34,7 @@
 }
 
 .pac-container {
-    //    z-index: 1005;
+    z-index: 1005;
 }
 
 .over-map-btns {
@@ -28,7 +45,8 @@
     z-index: 2;
 }
 
-.profile, .structure {
+.profile,
+.structure {
     padding-top: 20px;
 }
 
@@ -47,19 +65,27 @@
     background: #f8f8f8;
     border: 1px solid #f0f0f0;
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 10px 5px;
     h3 {
         font-weight: 300;
     }
     .avatar {
-        //        padding: 0;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.sidebar {
+    .avatar {
+        padding: 0;
     }
 }
 
 .tag {
     background: #6ecc39;
     color: white;
-    margin: 0 2px 0px;
+    margin: 0 2px 2px;
     padding: 1px 4px;
     border-radius: 3px;
     font-size: 12px;
@@ -100,7 +126,7 @@
 }
 
 .autocomplete ul {
-    top: -7px;
+    top: 40px;
 }
 
 .autocomplete li {

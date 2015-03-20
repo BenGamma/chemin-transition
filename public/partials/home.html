@@ -1,4 +1,4 @@
-<div class="large-3 columns right text-center" ng-show="mapView.active">
+<div class="large-3 columns right text-center sidebar" ng-show="mapView.active" style="overflow:scroll;max-height:100%;">
     <h4>Welcome to Transition&nbsp;Ways&nbsp;!</h4>
     <button class="button small radius" ng-click="showMapView()">Map</button>
     <button class="button small radius" ng-click="showListView()">List</button>
@@ -6,10 +6,10 @@
     <div ng-repeat="org in organizations" class="radius panel">
         <div class="row valign-middle">
 
-            <div class="avatar columns large-4 small-12">
-                <img ng-src="{{org.avatar}}" alt="">
+            <div class="avatar columns large-7 small-12">
+                <a ui-sref="structures.show({ id: org.id })"><img ng-src="{{org.avatar}}" alt=""></a>
             </div>
-            <div class="columns large-8 small-12">
+            <div class="columns large-5 small-12">
                 <a ui-sref="structures.show({ id: org.id })"><h3>{{org.properties.name}}</h3></a>
                 <a href="#" ng-repeat="skill in org.properties.skills" class="tag">{{skill.name}}</a>
                 
@@ -62,25 +62,19 @@
         <div ng-repeat="org in organizations" class="radius panel">
             <div class="row valign-middle">
 
-                <div class="avatar columns large-3 small-12">
+                <div class="avatar columns large-4 small-12">
                     <img ng-src="{{org.avatar}}" alt="">
                 </div>
-                <div class="columns large-3 small-12">
+                <div class="columns large-4 small-12">
                     <a ui-sref="structures.show({ id: org.id })"><h3>{{org.properties.name}}</h3></a>
                     <p>{{org.properties.email}}</p>
                     <p>{{org.properties.phone}}</p>
                 </div>
                 
-                <div class="columns large-3 small-12">
+                <div class="columns large-4 small-12">
                     Skills
                     <br>
                     <a href="#" ng-if="org.properties.skills.length>0" ng-repeat="skill in org.properties.skills" class="tag">{{skill.name}}</a>
-                </div>
-
-                <div class="columns large-3 small-12">
-                    Actors
-                    <br>
-                    <a href="#" ng-if="org.properties.actors.length>0" ng-repeat="actor in org.properties.actors" class="tag">{{actor.name}}</a>
                 </div>
             </div>
         </div>

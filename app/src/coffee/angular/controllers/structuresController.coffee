@@ -21,4 +21,5 @@ app.controller 'StructuresController', ($scope, $stateParams, appConfig, mapServ
             layer.on 'mouseout', (e) -> layer.closePopup()
             layer.on 'click', (e) ->
                 $scope.showModal e
+            
 
