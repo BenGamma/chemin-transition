@@ -26,6 +26,12 @@ gulp.task 'coffee', ->
     .pipe gulp.dest 'app/src/.compile/js'
 
 
+gulp.task 'js2coffee', ->
+  gulp.src 'config/routes/api/coffee/*.coffee' 
+    .pipe $.coffee bare: true 
+        .on 'error', $.util.log
+    .pipe gulp.dest 'config/routes/api'
+
 #js concatenation
 gulp.task 'concat', ['coffee'], ->
     gulp.src 'app/src/.compile/js/*.js'

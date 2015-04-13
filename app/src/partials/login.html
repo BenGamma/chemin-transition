@@ -1,8 +1,0 @@
-<h1>Sign in</h1>
-{{user.error}}
-<form name="loginForm">
-    <input type="email" ng-model="user.email" required placeholder="Email">
-    <input type="password" ng-model="user.password" required placeholder="Password">
-    <button ng-click="login(loginForm, user)" ng-disabled="loginForm.$invalid" type="submit" class="btn btn-primary">Login</button>
-</form>
- <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
