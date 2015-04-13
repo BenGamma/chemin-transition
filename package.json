@@ -31,6 +31,7 @@
     "passport-local": "^1.0.0",
     "rand-token": "^0.2.1",
     "sequelize": "^2.0.5",
+    "sequelize-auto": "0.0.7",
     "should": "^4.6.0",
     "static-favicon": "~1.0.0",
     "supertest": "^0.15.0",

@@ -17,7 +17,7 @@ var express      = require('express')
 //mongoose.connect(env.development.db);
 
 var Sequelize = require('sequelize')
-  , sequelize = new Sequelize('db', 'root', 'blabla', {
+  , sequelize = new Sequelize('db', 'root', '', {
       dialect: "mysql", // or 'sqlite', mysql', 'mariadb'
       port:    3306, // or 5432 (for postgres)
     })
