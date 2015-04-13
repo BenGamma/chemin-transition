@@ -1,6 +1,21 @@
 var Schema, Skill, mongoose, skillSchema;
-
+//var sequelize = require('sequelize')
 mongoose = require('mongoose');
+
+
+// var Skill = sequelize.define('skill', {
+//   name: {
+//     type: sequelize.STRING,
+//     field: 'name' 
+//   },
+//   image: {
+//     type: sequelize.STRING,
+//     field: 'image'
+//   }
+// }, {
+//   // freezeTableName: true // Model tableName will be the same as the model name
+// });
+
 
 Schema = mongoose.Schema;
 
