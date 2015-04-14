@@ -146,7 +146,6 @@ exports.profile = function(req, res) {
 };
 
 exports.update = function(req, res) {
-console.log(req.body.skills);
   return Organization.findOne({
     'local.token': req.headers['x-token'],
     'local.email': req.headers['x-email']

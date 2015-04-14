@@ -31,6 +31,9 @@ userBaseSchema = function() {
     image: {
       type: String
     },
+    description: String,
+    created_at    : { type: Date },
+    updated_at    : { type: Date },
     skills: [
       {
         type: Schema.ObjectId,
@@ -51,8 +54,13 @@ userBaseSchema = function() {
     return this.local.token = randtoken.generate(16);
   };
   return this.pre('save', function(next) {
+    now = new Date();
     if (this.isNew) {
       this.generateToken();
+    }
+    this.updated_at = now;
+    if ( !this.created_at ) {
+        this.created_at = now;
     }
     return next();
   });
