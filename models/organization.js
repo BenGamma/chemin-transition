@@ -24,6 +24,12 @@ OrganizationSchema = new userBaseSchema({
     lt: String,
     lg: String
   },
+  images: [
+      {
+        type: Schema.ObjectId,
+        ref: "Image"
+      }
+  ],
   organizationPersons: [
     {
       type: Schema.ObjectId,
@@ -49,6 +55,7 @@ OrganizationSchema.methods.serialize = function() {
     "phone": this.phone,
     "coordinates": [this.coordinates.lt, this.coordinates.lg],
     "skills": this.skills,
+    "images": this.images,
     "token": this.local.token
   };
 };
@@ -81,7 +88,8 @@ OrganizationSchema.statics.ArraySerialize = function(organizations) {
         "email": organization.local.email,
         "phone": organization.phone,
         "name": organization.name,
-        "skills": organization.skills
+        "skills": organization.skills,
+        "images": organization.images,
       },
       'geometry': {
         'type': 'Point',
