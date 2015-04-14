@@ -20,7 +20,7 @@ router.route('/actor/:organization/:person').post(actorAuthorization.checkOrgani
 
 router.route('/addSkill').post(organizations.addSkill);
 
-router.route('/actor/:organization/:id')["delete"](actorAuthorization.checkOrganization, organizations.removeActor);
+router.route('/actor/:organization/:id').delete(actorAuthorization.checkOrganization, organizations.removeActor);
 
 router.route('/update/:organization').put(authorization.requiresLogin, actorAuthorization.checkOrganization, actorAuthorization.addSkills, organizations.update);
 

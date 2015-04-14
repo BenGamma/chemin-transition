@@ -62,14 +62,12 @@ exports.addActor = function(req, res, next) {
 };
 
 exports.removeActor = function(req, res, next) {
-  if (req.body._id) {
     OrganizationPerson.remove(req.params.id, function(err) {
       if (err) {
         return res.status(404).json(err);
       }
     });
     return res.status(204);
-  }
 };
 
 exports.addSkill = function(req, res) {};
@@ -148,6 +146,7 @@ exports.profile = function(req, res) {
 };
 
 exports.update = function(req, res) {
+console.log(req.body.skills);
   return Organization.findOne({
     'local.token': req.headers['x-token'],
     'local.email': req.headers['x-email']
