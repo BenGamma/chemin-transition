@@ -1,33 +1,16 @@
-var ObjectId, Organization, OrganizationPerson, OrganizationSchema, Schema, User, async, mongoose, userBaseSchema;
-
-userBaseSchema = require('./userBase');
-
-User = require('./user');
-
-mongoose = require('mongoose');
-
-async = require('async');
-
-Schema = mongoose.Schema;
-
-ObjectId = Schema.ObjectId;
-
-OrganizationPerson = require('../models/organizationPerson');
-
-OrganizationSchema = new userBaseSchema({
-  name: String,
-  address: String,
-  city: String,
-  zipCode: String,
-  phone: String,
-  coordinates: {
-    lt: String,
-    lg: String
-  },
-  organizationPersons: [
-    {
-      type: Schema.ObjectId,
-      ref: "OrganizationPerson"
+"use strict";
+module.exports = function(sequelize, DataTypes) {
+  var organization = sequelize.define("organization", {
+    name: DataTypes.STRING,
+    address: DataTypes.STRING,
+    city: DataTypes.STRING,
+    zipCode: DataTypes.STRING,
+    phone: DataTypes.STRING
+  }, {
+    classMethods: {
+      associate: function(models) {
+        coordinate.hasMany(organization, {as: 'coordinate_id'})
+      }
     }
   ]
 });
@@ -66,33 +49,5 @@ OrganizationSchema.statics.ActorArraySerialize = function(actors) {
       "fullName": actor.person.firstName + ' ' + actor.person.lastName
     });
   });
-  return result;
+  return organization;
 };
-
-OrganizationSchema.statics.ArraySerialize = function(organizations) {
-  var result;
-  result = [];
-  async.each(organizations, function(organization) {
-    return result.push({
-      "type": 'Feature',
-      "id": organization._id,
-      "image": organization.image,
-      'properties': {
-        "email": organization.local.email,
-        "phone": organization.phone,
-        "name": organization.name,
-        "skills": organization.skills
-      },
-      'geometry': {
-        'type': 'Point',
-        "coordinates": [organization.coordinates.lt, organization.coordinates.lg]
-      },
-      "skills": organization.skills
-    });
-  });
-  return result;
-};
-
-Organization = User.discriminator('Organization', OrganizationSchema);
-
-module.exports = Organization;

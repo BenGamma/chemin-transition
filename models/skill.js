@@ -1,25 +1,14 @@
-var Schema, Skill, mongoose, skillSchema;
-
-mongoose = require('mongoose');
-
-Schema = mongoose.Schema;
-
-skillSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  image: {
-    type: String
-  },
-  users: [
-    {
-      type: Schema.ObjectId,
-      ref: "User"
+"use strict";
+module.exports = function(sequelize, DataTypes) {
+  var skill = sequelize.define("skill", {
+    name: DataTypes.STRING,
+    image: DataTypes.STRING
+  }, {
+    classMethods: {
+      associate: function(models) {
+        skill.hasMany(User)
+      }
     }
-  ]
-});
-
-Skill = mongoose.model('Skill', skillSchema);
-
-module.exports = Skill;
+  });
+  return skill;
+};

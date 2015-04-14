@@ -1,20 +1,13 @@
-var Schema, SubCategory, mongoose, subCategorySchema;
-
-mongoose = require('mongoose');
-
-Schema = mongoose.Schema;
-
-subCategorySchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: 'category'
-  }
-});
-
-SubCategory = mongoose.model('SubCategory', subCategorySchema);
-
-module.exports = SubCategory;
+"use strict";
+module.exports = function(sequelize, DataTypes) {
+  var subCategory = sequelize.define("subCategory", {
+    name: DataTypes.STRING
+  }, {
+    classMethods: {
+      associate: function(models) {
+        subCategory.hasMany(category, {as: 'category_id'})
+      }
+    }
+  });
+  return subCategory;
+};
