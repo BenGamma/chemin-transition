@@ -1,10 +1,10 @@
 var Person, User, busboy, fs, passport;
 
-passport = require('passport');
-
-User = require('../models/user');
-
-Person = require('../models/person');
+passport   = require('passport');
+User       = require('../models/user');
+Person     = require('../models/person');
+Invitation = require('../models/invitation'); 
+mailer = require('../config/mailer');
 
 fs = require('fs');
 
@@ -45,7 +45,7 @@ exports.upload = function(req, res, next) {
 };
 
 exports.update = function(req, res) {
-  return User.update({
+  User.update({
     'token': req.headers['x-token'],
     'email': req.headers['x-email']
   }, req.body, function(err, review) {
@@ -87,3 +87,60 @@ exports.persons = function(req, res) {
     return res.status(200).json(Person.ArraySerialize(persons));
   });
 };
+
+exports.invitation = function(req, res) {
+    console.log('here')
+    User.findOne({
+        'local.token': req.headers['x-token'],
+        'local.email': req.headers['x-email']
+    }, function(err, user) {
+        if(err) {
+            res.status(404).json('errors');
+        }
+        var invitation = new Invitation({
+            email: req.body.to,
+            user: user,
+            type: req.body.type
+        });
+        /**
+        mailer.sendMail(req.body, function(error, response){
+            if(error){
+                res.status(404).json('error');
+            }else{
+                invitation.save(function(invitation){
+                    res.status(201).json(invitation);
+                });
+            }
+        });
+        **/
+        invitation.save(function(invitation){
+            res.status(201).json(invitation);
+        })
+    });
+}
+
+exports.showInvitation = function(req, res) {
+    Invitation.findById(req.params.id, function(err, invitation){
+        if(err) {
+            res.status(404).json('error');
+        }else {
+            res.status(200).json(invitation);
+        }
+    });
+}
+
+exports.checkInvitation = function(req, res, next) {
+    Invitation.findOne()
+        .where({'email': req.body.to})
+        .exec(function(err, invitation){
+            if(err) {
+                res.status(500).json('error')
+            }
+
+            if (invitation) {
+                res.status(400).json('email already send');
+            }else {
+                next();
+            }
+        })
+}

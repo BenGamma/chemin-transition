@@ -1,13 +1,10 @@
-var Schema, bcrypt, mongoose, randtoken, userBaseSchema, util;
+var Schema, bcrypt, mongoose, randtoken, userBaseSchema, util, Invitation;
 
 bcrypt = require('bcrypt-nodejs');
-
 randtoken = require('rand-token');
-
 mongoose = require('mongoose');
-
+Invitation = require('./invitation');
 Schema = mongoose.Schema;
-
 util = require('util');
 
 userBaseSchema = function() {
@@ -41,6 +38,13 @@ userBaseSchema = function() {
         unique: true,
         childPath: "users"
       }
+    ],
+    invitations: [
+        {
+            type: Schema.ObjectId,
+            ref: "Invitation",
+            childPath: "user"
+        }
     ]
   });
   this.methods.generateHash = function(password) {
@@ -53,7 +57,7 @@ userBaseSchema = function() {
     this.local.enable = true;
     return this.local.token = randtoken.generate(16);
   };
-  return this.pre('save', function(next) {
+  this.pre('save', function(next) {
     now = new Date();
     if (this.isNew) {
       this.generateToken();
@@ -64,6 +68,17 @@ userBaseSchema = function() {
     }
     return next();
   });
+
+  this.pre('save', function(next){
+    Invitation
+        .findOne()
+        .where({'email': this.local.email})
+        .exec(function(err, invitation){
+            invitation.enable = false;
+            invitation.save();
+        })
+    return next();
+  })
 };
 
 util.inherits(userBaseSchema, Schema);

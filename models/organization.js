@@ -1,15 +1,10 @@
 var ObjectId, Organization, OrganizationPerson, OrganizationSchema, Schema, User, async, mongoose, userBaseSchema;
 
 userBaseSchema = require('./userBase');
-
 User = require('./user');
-
 mongoose = require('mongoose');
-
 async = require('async');
-
 Schema = mongoose.Schema;
-
 ObjectId = Schema.ObjectId;
 
 OrganizationPerson = require('../models/organizationPerson');
@@ -94,8 +89,7 @@ OrganizationSchema.statics.ArraySerialize = function(organizations) {
       'geometry': {
         'type': 'Point',
         "coordinates": [organization.coordinates.lt, organization.coordinates.lg]
-      },
-      "skills": organization.skills
+      }
     });
   });
   return result;

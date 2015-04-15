@@ -13,3 +13,4 @@ journal
 .DS_Store
 app/.DS_Store
 public/files
+config/mailer.js
