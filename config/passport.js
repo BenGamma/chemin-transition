@@ -9,17 +9,18 @@ Person = require('../models/person');
 Organization = require('../models/organization');
 
 module.exports = function(passport) {
-  passport.tokenLogin = function(req, token, email, done) {
-    return User.findOne({
-      'local.token': token,
-      'local.email': email
-    }, function(err, user) {
-      if (!user) {
-        return done(401, 'Unauthorized access');
-      }
-      return done(null, null, user);
-    });
-  };
+    passport.tokenLogin = function(req, token, email, done) {
+        return User.findOne
+            .where({'local.token': token,'local.email': email}) 
+            .populate('images')
+            .exec(function(err, user) {
+                if (!user) {
+                    return done(401, 'Unauthorized access');
+                }
+                return done(null, null, user);
+            }
+        );
+    };
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
