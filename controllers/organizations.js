@@ -77,7 +77,10 @@ exports.addSkill = function(req, res) {};
 exports.show = function(req, res) {
     async.series({
         user: function(callback) {
-            Organization.findById(req.params.organization).populate('skills').exec(function(err, organization) {
+            Organization.findById(req.params.organization)
+                .populate('skills')
+                .populate('images')
+                .exec(function(err, organization) {
                 var result;
                 if (err || !organization) {
                     return res.status(400).json('errors');
