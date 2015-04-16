@@ -24,25 +24,25 @@ exports.checkOrganization = function(req, res, next) {
 };
 
 exports.addSkills = function(req, res, next) {
-  var newSkills, skills;
-  skills = [];
-  newSkills = [];
-  async.each(req.body.skills, function(skill, key) {
-    if (skill._id) {
-      return skills.push(skill._id);
-    } else {
-      req.body.skills.splice(key, 1);
-      return newSkills.push(skill);
-    }
-  });
-  async.each(newSkills, function(skill) {
-    var object;
-    object = new Skill({
-      name: skill.name
+    var newSkills, skills;
+    skills = [];
+    newSkills = [];
+    async.each(req.body.skills, function(skill, key) {
+        if (skill._id) {
+            return skills.push(skill._id);
+        } else {
+            req.body.skills.splice(key, 1);
+            return newSkills.push(skill);
+        }
     });
-    object.save();
-    return skills.push(object._id);
-  });
-  req.body.skills = skills;
+    async.each(newSkills, function(skill) {
+        var object;
+        object = new Skill({
+            name: skill.name
+        });
+        object.save();
+        return skills.push(object._id);
+    });
+    req.body.skills = skills;
   return next();
 };
