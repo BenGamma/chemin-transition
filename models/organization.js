@@ -18,7 +18,6 @@ OrganizationSchema = new userBaseSchema({
         lt: String,
         lg: String
     },
-    images: [{ type: Schema.ObjectId, ref: "Image" }],
     organizationPersons: [{ type: Schema.ObjectId, ref: "OrganizationPerson" }]
 });
 

@@ -13,6 +13,7 @@ module.exports = function(passport) {
         return User.findOne({'local.token': token,'local.email': email}) 
             .populate('images')
             .exec(function(err, user) {
+              console.log(user)
                 if (!user) {
                     return done(401, 'Unauthorized access');
                 }

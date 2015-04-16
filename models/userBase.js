@@ -21,7 +21,8 @@ userBaseSchema = function() {
             created_at    : { type: Date },
             updated_at    : { type: Date },
             skills: [{ type: Schema.ObjectId, ref: "Skill", unique: true, childPath: "users" }],
-            invitations: [{ type: Schema.ObjectId, ref: "Invitation", childPath: "user" }]
+            invitations: [{ type: Schema.ObjectId, ref: "Invitation", childPath: "user" }],
+            images: [{ type: Schema.ObjectId, ref: "Image", childPath: 'organization' }]
         });
     this.methods.generateHash = function(password) {
         return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
