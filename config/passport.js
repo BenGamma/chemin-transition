@@ -10,8 +10,7 @@ Organization = require('../models/organization');
 
 module.exports = function(passport) {
     passport.tokenLogin = function(req, token, email, done) {
-        return User.findOne
-            .where({'local.token': token,'local.email': email}) 
+        return User.findOne({'local.token': token,'local.email': email}) 
             .populate('images')
             .exec(function(err, user) {
                 if (!user) {
