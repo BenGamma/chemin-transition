@@ -50,8 +50,10 @@ userBaseSchema = function() {
             .findOne()
             .where({'email': this.local.email})
             .exec(function(err, invitation){
-                invitation.enable = false;
-                invitation.save();
+                if(invitation) {
+                    invitation.enable = false;
+                    invitation.save();
+                }
             })
         next();
     })
