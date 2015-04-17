@@ -18,7 +18,8 @@ OrganizationSchema = new userBaseSchema({
         lt: String,
         lg: String
     },
-    organizationPersons: [{ type: Schema.ObjectId, ref: "OrganizationPerson" }]
+    organizationPersons: [{ type: Schema.ObjectId, ref: "OrganizationPerson" }],
+    images: [{ type: Schema.ObjectId, ref: "Image", childPath: 'organization' }]
 });
 
 OrganizationSchema.methods.serialize = function() {
@@ -30,6 +31,7 @@ OrganizationSchema.methods.serialize = function() {
         "email": this.local.email,
         "address": this.address,
         "description": this.description,
+        "url": this.url,
         "created_at": this.created_at,
         "updated_at": this.updated_at,
         "city": this.city,
@@ -66,6 +68,8 @@ OrganizationSchema.statics.ArraySerialize = function(organizations) {
             "type": 'Feature',
             "id": organization._id,
             "image": organization.image,
+            "description": organization.description,
+            "url": organization.url,
             'properties': {
                 "email": organization.local.email,
                 "phone": organization.phone,

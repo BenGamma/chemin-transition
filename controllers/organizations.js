@@ -160,6 +160,8 @@ exports.update = function(req, res) {
         organization.name = req.body.name;
         organization.local.email = req.body.email;
         organization.skills = req.body.skills;
+        organization.description = req.body.description;
+        organization.url = req.body.url;
         if (!_.isArray(req.body.coordinates)) {
             organization.coordinates = req.body.coordinates;
         }

@@ -18,6 +18,7 @@ userBaseSchema = function() {
             },
             image: { type: String },
             description: String,
+            url: String,
             created_at    : { type: Date },
             updated_at    : { type: Date },
             skills: [{ type: Schema.ObjectId, ref: "Skill", unique: true, childPath: "users" }],

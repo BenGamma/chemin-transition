@@ -43,6 +43,7 @@ exports.upload = function(req, res, next) {
 };
 
 exports.update = function(req, res) {
+    console.log(req.body)
     User.update({
         'token': req.headers['x-token'],
         'email': req.headers['x-email']
