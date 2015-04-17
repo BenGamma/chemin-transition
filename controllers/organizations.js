@@ -162,6 +162,7 @@ exports.update = function(req, res) {
         organization.skills = req.body.skills;
         organization.description = req.body.description;
         organization.url = req.body.url;
+        organization.phone = req.body.phone;
         if (!_.isArray(req.body.coordinates)) {
             organization.coordinates = req.body.coordinates;
         }
