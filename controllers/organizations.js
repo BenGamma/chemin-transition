@@ -34,7 +34,6 @@ exports.techonmapdatas = function(req, res) {
     // var techonmapdatas = JSON.(techonmapdatas);
 
     var tierslieuArray = Array();
-    console.log(techonmapJson['features'].length);
     for (var i = 0, j = techonmapJson['features'].length ; i < j ; i++){
       if (techonmapJson['features'][i]['properties']['category'] == 'Tiers-lieu'){
         tierslieuArray.push(techonmapJson['features'][i]);
@@ -44,15 +43,11 @@ exports.techonmapdatas = function(req, res) {
       var obj = tierslieuArray[i];
       for(var key in obj){
           var attrName = key;
-          console.log(attrName);
-          console.log(attrValue);
           var attrValue = obj[key];
       }
     }
   
   return res.status(200).json(tierslieuArray);
-    
-  // });
 };
 
 exports.addActor = function(req, res, next) {
