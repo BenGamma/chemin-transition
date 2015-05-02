@@ -40,7 +40,8 @@ OrganizationSchema.methods.serialize = function() {
         "coordinates": [this.coordinates.lt, this.coordinates.lg],
         "skills": this.skills,
         "images": this.images,
-        "token": this.local.token
+        "token": this.local.token,
+        "from_data": 'transition',
     };
 };
 
@@ -70,6 +71,7 @@ OrganizationSchema.statics.ArraySerialize = function(organizations) {
             "image": organization.image,
             "description": organization.description,
             "url": organization.url,
+            "from_data": 'transition',
             'properties': {
                 "email": organization.local.email,
                 "phone": organization.phone,

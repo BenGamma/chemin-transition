@@ -100,13 +100,21 @@ exports.invitation = function(req, res) {
             user: user,
             type: req.body.type
         });
+        invitation.save();
+        if (user.name) {
+            req.body.html = "l'organisation "+user.name+ 'vous invite à vous inscrire sur les chemins de la transition<br/>';
+        }else {
+             req.body.html = user.firstName+' '+user.lastName+ 'vous invite à vous inscrire sur les chemins de la transition<br/>';
+        }
+        req.body.html += 'à cette adresse: http://'+req.headers.host+'/#/invitation/'+invitation._id+'<br/>';
+        req.body.html += 'message:<br/>'
+        req.body.html += req.body.text+'<br/>'
         mailer.sendMail(req.body, function(error, response){
             if(error){
-                res.status(404).json('error');
-            }else{
-                invitation.save(function(invitation){
-                    res.status(201).json(invitation);
-                });
+                console.log(error);
+                res.status(404).json(error);
+            }else {
+                res.status(201).json(invitation);
             }
         });
     });
