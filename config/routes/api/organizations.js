@@ -9,6 +9,7 @@ router             = express.Router();
 
 router.route('/').get(organizations.index);
 router.route('/show/:organization').get(organizations.show);
+router.route('/techonmapdatas').get(organizations.techonmapdatas);
 router.route('/profile').get(authorization.requiresLogin, organizations.profile);
 router.route('/actor/:organization/:person').post(actorAuthorization.checkOrganization, organizations.addActor);
 router.route('/addSkill').post(organizations.addSkill);
