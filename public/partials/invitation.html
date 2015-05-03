@@ -1,0 +1,11 @@
+<h1>Invitation</h1>
+<form name="invitationForm">
+    <select ng-model="mail.type">
+        <option ng-selected="true" value="Organization">Organization</option>
+        <option value="Person">Personne</option>
+    </select>
+    <input type="email" ng-model="mail.to" required placeholder="Email">
+    <textarea placeholder="Your message" ng-model="mail.text"></textarea>
+    <button ng-click="sendMail(invitationForm, mail)" ng-disabled="invitationForm.$invalid" type="submit" class="btn btn-primary">Send</button>
+</form>
+ <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>

@@ -1,17 +1,35 @@
-<div class="row collapse">
-    {{data}}
-    <div class="large-8 small-9 columns" style="width: 100%">
-        <autocomplete on-select="filter" attr-class="filter-result" ng-model="yourchoice" data="movies" on-type="updateMovies" attr-placeholder="{{placeholder}}"></autocomplete>
+<div class="table-wrapper">
+    <div class="table-scroll">
+        <input listen-focus ng-model="searchText" ng-change="filterDatas()" placeholder="Search for someone, structures, skills...">
+
+        <table ng-show="searchText" class="searchTextResults">
+            <tr ng-show="actorsResults.length">
+                <td class="title">Actors</td>
+            </tr>
+            <tr ng-repeat="actor in actorsResults = (filteredActors | andFilter: searchText: 'AND' | orderBy : 'name')">
+                <td><a ui-sref="actors.show({ id: actor.id })" ng-click="">{{actor.name}} <i class="fa fa-user"></i></a>
+                </td>
+            </tr>
+
+
+            <tr ng-show="structuresResult.length">
+                <td class="title">Structures</td>
+            </tr>
+            <tr ng-repeat="structure in structuresResult  = (filteredStructures | andFilter: searchText: 'AND' | orderBy : 'name')">
+                <td>
+                    <a ui-sref="structures.show({ id: structure.id })">{{structure.name}} <i class="fa fa-home"></i><span class="city">{{structure.city}}</span></a>
+                </td>
+            </tr>
+
+            <tr ng-show="skillsResults.length">
+                <td class="title">Skills</td>
+            </tr>
+            <tr ng-repeat="skill in skillsResults = (filteredSkills | andFilter: searchText: 'AND' | orderBy : 'name')">
+                <td><a href="#" ng-click="filterSkills(skill)">{{skill.name}} <i class="fa fa-map-marker"></i></a>
+                </td>
+            </tr>
+
+
+        </table>
     </div>
 </div>
-
-<!--
-<div class="row collapse">
-    {{data}}
-    <div class="large-8 small-9 columns" style="width: 100%">
-        <autocomplete on-select="filter" attr-class="filter-result" ng-model="yourchoice" data="movies" on-type="updateMovies" attr-placeholder="{{placeholder}}"></autocomplete>
-    </div>
-    <div class="small-2 columns">
-        <a href="#" class="button postfix">By</a>
-    </div>
-</div>-->

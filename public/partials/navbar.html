@@ -1,7 +1,7 @@
 <nav class="top-bar" role="navigation">
     <ul class="title-area">
         <li class="name">
-            <h1><a ui-sref="index.news">Transition Ways</a></h1>
+            <h1><a href="/">Transition Ways</a></h1>
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
@@ -11,22 +11,30 @@
     <section class="top-bar-section">
         <!-- Left Nav Section -->
         <ul class="left">
-            <li ui-sref-active='active'><a ui-sref="index.news">News</a>
-            </li>
-            <li ui-sref-active='active'><a ui-sref="index.structures">Structures</a>
-            </li>
-            <li ui-sref-active='active'><a ui-sref="index.skills">Skills</a>
-            </li>
-            
-            <li class="has-form">
+
+            <li class="has-form search-form">
                 <div ui-view="filter"></div>
             </li>
+
         </ul>
         <user class="right" ng-switch="isLogged">
             <ul>
+                <li>
+                    <button id="mapMode" class="button tiny active" ng-click="toggleViewMode($event)">Map</button>
+                </li>
+                <li>
+                    <button id="listMode" class="button tiny" ng-click="toggleViewMode($event)">List</button>
+                </li>
+            </ul>
+
+            <ul>
                 <user ng-switch-when="true">
-                    <li><a ui-sref="users.profile" >Profile</a></li>
-                    <li><a ng-click="logout()">Logout</a></li>
+                    <li><a ui-sref="users.profile">Profile</a>
+                    </li>
+                    <li><a ng-click="openInvitation()">Invitation</a>
+                    </li>
+                    <li><a ng-click="logout()">Logout</a>
+                    </li>
                 </user>
                 <user ng-switch-when="false">
                     <li><a ng-click="openRegister()">Sign up</a>

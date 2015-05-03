@@ -12,7 +12,6 @@ var fs                 = require('fs');
 var busboy             = require('connect-busboy');
 var curlrequest        = require('curlrequest');
 var techonmapJson      = require('../techonmapdatas')
->>>>>>> dev
 
 exports.index = function(req, res) {
     Organization.find()

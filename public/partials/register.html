@@ -1,15 +1,16 @@
 <h1>Sign up</h1>
 {{user.error}}
 <form name="registerForm">
-    <select ng-model="user.type" ng-change="typeChange(user)">
-        <option ng-selected="true" value="Organization">Organization</option>
-        <option value="Person">Personne</option>
+    <select ng-model="user.type" ng-change="typeChange(user)" ng-init="typeChange(user)">
+        <option ng-selected="type" value="Organization">Organization</option>
+        <option ng-selected="type" value="Person">Personne</option>
     </select>
     <input type="text" ng-model="user.lastName" ng-show="type" ng-required="type" placeholder="LasttName">
     <input type="text" ng-model="user.firstName" ng-show="type" ng-required="type" placeholder="FirstName">
     <input type="text" ng-model="user.name" ng-hide="type" ng-required="!type" placeholder="Name">
  	<input type="text" id="Autocomplete" class="form-control" ng-hide="type" ng-autocomplete ng-model="autocomplete.coordinates" details="autocomplete.details">
-    <input type="email" ng-model="user.email" required placeholder="Email">
+
+    <input ng-disabled="{{invitation.active}}" type="email" ng-model="user.email" required placeholder="Email">
     <input type="password" ng-model="user.password" required placeholder="Password">
     <button ng-click="register(registerForm, user)" ng-disabled="registerForm.$invalid" type="submit" class="btn btn-primary">Sign up</button>
 </form>

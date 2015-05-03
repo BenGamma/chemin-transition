@@ -17,18 +17,38 @@
         <div class="row">
             <div class="medium-6 small-12 small-centered columns">
                 <form name="organizationForm">
+
                     <input type="text" ng-model="user.name" required placeholder="Name" class="radius">
                     <input type="text" id="Autocomplete" class="form-control radius" ng-autocomplete ng-model="autocomplete.coordinates" details="autocomplete.details">
+                    
+                    <label>Phone:</label>
+                    <input type="text" ng-model="user.phone" placeholder="Your phone" class="radius">
+
+                    <label>Description:</label>
+                    <textarea name="description" id="description" ng-model="user.description" cols="30" rows="10"></textarea>
+
+                    <img ng-src="{{carousel}}" alt="carousel" ng-show="carousel">
+
+                    <label>Url:</label>
+                    <input type="text" ng-model="user.url" placeholder="URL" class="radius">
+
                     <label>Skills:</label>
                     <tags-input ng-model="user.skills" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="false">
-                        <auto-complete source="skills"></auto-complete>
+                        <auto-complete source="loadSkills($query)" load-on-focus="true"></auto-complete>
                     </tags-input>
+
                     <label>Actors:</label>
                     <tags-input template="actors.html" display-property="fullName" ng-model="user.actors" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="true" on-tag-added="addActor($tag)" on-tag-removed="removeActor($tag)">
-                        <auto-complete source="persons"></auto-complete>
+                        <auto-complete source="loadPersons($query)"></auto-complete>
                     </tags-input>
+
                     <br>
                     <button ng-click="update(organizationForm, user)" ng-disabled="organizationForm.$invalid" type="button" class="button  small success radius">Update</button>
+
+                </form>
+
+                <form class="dropzone" method="post" enctype="multipart/form-data" ng-dropzone dropzone="dropzone" dropzone-config="dropzoneConfigCarousel" event-handlers="eventHandlersCarousel" ng-hide="carousel">
+
                 </form>
             </div>
         </div>
@@ -41,7 +61,7 @@
         <div class="row">
             <div class="medium-3 small-12 small-centered text-center columns">
                 <img ng-src="{{avatar}}" alt="avatar" ng-show="avatar">
-<!--
+                <!--
                 <form class="dropzone" method="post" enctype="multipart/form-data" ng-dropzone dropzone="dropzone" dropzone-config="dropzoneConfig" event-handlers="eventHandlers" ng-hide="avatar">
                                 <input name="file" type="file" multiple />
                 </form>

@@ -23,5 +23,6 @@
   },
   "_source": "git://github.com/JustGoscha/allmighty-autocomplete.git",
   "_target": "*",
-  "_originalSource": "allmighty-autocomplete"
+  "_originalSource": "allmighty-autocomplete",
+  "_direct": true
 }
