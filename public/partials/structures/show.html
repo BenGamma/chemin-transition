@@ -47,8 +47,8 @@
                 {{org.properties.description}}
             </div>
             <br>
-
-            <div class="heading">
+            
+            <div ng-if="org.images" class="heading">
                 Carousel
             </div>
             <div carousel class="row text-center carousel">
@@ -106,7 +106,7 @@
                 </ul>
             </div>
 
-            <div class="heading">
+            <div ng-if="org.skills" class="heading">
                 <strong>Skills</strong>
             </div>
             <ul class="skills">
