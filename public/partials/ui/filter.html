@@ -7,7 +7,7 @@
                 <td class="title">Actors</td>
             </tr>
             <tr ng-repeat="actor in actorsResults = (filteredActors | andFilter: searchText: 'AND' | orderBy : 'name')">
-                <td><a ui-sref="actors.show({ id: actor.id })" ng-click="">{{actor.name}} <i class="fa fa-user"></i></a>
+                <td><a ui-sref="actors.show({ id: actor.id })">{{actor.name}} <i class="fa fa-user"></i></a>
                 </td>
             </tr>
 
@@ -32,4 +32,9 @@
 
         </table>
     </div>
+</div>
+
+
+<div class="current-filters">
+    <span ng-repeat="skill in currentFilter" ng-click="removeFilter(skill)" class="tag">{{skill}} </span>
 </div>

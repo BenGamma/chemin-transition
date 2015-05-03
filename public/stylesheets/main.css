@@ -10,7 +10,7 @@ body{background:#F0F0F0}
 .searchTextResults td .fa{position:absolute;right:12px;color:silver}
 .search-form input{width:280px;padding-left:8px}
 .autocomplete,.autocomplete li,.autocomplete li.active,.panel .avatar img,.table-wrapper table{width:100%}
-.table-wrapper{position:relative}
+.table-wrapper{position:relative;display:inline-block}
 .table-scroll{min-height:40px;max-height:90vh;overflow:auto}
 .table-scroll::-webkit-scrollbar{display:none}
 table.searchTextResults tr{background:0 0}
@@ -19,6 +19,9 @@ table.searchTextResults tr{background:0 0}
 .searchTextResults td .city{text-align:right;font-size:11px;color:silver;float:right;line-height:17px;margin-right:18px}
 .searchTextResults td:not(.title):hover{background:rgba(0,0,0,.03);transition:500ms;cursor:pointer}
 .searchTextResults td.title{font-weight:700;line-height:2.4em;padding:10px 14px;display:block;background:rgba(0,0,0,.06)}
+.current-filters{display:inline-block;vertical-align:top;margin:11px 0 0 11px}
+.current-filters .tag{cursor:pointer;padding:2px 4px 0}
+.current-filters .tag:hover{background:#CC3939}
 .top-bar-section .active{background:#007095}
 .leaflet-popup-content a{font-weight:700;color:#303030}
 .leaflet-popup-content a:hover{color:#6a6a6a;transition:300ms}
