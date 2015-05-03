@@ -10,6 +10,7 @@
             <div class="columns large-5 small-12">
                 <a ui-sref="structures.show({ id: org.id })"><h3>{{org.properties.name}}</h3></a>
                 <a ng-repeat="skill in org.properties.skills" class="tag" ng-click="filterSkills(skill)">{{skill.name}}</a>
+                <a ng-repeat="tag in org.properties.tags" class="tag" ng-click="filterSkills(skill)">{{tag}}</a>
             </div>
         </div>
     </div>
@@ -57,6 +58,7 @@
                     Skills
                     <br>
                     <a href="#" ng-if="org.properties.skills.length>0" ng-repeat="skill in org.properties.skills" class="tag">{{skill.name}}</a>
+                    <a href="#" ng-repeat="tag in org.properties.tags" class="tag">{{tag}}</a>
                 </div>
             </div>
         </div>
