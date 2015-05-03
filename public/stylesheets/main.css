@@ -19,7 +19,10 @@ body {
     top: 38px; }
 
 .searchTextResults {
-  margin-top: 7px; }
+  margin-top: 7px; 
+  z-index: 2;
+  position: relative;
+}
 
 .searchTextResults td {
   position: relative; }
