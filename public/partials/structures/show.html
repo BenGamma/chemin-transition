@@ -11,7 +11,6 @@
                 <p>{{org.email}}</p>
                 <p>{{org.phone}}</p>
             </div>
-
             <div class="columns large-3 small-12">
                 Actors<br>
                 <span href="#" ng-if="org.actors.length>0" ng-repeat="actor in org.actors">{{actor.fullName}}</span>
@@ -24,17 +23,28 @@
             </div>
             <div class="row">
                 <div class="text-center columns small-3 small-centered">
-                    <a ui-sref="structures.show({ id: org.id })"><h3 ng-bind="org.name"></h3></a>
-                    <p ng-bind="address"></p>
-                    <p ng-bind="org.email"></p>
-                    <p ng-bind="org.phone"></p>
+                    <a ui-sref="structures.show({ id: org.id })">
+                        <h3>{{org.name}}</h3>
+                        <h3 ng-if="org.properties">{{org.properties.name}}</h3>
+                    </a>
+                    <p>{{address}}</p>
+                    <p ng-if="org.properties.address">{{org.properties.address}}</p>
+                    <p ng-if="org.properties.postcode">{{org.properties.postcode}}</p>
+                    <p>{{org.email}}</p>
+                    <p ng-if="org.properties.email">{{org.properties.email}}</p>
+                    <p>{{org.phone}}</p>
+                    <p ng-if="org.properties.phone">{{org.properties.phone}}</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row main">
         <div class="columns large-8 content">
-            <div class="row description" ng-bind="org.description">
+            <div class="row description">
+                {{org.description}}
+            </div>
+            <div class="row description" ng-if="org.properties.description">
+                {{org.properties.description}}
             </div>
             <br>
 
@@ -55,11 +65,11 @@
                     <li>
                         <img ng-src="{{actor.image}}" alt="">
                         <br>
-                        <span ng-bind="actor.fullName"></span>
+                        <span>{{actor.fullName}}</span>
                         <br>
-                        <span ng-bind="actor.email"></span>
+                        <span>{{actor.email}}</span>
                         <br>
-                        <span ng-bind="actor.phone"></span>
+                        <span>{{actor.phone}}</span>
                     </li>
                 </ul>
             </div>
@@ -70,14 +80,28 @@
             <!--<div class="heading"><span>Nearby Labs</span>
             </div>-->
 
-            <div ng-if="org.url.length>0">
+            <div>
                 <div class="heading"><span>External Links</span>
                 </div>
                 <ul class="links">
-                    <li>
-                        <a href="{{org.url}}"><i class="fa fa-link"></i>
-                        <span class="url" itemprop="sameAs" ng-bind="org.url"></span>
-                    </a>
+                    <li ng-if="org.url">
+                        <a href="{{org.url}}" target="_blank"><i class="fa fa-link"></i>
+                        <span class="url" itemprop="sameAs">{{org.url}}</span>
+                        </a>
+                    <li ng-if="org.properties.url">
+                        <a href="{{org.properties.url}}" target="_blank"><i class="fa fa-link"></i>
+                        <span class="url" itemprop="sameAs" >{{org.properties.url}}</span>
+                        </a>
+                    </li>
+                    <li ng-if="org.properties.facebook">
+                        <a href="{{org.properties.facebook}}" target="_blank"><i class="fa fa-link"></i>
+                        <span class="url" itemprop="sameAs" >{{org.properties.facebook}}</span>
+                        </a>
+                    </li>
+                    <li ng-if="org.properties.twitter" >
+                        <a href="https://twitter.com/{{org.properties.twitter}}" target="_blank"><i class="fa fa-link"></i>
+                        <span class="url" >@{{org.properties.twitter}}</span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -86,7 +110,7 @@
                 <strong>Skills</strong>
             </div>
             <ul class="skills">
-                <li ng-if="org.skills.length>0" ng-repeat="skill in org.skills" class="tag" ng-bind="skill.name"></li>
+                <li ng-if="org.skills.length>0" ng-repeat="skill in org.skills" class="tag">{{skill.name}}</li>
             </ul>
 
         </div>
