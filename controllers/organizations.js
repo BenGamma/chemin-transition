@@ -1,15 +1,18 @@
 var Organization, OrganizationPerson, Person, User, _, async, mongoose, Image, busboy, fs;
 
-User               = require('../models/user');
-Organization       = require('../models/organization');
-OrganizationPerson = require('../models/organizationPerson');
-Person             = require('../models/person');
-Image              = require('../models/image');
-mongoose           = require('mongoose');
-async              = require('async');
-_                  = require('underscore');
-fs                 = require('fs');
-busboy             = require('connect-busboy');
+var User               = require('../models/user');
+var Organization       = require('../models/organization');
+var OrganizationPerson = require('../models/organizationPerson');
+var Person             = require('../models/person');
+var Image              = require('../models/image');
+var mongoose           = require('mongoose');
+var async              = require('async');
+var _                  = require('underscore');
+var fs                 = require('fs');
+var busboy             = require('connect-busboy');
+var curlrequest        = require('curlrequest');
+var techonmapJson      = require('../techonmapdatas')
+>>>>>>> dev
 
 exports.index = function(req, res) {
     Organization.find()
@@ -24,6 +27,34 @@ exports.index = function(req, res) {
             return res.status(200).json(Organization.ArraySerialize(organizations));
         }
     );
+};
+
+exports.techonmapdatas = function(req, res) {
+  // curlrequest.request({url :'http://techonmap.fr/api/resources/export', verbose: true}, function(err, data){
+    // var data = JSON.parse(data);
+    // var tierslieuArray = [];
+    // for (var i = 0, j=data['features'].length ; i < j ; i++){
+    //   if (data['features'][i]['properties']['category'] == 'Tiers-lieu'){
+    //     tierslieuArray.push(data['features'][i]);
+    //   }     
+    // }
+    // var techonmapdatas = JSON.(techonmapdatas);
+
+    var tierslieuArray = Array();
+    for (var i = 0, j = techonmapJson['features'].length ; i < j ; i++){
+      if (techonmapJson['features'][i]['properties']['category'] == 'Tiers-lieu'){
+        tierslieuArray.push(techonmapJson['features'][i]);
+      }
+    }
+    for (var i = 0, j = tierslieuArray.length ; i < j ; i++){
+      var obj = tierslieuArray[i];
+      for(var key in obj){
+          var attrName = key;
+          var attrValue = obj[key];
+      }
+    }
+  
+  return res.status(200).json(tierslieuArray);
 };
 
 exports.addActor = function(req, res, next) {
