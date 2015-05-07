@@ -14,6 +14,10 @@ PersonSchema = new userBaseSchema({
     personOrganizations: [{ type: Schema.ObjectId, ref: "OrganizationPerson" }]
 });
 
+/**
+ * [serialize Person]
+ * @return {Object}
+ */
 PersonSchema.methods.serialize = function() {
     return {
         "id": this._id,
@@ -25,6 +29,10 @@ PersonSchema.methods.serialize = function() {
     };
 };
 
+/**
+ * [ArraySerialize serialize person]
+ * @param {Array} persons
+ */
 PersonSchema.statics.ArraySerialize = function(persons) {
     var result;
     result = [];

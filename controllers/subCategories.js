@@ -2,6 +2,13 @@ var SubCategory;
 
 SubCategory = require('../models/subCategory');
 
+/**
+ * [create subCategory]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.create = function(req, res, next) {
   var subCategory;
   console.log(req);
@@ -26,6 +33,13 @@ exports.create = function(req, res, next) {
   }
 };
 
+/**
+ * [view show subCategory]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.view = function(req, res, next) {
   if (req.body._id) {
     return SubCategory.find(function(err, subCategories) {
@@ -39,6 +53,12 @@ exports.view = function(req, res, next) {
   }
 };
 
+/**
+ * [update subCategory]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.update = function(req, res) {
   var subCategory;
   subCategory = req.body;

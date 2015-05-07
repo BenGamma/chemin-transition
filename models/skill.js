@@ -8,6 +8,11 @@ skillSchema = new Schema({
     image: { type: String },
     users: [{ type: Schema.ObjectId, ref: "User" }  ]
 });
+
+/**
+ * [add skills]
+ * @param {Array} newSkills
+ */
 skillSchema.statics.add = function(newSkills) {
     var Skill = this;
     var skills = [];
@@ -21,5 +26,6 @@ skillSchema.statics.add = function(newSkills) {
     });
     return skills;
 }
+
 Skill          = mongoose.model('Skill', skillSchema);
 module.exports = Skill;

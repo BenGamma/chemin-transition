@@ -7,6 +7,9 @@ Invitation = require('./invitation');
 Schema = mongoose.Schema;
 util = require('util');
 
+/**
+ * [userBaseSchema Schema base]
+ */
 userBaseSchema = function() {
     Schema.apply(this, arguments);
         this.add({
@@ -25,16 +28,36 @@ userBaseSchema = function() {
             invitations: [{ type: Schema.ObjectId, ref: "Invitation", childPath: "user" }],
             images: [{ type: Schema.ObjectId, ref: "Image", childPath: 'organization' }]
         });
+    /**
+     * [generateHash]
+     * @param  {String} password 
+     * @return {String}  
+     */
     this.methods.generateHash = function(password) {
         return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     };
+
+    /**
+     * [validPassword]
+     * @param  {String} password
+     * @return {Boolean} 
+     */
     this.methods.validPassword = function(password) {
         return bcrypt.compareSync(password, this.local.password);
     };
+
+    /**
+     * [generateToken]
+     * @return {String}
+     */
     this.methods.generateToken = function() {
         this.local.enable = true;
         return this.local.token = randtoken.generate(16);
     };
+
+    /**
+     * if is new user generate token
+     */
     this.pre('save', function(next) {
         now = new Date();
         if (this.isNew) {
@@ -47,6 +70,9 @@ userBaseSchema = function() {
         return next();
     });
 
+    /**
+     * check if invitation exist and desable it
+     */
     this.pre('save', function(next){
         Invitation
             .findOne()

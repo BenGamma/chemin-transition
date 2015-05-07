@@ -8,6 +8,13 @@ mailer     = require('../config/mailer');
 fs         = require('fs');
 busboy     = require('connect-busboy');
 
+/**
+ * [create new user]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.create = function(req, res, next) {
     passport.authenticate('local-signup', function(user) {
         if (user) {
@@ -18,6 +25,13 @@ exports.create = function(req, res, next) {
     })(req, res, next);
 };
 
+/**
+ * [upload image profile]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.upload = function(req, res, next) {
     req.pipe(req.busboy);
     req.busboy.on('file', function(fieldname, file, filename) {
@@ -42,6 +56,12 @@ exports.upload = function(req, res, next) {
     });
 };
 
+/**
+ * [update user]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.update = function(req, res) {
     console.log(req.body)
     User.update({
@@ -55,6 +75,12 @@ exports.update = function(req, res) {
     });
 };
 
+/**
+ * [delete user]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.delete = function(req, res) {
     if (req.body.id) {
         User.findOne({
@@ -75,18 +101,36 @@ exports.delete = function(req, res) {
     }
 };
 
+/**
+ * [profile show profile user]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.profile = function(req, res) {
     res.render('index', {
         title: 'Blog | MVC'
     });
 };
 
+/**
+ * [persons show persons]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.persons = function(req, res) {
     Person.find(function(err, persons) {
         res.status(200).json(Person.ArraySerialize(persons));
     });
 };
 
+/**
+ * [invitation create a new invitation]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.invitation = function(req, res) {
     User.findOne({
         'local.token': req.headers['x-token'],
@@ -112,6 +156,12 @@ exports.invitation = function(req, res) {
     });
 }
 
+/**
+ * [showInvitation show invitation]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.showInvitation = function(req, res) {
     Invitation.findById(req.params.id, function(err, invitation){
         if(err) {
@@ -122,6 +172,13 @@ exports.showInvitation = function(req, res) {
     });
 }
 
+/**
+ * [checkInvitation check invitation]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.checkInvitation = function(req, res, next) {
     Invitation.findOne()
         .where({'email': req.body.to})

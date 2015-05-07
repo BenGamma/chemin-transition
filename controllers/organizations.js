@@ -13,6 +13,12 @@ var busboy             = require('connect-busboy');
 var curlrequest        = require('curlrequest');
 var techonmapJson      = require('../techonmapdatas')
 
+/**
+ * [index fetch all orgnizations]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.index = function(req, res) {
     Organization.find()
         .where('coordinates.lg')
@@ -28,16 +34,13 @@ exports.index = function(req, res) {
     );
 };
 
+/**
+ * [techonmapdatas fetch data from techonmap]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.techonmapdatas = function(req, res) {
-  // curlrequest.request({url :'http://techonmap.fr/api/resources/export', verbose: true}, function(err, data){
-    // var data = JSON.parse(data);
-    // var tierslieuArray = [];
-    // for (var i = 0, j=data['features'].length ; i < j ; i++){
-    //   if (data['features'][i]['properties']['category'] == 'Tiers-lieu'){
-    //     tierslieuArray.push(data['features'][i]);
-    //   }     
-    // }
-    // var techonmapdatas = JSON.(techonmapdatas);
 
     var tierslieuArray = Array();
     for (var i = 0, j = techonmapJson['features'].length ; i < j ; i++){
@@ -56,6 +59,12 @@ exports.techonmapdatas = function(req, res) {
   return res.status(200).json(tierslieuArray);
 };
 
+/**
+ * [addActor add a new actor]
+ * @param {[type]}   req  [description]
+ * @param {[type]}   res  [description]
+ * @param {Function} next [description]
+ */
 exports.addActor = function(req, res, next) {
     var actor, query;
     if (req.body) {
@@ -93,6 +102,13 @@ exports.addActor = function(req, res, next) {
     }
 };
 
+/**
+ * [removeActor remove actor]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.removeActor = function(req, res, next) {
     OrganizationPerson.remove(req.params.id, function(err) {
         if (err) {
@@ -102,8 +118,12 @@ exports.removeActor = function(req, res, next) {
     return res.status(204);
 };
 
-exports.addSkill = function(req, res) {};
-
+/**
+ * [show show an organization]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.show = function(req, res) {
     async.series({
         user: function(callback) {
@@ -141,6 +161,12 @@ exports.show = function(req, res) {
     });
 };
 
+/**
+ * [profile show organization profile]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.profile = function(req, res) {
     async.series({
         user: function(callback) {
@@ -182,6 +208,12 @@ exports.profile = function(req, res) {
     );
 };
 
+/**
+ * [update organization]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.update = function(req, res) {
     Organization.findOne({
         'local.token': req.headers['x-token'],
@@ -204,6 +236,11 @@ exports.update = function(req, res) {
     });
 };
 
+/**
+ * [addImage add an image profile]
+ * @param {[type]} req [description]
+ * @param {[type]} res [description]
+ */
 exports.addImage = function(req, res) {
     req.pipe(req.busboy);
     req.busboy.on('file', function(fieldname, file, filename) {
@@ -233,6 +270,12 @@ exports.addImage = function(req, res) {
     });
 }
 
+/**
+ * [removeImage]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.removeImage = function(req, res) {
     Image.remove(req.params.id, function(err) {
         if (err) {

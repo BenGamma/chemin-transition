@@ -2,6 +2,13 @@ var Skill;
 
 Skill = require('../models/skill');
 
+/**
+ * [create skill]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.create = function(req, res, next) {
     var skill;
     if (req.body) {
@@ -19,6 +26,13 @@ exports.create = function(req, res, next) {
     }
 };
 
+/**
+ * [view show skill]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.view = function(req, res, next) {
     Skill.find(function(err, skills) {
         if (err) {
@@ -28,6 +42,12 @@ exports.view = function(req, res, next) {
     });
 };
 
+/**
+ * [update skill]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.update = function(req, res) {
     var skill;
     if (req.body) {
@@ -47,6 +67,12 @@ exports.update = function(req, res) {
     }
 };
 
+/**
+ * [delete skill]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.delete = function(req, res) {
     if (req.body.id) {
         Skill.findOne({ _id: req.body.id}, function(err, skill) {

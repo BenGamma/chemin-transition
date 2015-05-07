@@ -12,6 +12,7 @@ organizationPersonSchema = new Schema({
     actor: { type: Boolean, "default": false }
 });
 
+//relationship plugin
 organizationPersonSchema.plugin(relationship, {
     relationshipPathName: 'organization'
 });
@@ -20,6 +21,10 @@ organizationPersonSchema.plugin(relationship, {
     relationshipPathName: 'person'
 });
 
+/**
+ * [ArraySerialize] serialize actors
+ * @param {Array} actors
+ */
 organizationPersonSchema.statics.ArraySerialize = function(actors) {
     var result;
     result = [];

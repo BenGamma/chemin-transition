@@ -22,6 +22,10 @@ OrganizationSchema = new userBaseSchema({
     images: [{ type: Schema.ObjectId, ref: "Image", childPath: 'organization' }]
 });
 
+/**
+ * [serialize Organization]
+ * @return {Object} return an organization object
+ */
 OrganizationSchema.methods.serialize = function() {
     return {
         "id": this._id,
@@ -44,6 +48,10 @@ OrganizationSchema.methods.serialize = function() {
     };
 };
 
+/**
+ * [ActorArraySerialize serialize actors relationships]
+ * @param {Array} actors
+ */
 OrganizationSchema.statics.ActorArraySerialize = function(actors) {
     var result;
     result = [];
@@ -60,6 +68,10 @@ OrganizationSchema.statics.ActorArraySerialize = function(actors) {
     return result;
 }   
 
+/**
+ * [ArraySerialize serialize collection of organization]
+ * @param {Array} organizations
+ */
 OrganizationSchema.statics.ArraySerialize = function(organizations) {
     var result;
     result = [];

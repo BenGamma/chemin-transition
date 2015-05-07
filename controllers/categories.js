@@ -13,6 +13,13 @@ exports.view = function(req, res, next) {
   });
 };
 
+/**
+ * [create create a new category]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.create = function(req, res, next) {
     if (req.body) {
         if (req.body.name) {
@@ -48,6 +55,12 @@ exports.create = function(req, res, next) {
     }
 };
 
+/**
+ * [update update a new category]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.update = function(req, res) {
     var category;
     if (req.body._id) {
@@ -68,6 +81,12 @@ exports.update = function(req, res) {
     }
 };
 
+/**
+ * [delete a new category]
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
 exports.delete = function(req, res) {
     if (req.body._id) {
         Category.findOne({

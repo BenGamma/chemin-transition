@@ -4,6 +4,13 @@ passport = require('passport');
 
 User = require('../models/user');
 
+/**
+ * [login user]
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 exports.login = function(req, res, next) {
     if (!(req.body.email || req.body.password)) {
         return res.status(400).json({
